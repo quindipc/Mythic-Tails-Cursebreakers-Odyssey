@@ -1,25 +1,38 @@
 // Dependancies
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import HomePage from "./pages/HomePage";
 
+// Components
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+
+// Assets
+import "./styles/partials/_fonts.scss"
+
+
 export default function App() {
-
-
   return (
-    <BrowserRouter>
+      <BrowserRouter>
+        {/* Render the Header component */}
+        <Header />
+
         <Routes>
-            <Route path="/" element={<HomePage />}> </Route>
-            <Route path="/play-game" element={}> </Route>
-            <Route path="/about" element={}> </Route>
-            <Route path="/login" element={}> </Route>
-            <Route path="/profile/:id" element={}> </Route>
-            <Route path="/pet-list/:id" element={}> </Route>
-            <Route path="/pet-details/:id" element={}> </Route>
-            <Route path="/pet-management/:id" element={}> </Route>
-            <Route path="/contact" element={<}> </Route>
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/play-game" element={} />
+        <Route path="/about" element={} />
+        <Route path="/login" element={} />
+        <Route path="/profile/:id" element={} />
+        <Route path="/creature-list/:id" element={} />
+        <Route path="/creature-details/:id" element={} />
+        <Route path="/creature-management/:id" element={} />
+        <Route path="/contact" element={} /> */}
         </Routes>
-    </BrowserRouter>
-  )
+
+        <Footer />
+      </BrowserRouter>
+    </ChakraProvider>
+  );
 }

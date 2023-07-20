@@ -20,6 +20,7 @@ Axios (or Fetch API): To make HTTP requests from the frontend to the backend API
 
 JSON Web Token (JWT): To handle user authentication and manage tokens for authenticated API requests.
 
+SASS
 
 ![Screenshot-client-dependancies](ADD IMAGE LINK HERE)
 

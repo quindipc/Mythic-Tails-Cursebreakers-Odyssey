@@ -1,6 +1,7 @@
-@use "../../styles/partials/_fonts" as *;
-@use "../../styles/partials/_resets" as *;
-@use "../../styles/partials/_variables" as *;
+@use "../partials/_fonts" as *;
+@use "../partials/_variables" as *;
+@use "../partials/_resets" as *;
+
 
 // Media Query
 @mixin desktop {
@@ -14,3 +15,6 @@
         @content;
     }
 }
+
+// fonts
+@mixin 
