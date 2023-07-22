@@ -1,6 +1,5 @@
 @use "../partials/_fonts" as *;
 @use "../partials/_variables" as *;
-@use "../partials/_resets" as *;
 
 
 // Media Query
@@ -15,6 +14,3 @@
         @content;
     }
 }
-
-// fonts
-@mixin 
