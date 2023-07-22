@@ -2,32 +2,26 @@
 import React, { useState } from "react";
 import "./GameWindow.scss";
 
-export default function GameWindow() {
-  const [gameText, setGameText] = useState(
-    "Welcome to Mythic Tails: Cursebreaker's Odyssey.",
-  );
+const GameWindow = () => {
+// PROGRESS
+  const [progress, setProgess] = useState(0)
+  const [gameText, setGameText] = useState("Wecome to Mythic Tails: Cursebreaker's Odyssey")
 
-  // GAME LOGIC
-  const handleAction = (action) => {
-    if (action === "look") {
-      setGameText(
-        "You are standing in a dark forest. There is a path to the east.",
-      );
-    } else if (action === "go east") {
-      setGameText("You follow the path and arrive at a clearing.");
-    } else if (action === "go west") {
-      setGameText("You head west, but the dense trees block your way.");
-    } else {
-      setGameText("I don't understand that command.");
-    }
+  const handleDarkMode = () => {
+    const toggleContainer = document.querySelector(".game__toggle-container")
+    toggleContainer.classList.toggle("dark");
   };
 
-  return <div className="gamewindow">{gameText}
-    
-    <div className="gamewindow__options">
-    <button className="gamewindow__choice" onClick={() => handleAction("look")}>Look</button>
-        <button className="gamewindow__choice" onClick={() => handleAction("go east")}>Go East</button>
-        <button className="gamewindow__choice" onClick={() => handleAction("go west")}>Go West</button>
-    </div>
-  </div>;
+  return (
+    <div className="game">
+      <div className="game__toggle-container">
+        <input type="checkbox"
+          id="switch" onClick={handleDarkMode} />
+        <label className="game__switch" htmlFor="switch"></label>
+        <div className="game__toggle"></div>
+      </div>
+      <h1 className="game__title">{gameText}</h1>
+  </div>
+  )
 }
+export default GameWindow;
