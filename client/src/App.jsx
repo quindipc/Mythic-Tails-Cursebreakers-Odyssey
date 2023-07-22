@@ -3,7 +3,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
+import GamePage from "./pages/GamePage/GamePage"
 
 // Components
 import Header from "./components/Header/Header";
@@ -21,8 +22,8 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/play-game" element={} />
-        <Route path="/about" element={} />
+          <Route path="/play-game" element={<GamePage />} />
+        {/* <Route path="/about" element={} />
         <Route path="/login" element={} />
         <Route path="/profile/:id" element={} />
         <Route path="/creature-list/:id" element={} />
