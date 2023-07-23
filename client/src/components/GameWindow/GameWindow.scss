@@ -17,6 +17,7 @@
   line-height: 1.5;
   overflow-y: auto;
 
+  // DARK MODE //
   &__toggle-container {
     @include flex-column-center-center;
     width: 3.125rem;
@@ -49,8 +50,32 @@
     left: .1875rem;
     transition: 0.5s all ease;
   }
+
+
+  // CHOICE BUTTONS
+  &__options {
+
+  }
+
+  &__choice {
+    width: 7rem;
+    height: 3rem;
+    padding: 1rem;
+    background-color: $grey;
+    color: $white;
+    @include mavenpro-semibold;
+    font-size: 1rem;
+
+    &:hover{
+      cursor: pointer;
+      background-color: $tertiary-color;
+    }
+  }
+
+
 }
 
+// DARK MODE //
 #switch {
   visibility: hidden;
   position: absolute;
