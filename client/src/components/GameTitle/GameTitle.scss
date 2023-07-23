@@ -21,14 +21,8 @@
   }
 
   &__button {
-    width: 7rem;
-    height: 3rem;
-    padding: 1rem;
-    background-color: $grey;
-    color: $white;
-    @include mavenpro-semibold;
-    font-size: 1rem;
-
+    @include buttonStyles;
+    
     &:hover{
       cursor: pointer;
       background-color: $tertiary-color;

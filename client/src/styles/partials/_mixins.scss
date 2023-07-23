@@ -90,3 +90,14 @@ font-weight: 400;
   font-family: "Maven Pro";
   font-weight: 900;
 }
+
+// BUTTONS 
+@mixin buttonStyles {
+  width: 7rem;
+  height: 3rem;
+  padding: 1rem;
+  background-color: $secondary-color;
+  color: $white;
+  @include mavenpro-semibold;
+  font-size: 1rem;
+}
