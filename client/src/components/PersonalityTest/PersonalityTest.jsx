@@ -1,5 +1,5 @@
 // DEPENDANCIES
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./PersonalityTest.scss";
 
@@ -10,7 +10,7 @@ export default function PersonalityTest({ onComplete }) {
   const [progress, setProgress] = useState(0);
   const [characterSelection, setCharacterSelection] = useState(null);
   const [personalityTestData, setPersonalityTestData] = useState({});
- 
+
   PersonalityTest.propTypes = {
     onComplete: PropTypes.func.isRequired,
   };
@@ -19,16 +19,19 @@ export default function PersonalityTest({ onComplete }) {
   useEffect(() => {
     fetch("/gamedata/personality-test.json")
       .then((response) => response.json())
-      .then((data) => setPersonalityTestData(data))
+      .then((data) => {
+        console.log(data);
+        setPersonalityTestData(data);
+      })
       .catch((error) =>
         console.error("Error fetching personality test data:", error),
       );
   }, []);
 
-    // Check if data is still being fetched
-    if (personalityTestData === null) {
-      return <div>Loading...</div>;
-    }
+  // Check if data is still being fetched
+  if (personalityTestData === null) {
+    return <div>Loading...</div>;
+  }
 
   // const currentScenario = personalityTestData[progress];
 
@@ -64,10 +67,11 @@ export default function PersonalityTest({ onComplete }) {
     setCharacterSelection(startingCharacter);
   };
 
-  
   const handleCharacterSelection = (character) => {
     // TODO: change from console log
-    console.log(`Congratulations! You will begin your adventure as ${character}.`);
+    console.log(
+      `Congratulations! You will begin your adventure as ${character}.`,
+    );
     onComplete();
   };
 
@@ -84,22 +88,35 @@ export default function PersonalityTest({ onComplete }) {
         </button>
       </div>
     );
-  } else if (personalityTestData.length > 0 && progress < personalityTestData.length) {
+  } else if (
+    personalityTestData.length > 0 &&
+    progress < personalityTestData.length
+  ) {
     // PERSONALITY TEST
     const currentScenario = personalityTestData[progress];
     return (
       <div className="personalitytest">
-        <h2 className="personalitytest__title">Character Selection</h2>
+        {/* <h2 className="personalitytest__title">Character Selection</h2> */}
         <p className="personalitytest__scenario">{currentScenario.text}</p>
-        {currentScenario.choices.map((choice, index) => (
-          <button
-            className="personalitytest__choice"
-            key={index}
-            onClick={() => handlePersonalityTest(choice.trait)}
-          >
-            {choice.text}
-          </button>
+        {/* TODO: Add handler to display the personality  */}
+        <button className="personalitytest__next">Next</button>
+        {/* TODO: DISPLAY AFTER CLICKING NEXT */}
+        {personalityTestData?.map((choice, index) => (
+          <>
+            {choice?.choices &&
+              choice?.choices?.map(({ text, trait }) => (
+                <button
+                  className="personalitytest__choice"
+                  key={index}
+                  onClick={() => handlePersonalityTest(choice.trait)}
+                >
+                  {text}
+                </button>
+              ))}
+          </>
         ))}
+
+
       </div>
     );
   } else {
@@ -119,5 +136,5 @@ export default function PersonalityTest({ onComplete }) {
         </button>
       </div>
     );
-  }  
+  }
 }
