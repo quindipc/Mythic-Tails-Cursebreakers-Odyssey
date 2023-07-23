@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PersonalityTest = ({ onComplete }) => {
+export default function PersonalityTest() {
   // SET POINTS FOR PERSONALITY
   const [compassionatePoints, setCompassionatePoints] = useState(0);
   const [pragmaticPoints, setPragmaticPoints] = useState(0);
@@ -40,6 +40,4 @@ const PersonalityTest = ({ onComplete }) => {
       <div className="personalitytest"></div>
     </>
   );
-};
-
-export default PersonalityTest;
+}

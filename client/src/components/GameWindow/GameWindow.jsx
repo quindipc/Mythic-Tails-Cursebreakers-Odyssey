@@ -1,17 +1,21 @@
 // Dependancies
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GameWindow.scss";
 
 // Components
 import PersonalityTest from "../PersonalityTest/PersonalityTest";
 
-const GameWindow = () => {
-  // PROGRESS
+export default function GameWindow() {
+  const PERSONALITY_DATA = "client/src/gamedata/personality-test.json";
+
+  // STATES
   const [progress, setProgress] = useState(0);
   const [gameText, setGameText] = useState(
     "Wecome to Mythic Tails: Cursebreaker's Odyssey",
   );
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [personalityData, setpersonalityData] = useState(null);
+
 
   // DARK MODE TOGGLE
   const handleDarkMode = () => {
@@ -26,53 +30,21 @@ const GameWindow = () => {
   const [mysteriousPoints, setMysteriousPoints] = useState(0);
   const [selfReliantPoints, setSelfReliantPoints] = useState(0);
 
-  // PERSONALITY START GAME TEST
-  const handlePersonality = () => {
-    if (progress === 0) {
-      setGameText(
-        "Welcome to the cursed land of Ethoria, where malevolent forces have plagued the once-thriving realm. Your choices will shape the path ahead, determining whether you'll embark on this journey as the compassionate Guardian Alara or the enigmatic Lost Cursebearer, Nyx.",
-      );
-      setProgess(1);
-    } else if (progress === 1) {
-      setGameText(
-        "Scenario 1: The Wounded Creature As you traverse the cursed forest, you encounter a wounded creature crying out in pain.",
-      );
-      setProgess(2);
-    } else if (progress === 2) {
-      setGameText(`Choice A: Approach the creature with empathy, offering aid and healing.
-      • Trait: Compassionate
-      • Description: You show kindness and concern for others, even in dire circumstances.`);
-      setGameText(`Choice B: Remain cautious and proceed with caution, unsure if the creature can be trusted.
-      • Trait: Pragmatic
-      • Description: You prioritize caution and practicality when faced with uncertain situations.`);
-      setProgess(3)
-    } else if (progress === 3) {
-      setGameText(`Choice B: Remain cautious and proceed with caution, unsure if the creature can be trusted.
-      • Trait: Pragmatic
-      • Description: You prioritize caution and practicality when faced with uncertain situations.`);
-      setProgess(4)
-      setProgess(4)
-    } else if (progress === 4) {
-      setGameText(
-        "Scenario 2: The Hidden Path You come across an ancient map that hints at a hidden path leading to a powerful artifact, but it's obscured by a complex puzzle.",
-      );
-      setProgess(5)
+ 
 
-    } else if (progress === 5) {
-      setGameText(`Choice A: Take the time to solve the puzzle, intrigued by the prospect of uncovering secrets and hidden knowledge.
-      • Trait: Curious
-      • Description: You have an insatiable thirst for knowledge and enjoy exploring mysteries.`);
-      setGameText(`Choice B: Bypass the puzzle and continue on your journey, valuing progress over curiosity.
-      • Trait: Ambitious
-      • Description: You are focused on your end goal, willing to make sacrifices to achieve it.`);
-      setProgess(6)
-
-    } else if (progress === 6) {
-      handleNext()
-    } else {
-      // END OF PERSONALITY TEST -- ENTER GAME NOW
+  // PERSONALITY TEST - FETCH DATA 
+    useEffect(() => {
+      fetch("client/src/gamedata/personality-test.json")
+        .then((resp) => resp.json())
+        .then((data) => setpersonalityData(data))
+        .catch((error) =>
+          console.error("Cannot fetch personality test data", error));
+    }, []);
+  
+    if(!personalityData) {
+      return <div className="game__loading">Loading...</div>
     }
-  };
+
 
   // PROGRESS STORY -- AFTER PERSONALITY TEST IS COMPLETED
   const handleNext = () => {
@@ -98,6 +70,45 @@ const GameWindow = () => {
     }
   };
 
+
+// PERSONALITY START GAME TEST 
+const handlePersonality = (choice) => {
+  const currentScenario = personalityData[progress];
+
+  if (progress === 0) {
+    setGameText(currentScenario.text);
+    setProgress(1);
+  } else if (progress === 1) {
+    setGameText(currentScenario.text);
+    if (choice === "Choice A") {
+      setCompassionatePoints((prevPoints) => prevPoints + 1);
+    } else if (choice === "Choice B") {
+      setPragmaticPoints((prevPoints) => prevPoints + 1);
+    }
+    setProgress(2);
+  } else if (progress === 2) {
+    setGameText(currentScenario.text);
+    if (choice === "Choice A") {
+      setCuriousPoints((prevPoints) => prevPoints + 1);
+    } else if (choice === "Choice B") {
+      setAmbitiousPoints((prevPoints) => prevPoints + 1);
+    }
+    setProgress(3);
+  } else if (progress === 3) {
+    setGameText(currentScenario.text);
+    if (choice === "Choice A") {
+      setMysteriousPoints((prevPoints) => prevPoints + 1);
+    } else if (choice === "Choice B") {
+      setSelfReliantPoints((prevPoints) => prevPoints + 1);
+    }
+    setProgress(4);
+  } else if (progress === 4) {
+    setGameText(currentScenario.text);
+    setProgress(5);
+  }
+};
+
+
   // RENDER GAME BASED ON PROGRESS
   if (progress === 6) {
     // PERSONALITY TEST COMPLETED
@@ -107,6 +118,10 @@ const GameWindow = () => {
       </div>
     );
   } else {
+
+    const currentScenario = personalityData[progress];
+
+
     return (
       <div className={`game ${isDarkMode ? "game__dark" : ""}`}>
         {/* DARK MODE */}
@@ -138,20 +153,20 @@ const GameWindow = () => {
           )}
           {progress < 6 && (
             <>
-              <button className="game__choice" onClick={handleNext}>
+              
+              {currentScenario.choices &&
+                currentScenario.choices.map((choice, index) => (
+                  <button
+                    key={index}
+                    className="game__choice"
+                    onClick={() => handlePersonality(choice)}
+                  >
+                    {choice}
+                  </button>
+                ))}
+                {/* Add a Next button to continue the story */}
+                <button className="game__choice" onClick={handleNext}>
                 Next
-              </button>
-              <button
-                className="game__choice"
-                onClick={() => handlePersonality("Choice A")}
-              >
-                Choice A
-              </button>
-              <button
-                className="game__choice"
-                onClick={() => handlePersonality("Choice B")}
-              >
-                Choice B
               </button>
             </>
           )}
@@ -159,6 +174,5 @@ const GameWindow = () => {
       </div>
     );
   }
-};
+}
 
-export default GameWindow;
