@@ -1,0 +1,38 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.hero {
+  background-color: $black;
+  color: $secondary-color;
+  width: 100%;
+  height: 100vh;
+  @include flex-column-center-center;
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  &__title-block {
+    font-size: 1.5rem;
+    color: $primary-color;
+    background-color: $secondary-color;
+    padding: 0.5rem;
+    border-radius: 3.125rem;
+    line-height: 1.5;
+  }
+
+  &__button {
+    font-size: 1rem;
+    @include buttonStyles;
+    margin-top: 1rem;
+    color: $primary-color;
+    &:hover {
+      cursor: pointer;
+      background-color: $secondary-color-dark;
+    }
+  }
+}
