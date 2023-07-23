@@ -14,9 +14,6 @@ import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 export default function GameWindow() {
   // STATES
   const [progress, setProgress] = useState(0);
-  // const [gameText, setGameText] = useState(
-  //   "Wecome to Mythic Tails: Cursebreaker's Odyssey",
-  // );
   const [isDarkMode, setIsDarkMode] = useState(false);
   // const [personalityData, setpersonalityData] = useState(null);
 
