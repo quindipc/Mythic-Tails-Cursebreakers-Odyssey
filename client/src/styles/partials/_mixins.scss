@@ -59,3 +59,34 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+
+// FONTS //
+@mixin pressstart2p {
+  font-family: "Press Start 2P", cursive;
+}
+
+@mixin mavenpro-regular {
+  font-family: "Maven Pro";
+font-weight: 400;
+}
+@mixin mavenpro-medium {
+  font-family: "Maven Pro";
+  font-weight: 500;
+}
+@mixin mavenpro-semibold{
+  font-family: "Maven Pro";
+  font-weight: 600;
+}
+@mixin mavenpro-bold {
+  font-family: "Maven Pro";
+  font-weight: 700;
+}
+@mixin mavenpro-extrabold {
+  font-family: "Maven Pro";
+  font-weight: 800;
+}
+@mixin mavenpro-black {
+  font-family: "Maven Pro";
+  font-weight: 900;
+}
