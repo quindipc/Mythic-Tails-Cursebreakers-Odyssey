@@ -1,0 +1,9 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.footer {
+    @include mavenpro-semibold;
+    font-size: 1rem;
+}
