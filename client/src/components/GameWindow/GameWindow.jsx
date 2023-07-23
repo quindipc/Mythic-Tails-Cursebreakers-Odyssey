@@ -72,41 +72,41 @@ export default function GameWindow() {
   // };
 
   // PERSONALITY START GAME TEST
-  // const handlePersonality = (choice) => {
-  //   const currentScenario = personalityData[progress];
+  const handlePersonality = (choice) => {
+    const currentScenario = personalityData[progress];
 
-  //   if (progress === 0) {
-  //     setGameText(currentScenario.text);
-  //     setProgress(1);
-  //   } else if (progress === 1) {
-  //     setGameText(currentScenario.text);
-  //     if (choice === "Choice A") {
-  //       setCompassionatePoints((prevPoints) => prevPoints + 1);
-  //     } else if (choice === "Choice B") {
-  //       setPragmaticPoints((prevPoints) => prevPoints + 1);
-  //     }
-  //     setProgress(2);
-  //   } else if (progress === 2) {
-  //     setGameText(currentScenario.text);
-  //     if (choice === "Choice A") {
-  //       setCuriousPoints((prevPoints) => prevPoints + 1);
-  //     } else if (choice === "Choice B") {
-  //       setAmbitiousPoints((prevPoints) => prevPoints + 1);
-  //     }
-  //     setProgress(3);
-  //   } else if (progress === 3) {
-  //     setGameText(currentScenario.text);
-  //     if (choice === "Choice A") {
-  //       setMysteriousPoints((prevPoints) => prevPoints + 1);
-  //     } else if (choice === "Choice B") {
-  //       setSelfReliantPoints((prevPoints) => prevPoints + 1);
-  //     }
-  //     setProgress(4);
-  //   } else if (progress === 4) {
-  //     setGameText(currentScenario.text);
-  //     setProgress(5);
-  //   }
-  // };
+    if (progress === 0) {
+      setGameText(currentScenario.text);
+      setProgress(1);
+    } else if (progress === 1) {
+      setGameText(currentScenario.text);
+      if (choice === "Choice A") {
+        setCompassionatePoints((prevPoints) => prevPoints + 1);
+      } else if (choice === "Choice B") {
+        setPragmaticPoints((prevPoints) => prevPoints + 1);
+      }
+      setProgress(2);
+    } else if (progress === 2) {
+      setGameText(currentScenario.text);
+      if (choice === "Choice A") {
+        setCuriousPoints((prevPoints) => prevPoints + 1);
+      } else if (choice === "Choice B") {
+        setAmbitiousPoints((prevPoints) => prevPoints + 1);
+      }
+      setProgress(3);
+    } else if (progress === 3) {
+      setGameText(currentScenario.text);
+      if (choice === "Choice A") {
+        setMysteriousPoints((prevPoints) => prevPoints + 1);
+      } else if (choice === "Choice B") {
+        setSelfReliantPoints((prevPoints) => prevPoints + 1);
+      }
+      setProgress(4);
+    } else if (progress === 4) {
+      setGameText(currentScenario.text);
+      setProgress(5);
+    }
+  };
 
   // RENDER GAME BASED ON PROGRESS
   // if (progress === 6) {
@@ -130,7 +130,7 @@ export default function GameWindow() {
       <GameTitle progress={progress} />
 
       {/* Render different sections based on progress */}
-      {progress === 0 && <PersonalityTest />}
+      {progress === 0 && <PersonalityTest onComplete={handlePersonality} />}
       {progress === 1 && <Alara />}
       {progress === 2 && <Nyx />}
       {/* Add more sections as the game progresses */}

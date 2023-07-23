@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PersonalityTest() {
+export default function PersonalityTest({ onComplete }) {
   // SET POINTS FOR PERSONALITY
   const [compassionatePoints, setCompassionatePoints] = useState(0);
   const [pragmaticPoints, setPragmaticPoints] = useState(0);
@@ -32,12 +32,16 @@ export default function PersonalityTest() {
       default:
         break;
     }
-    onComplete(); 
+    onComplete();
   };
 
   return (
-    <>
-      <div className="personalitytest"></div>
-    </>
+    <div className="personalitytest">
+      <h2>Personality Test</h2>
+      <p>Scenario 1: ...</p>
+      <button onClick={() => handlePersonalityTest(1, "Compassionate")}>Choice A</button>
+      <button onClick={() => handlePersonalityTest(1, "Pragmatic")}>Choice B</button>
+      {/* Add more questions and choices as needed */}
+    </div>
   );
 }
