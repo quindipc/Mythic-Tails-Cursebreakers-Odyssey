@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import PersonalityTest from "../PersonalityTest/PersonalityTest";
 import Alara from "../Alara/Alara";
 import Nyx from "../Nyx/Nyx";
+import GameTitle from "../GameTitle/GameTitle";
 
 export default function GameWindow() {
   const [progress, setProgress] = useState(0);
@@ -27,12 +28,19 @@ export default function GameWindow() {
     console.log(`Congratulations! You will begin your adventure as ${startingCharacter}.`);
   };
 
+  const handleStartGame = () => {
+    setProgress(0);
+  }
   return (
     <div className="game">
-      {progress === 0 && <PersonalityTest onComplete={handlePersonalityTestComplete} />}
-      {progress === 1 && <Alara />}
-      {progress === 2 && <Nyx />}
-      {/* Add more sections as the game progresses */}
-    </div>
+    {progress === 0 ? (
+      <GameTitle onStartGame={handleStartGame} />
+    ) : progress === 1 ? (
+      <Alara />
+    ) : progress === 2 ? (
+      <Nyx />
+    ) : null}
+    {progress === 0 && <PersonalityTest onComplete={handlePersonalityTestComplete} />}
+  </div>
   );
 }

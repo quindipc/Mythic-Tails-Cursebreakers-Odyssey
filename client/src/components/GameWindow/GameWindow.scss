@@ -59,29 +59,29 @@
 
 
   // CHOICE BUTTONS
-  &__options {
+  // &__options {
 
-  }
+  // }
 
-  &__choice {
-    width: 7rem;
-    height: 3rem;
-    padding: 1rem;
-    background-color: $grey;
-    color: $white;
-    @include mavenpro-semibold;
-    font-size: 1rem;
+  // &__choice {
+  //   width: 7rem;
+  //   height: 3rem;
+  //   padding: 1rem;
+  //   background-color: $grey;
+  //   color: $white;
+  //   @include mavenpro-semibold;
+  //   font-size: 1rem;
 
-    &:hover{
-      cursor: pointer;
-      background-color: $tertiary-color;
-    }
-  }
+  //   &:hover{
+  //     cursor: pointer;
+  //     background-color: $tertiary-color;
+  //   }
+  // }
 
 
-  &__title {
-    // font-size: .75rem;
-  }
+  // &__title {
+  //   // font-size: .75rem;
+  // }
 
 }
 
