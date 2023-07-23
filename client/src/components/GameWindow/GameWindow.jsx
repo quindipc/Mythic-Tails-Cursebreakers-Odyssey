@@ -9,38 +9,30 @@ import GameTitle from "../GameTitle/GameTitle";
 
 export default function GameWindow() {
   const [progress, setProgress] = useState(0);
+  const [showPersonalityTest, setShowPersonalityTest] = useState(false);
 
   // STARTING CHARACTER TRAIT POINTS
-  const handlePersonalityTestComplete = (traitPoints) => {
-    const { Compassionate, Pragmatic, Curious, Ambitious, Mysterious, "Self-reliant": SelfReliant } = traitPoints;
-    let startingCharacter;
-    if (Compassionate > Pragmatic) {
-      startingCharacter = "Alara, the Guardian";
-    } else if (Compassionate < Pragmatic) {
-      startingCharacter = "Nyx, the Lost Cursebearer";
-    } else {
-      // TODO: Make character choose
-      startingCharacter = "???";
-    }
-
-  // START GAME
-    setProgress(1);
-    console.log(`Congratulations! You will begin your adventure as ${startingCharacter}.`);
+  const handlePersonalityTestComplete = () => {
+    setProgress(1); // Progress to the next section after personality test completion
   };
 
   const handleStartGame = () => {
-    setProgress(0);
-  }
+    setShowPersonalityTest(true); // Show the PersonalityTest component
+  };
+
   return (
     <div className="game">
-    {progress === 0 ? (
+    {progress === 0 && !showPersonalityTest ? (
       <GameTitle onStartGame={handleStartGame} />
+    ) : progress === 0 && showPersonalityTest ? (
+      <PersonalityTest
+        onComplete={handlePersonalityTestComplete}
+      />
     ) : progress === 1 ? (
       <Alara />
     ) : progress === 2 ? (
       <Nyx />
     ) : null}
-    {progress === 0 && <PersonalityTest onComplete={handlePersonalityTestComplete} />}
   </div>
-  );
+);
 }
