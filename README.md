@@ -22,7 +22,7 @@ Pending...
 
 ## Installation
 
-1) Clone the repository: git clone [https://github.com/your-username/mythic-tails.git](https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/tree/main)
+1) Clone the repository: git clone [Mythic-Tails-Cursebreakers-Odyssey](https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/tree/main)
 2) Install dependencies for the client: cd client && npm install
 3) Install dependencies for the server: cd server && npm install
 4) Create and configure the database: Instructions pending...
