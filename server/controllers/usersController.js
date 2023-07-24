@@ -6,6 +6,7 @@ const User = require("../models/userModel");
 // Get all users
 const getAllUsers = async (req, res) => {
   try {
+    console.log('hit')
     const users = await knex("users").select("*");
     res.status(200).json(users);
   } catch (error) {

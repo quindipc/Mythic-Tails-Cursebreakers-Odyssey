@@ -9,7 +9,7 @@ const getAllCreatures = async (req, res) => {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
-};
+}
 
 // Get a specific creature by ID
 const getCreatureById = async (req, res) => {
