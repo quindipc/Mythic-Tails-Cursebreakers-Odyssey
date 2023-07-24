@@ -4,7 +4,7 @@ const knex = require("knex")(require("../knexfile"));
 const getAllCreatures = async (req, res) => {
   try {
     const creatures = await knex("creatures").select("*");
-    res.json(creatures);
+    res.status(200).json(creatures);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -19,7 +19,7 @@ const getCreatureById = async (req, res) => {
     if (!creature) {
       return res.status(404).json({ error: "Creature not found" });
     }
-    res.json(creature);
+    res.status(200).json(creature);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -50,7 +50,7 @@ const updateCreature = async (req, res) => {
     await knex("creatures")
       .where({ id: creatureId })
       .update({ type, description, traits });
-    res.json({ message: "Creature updated successfully" });
+    res.status(200).json({ message: "Creature updated successfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -62,7 +62,7 @@ const deleteCreature = async (req, res) => {
   try {
     const creatureId = req.params.id;
     await knex("creatures").where({ id: creatureId }).del();
-    res.json({ message: "Creature deleted successfully" });
+    res.status(204).json({ message: "Creature deleted successfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
