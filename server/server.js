@@ -6,6 +6,9 @@ require('dotenv').config();
 const PORT = process.env.PORT
 const CORS_ORIGIN = process.env.CORS_ORIGIN
 
+// Allow access
+app.use(cors());
+
 // Parse JSON Data
 app.use(express.json())
 
@@ -17,8 +20,6 @@ const creaturesRoutes = require('./routes/creatures');
 app.use('/api/users', usersRoutes);
 app.use('/api/creatures', creaturesRoutes);
 
-// Allow access
-app.use(cors({ origin: CORS_ORIGIN }));
 
 // Start the server
 app.listen(PORT, () => {

@@ -1,6 +1,7 @@
 const knex = require("knex")(require("../knexfile"));
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const User = require("../models/userModel");
 
 // Get all users
 const getAllUsers = async (req, res) => {
@@ -31,16 +32,11 @@ const getUserById = async (req, res) => {
 // Add a new user
 const registerUser = async (req, res) => {
   try {
+    const { name, email, password } = req.body;
     // Hash the password
-    const hashedPassword = await bcrypt.hash(req.body.password, 10); 
+    const user = await User.create({ name, email, password: hashedPassword });
 
-    const user = new User({
-      email: req.body.email,
-      password: hashedPassword,
-    });
-    
-  const savedUser = await user.save();
-  res.json(savedUser);
+    res.status(201).json(user);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -49,23 +45,37 @@ const registerUser = async (req, res) => {
 
 // User Login
 const loginUser = async (req, res) => {
-const user = await User.findOne({email: req.body.emails})
+  const user = await User.findOne({ email: req.body.email });
 
   try {
     const match = await bcrypt.compare(req.body.password, user.password);
 
     // Once user authenticated, create encrypted token
-        const accessToken = jwt.sign(JSON.stringify(user), process.env.TOKEN_SECRET)
+    const accessToken = jwt.sign(
+      JSON.stringify(user),
+      process.env.TOKEN_SECRET,
+    );
     if (match) {
       res.json({ accessToken: accessToken });
     } else {
       res.json({ message: "Invalid Credentials" });
     }
-        } catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+// User Logout
+// const logoutUser = async (req, res) => {
+
+//   try {
+
+//         } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };
 
 // Update user information
 const updateUser = async (req, res) => {
@@ -97,6 +107,7 @@ module.exports = {
   getUserById,
   registerUser,
   loginUser,
+  // logoutUser,
   updateUser,
   deleteUser,
 };
