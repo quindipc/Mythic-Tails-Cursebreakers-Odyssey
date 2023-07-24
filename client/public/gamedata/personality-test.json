@@ -1,49 +1,44 @@
 [
   {
-    "text": "Welcome to the cursed land of Ethoria, where malevolent forces have plagued the once-thriving realm. Your choices will shape the path ahead, determining whether you'll embark on this journey as the compassionate Guardian Alara or the enigmatic Lost Cursebearer, Nyx."
-  },
-  {
-    "text": "Scenario 1: The Wounded Creature. As you traverse the cursed forest, you encounter a wounded creature crying out in pain.",
+    "scenario": "Scenario 1: The Wounded Creature. As you traverse the cursed forest, you encounter a wounded creature crying out in pain.",
     "choices": [
       {
-        "text": "Choice A: Approach the creature with empathy, offering aid and healing.",
+        "option": "Choice A: Approach the creature with empathy, offering aid and healing.",
         "trait": "Compassionate"
       },
       {
-        "text": "Choice B: Remain cautious and proceed with caution, unsure if the creature can be trusted.",
+        "option": "Choice B: Remain cautious and proceed with caution, unsure if the creature can be trusted.",
         "trait": "Pragmatic"
       }
     ]
   },
   {
-    "text": "Scenario 2: The Hidden Path. You come across an ancient map that hints at a hidden path leading to a powerful artifact, but it's obscured by a complex puzzle.",
+    "scenario": "Scenario 2: The Hidden Path. You come across an ancient map that hints at a hidden path leading to a powerful artifact, but it's obscured by a complex puzzle.",
     "choices": [
       {
-        "text": "Choice A: Take the time to solve the puzzle, intrigued by the prospect of uncovering secrets and hidden knowledge.",
+        "option": "Choice A: Take the time to solve the puzzle, intrigued by the prospect of uncovering secrets and hidden knowledge.",
         "trait": "Curious"
       },
       {
-        "text": "Choice B: Bypass the puzzle and continue on your journey, valuing progress over curiosity.",
+        "option": "Choice B: Bypass the puzzle and continue on your journey, valuing progress over curiosity.",
         "trait": "Ambitious"
       }
     ]
   },
   {
-    "text": "Scenario 3: The Mysterious Stranger. While resting near a crumbling ruin, a mysterious figure appears, offering cryptic advice about your quest.",
+    "scenario": "Scenario 3: The Mysterious Stranger. While resting near a crumbling ruin, a mysterious figure appears, offering cryptic advice about your quest.",
     "choices": [
       {
-        "text": "Choice A: Engage in conversation with the stranger, intrigued by their enigmatic presence.",
+        "option": "Choice A: Engage in conversation with the stranger, intrigued by their enigmatic presence.",
         "trait": "Mysterious"
       },
       {
-        "text": "Choice B: Politely decline the stranger's offer, preferring to rely on your own instincts and knowledge.",
+        "option": "Choice B: Politely decline the stranger's offer, preferring to rely on your own instincts and knowledge.",
         "trait": "Self-reliant"
       }
     ]
   },
   {
-    "text": "Personality Assessment: Based on your choices, your personality traits are evaluated as follows:",
-    "traits": ["Compassionate", "Pragmatic", "Curious", "Ambitious", "Mysterious", "Self-reliant"],
     "characters": ["Alara, the Guardian", "Nyx, the Lost Cursebearer"]
   }
 ]

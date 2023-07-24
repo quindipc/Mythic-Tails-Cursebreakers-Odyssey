@@ -10,6 +10,7 @@ export default function PersonalityTest({ onComplete }) {
   const [progress, setProgress] = useState(0);
   const [characterSelection, setCharacterSelection] = useState(null);
   const [personalityTestData, setPersonalityTestData] = useState({});
+  const [showChoices, setShowChoices] = useState(false);
 
   PersonalityTest.propTypes = {
     onComplete: PropTypes.func.isRequired,
@@ -28,12 +29,10 @@ export default function PersonalityTest({ onComplete }) {
       );
   }, []);
 
-  // Check if data is still being fetched
+  // CHECK IF DATA FETCHED
   if (personalityTestData === null) {
     return <div>Loading...</div>;
   }
-
-  // const currentScenario = personalityTestData[progress];
 
   // SETTING THE POINTS FOR THE TEST
   const handlePersonalityTest = (trait) => {
@@ -48,6 +47,7 @@ export default function PersonalityTest({ onComplete }) {
     } else {
       setProgress((prevProgress) => prevProgress + 1); // MOVE ON
     }
+    setShowChoices(true);
   };
 
   const handlePersonalityTestComplete = () => {
@@ -61,6 +61,10 @@ export default function PersonalityTest({ onComplete }) {
       startingCharacter = "Alara, the Guardian";
     } else if (compassionatePoints < pragmaticPoints) {
       startingCharacter = "Nyx, the Lost Cursebearer";
+    } else {
+      // EQUAL POINTS -- PLAYER CHOOSES
+      setCharacterSelection(null);
+      return;
     }
 
     // UPDATE CHARACTER SELECTION
@@ -75,10 +79,12 @@ export default function PersonalityTest({ onComplete }) {
     onComplete();
   };
 
-  if (characterSelection) {
-    // CHARACTER SELECTION
+
+  // TODO: this should not be here, it is already displayed below
+  if (handlePersonalityTestComplete) {
+    // CHARACTER SELECTION -- only shown if player got equal points
     return (
-      <div className="personalitytest">
+      <div className="personalitytest--characterselect">
         <h2 className="personalitytest__title">Choose Your Character</h2>
         <button
           className="personalitytest__startstory"
@@ -95,45 +101,59 @@ export default function PersonalityTest({ onComplete }) {
     // PERSONALITY TEST
     const currentScenario = personalityTestData[progress];
     return (
-      <div className="personalitytest">
-        {/* <h2 className="personalitytest__title">Character Selection</h2> */}
-        <p className="personalitytest__scenario">{currentScenario.text}</p>
-        {/* TODO: Add handler to display the personality  */}
-        <button className="personalitytest__next">Next</button>
-        {/* TODO: DISPLAY AFTER CLICKING NEXT */}
-        {personalityTestData?.map((choice, index) => (
-          <>
-            {choice?.choices &&
-              choice?.choices?.map(({ text, trait }) => (
-                <button
-                  className="personalitytest__choice"
-                  key={index}
-                  onClick={() => handlePersonalityTest(choice.trait)}
-                >
-                  {text}
-                </button>
-              ))}
-          </>
-        ))}
+      <div className="personalitytest--test">
+        <p className="personalitytest__scenario">
+          Welcome to the cursed land of Ethoria, where malevolent forces have
+          plagued the once-thriving realm. Your choices will shape the path
+          ahead, determining whether you'll embark on this journey as the
+          compassionate Guardian Alara or the enigmatic Lost Cursebearer, Nyx.
+        </p>
+        <button>Start the test</button>
 
-
+        {/* TODO: Show choices is not working?  */}
+        {showChoices &&
+          currentScenario?.choices?.map(({ option, trait }, index) => (
+            <button
+              className="personalitytest__choice"
+              key={index}
+              onClick={() => handlePersonalityTest(trait)}
+            >
+              {option}
+            </button>
+          ))}
       </div>
     );
   } else {
-    // CANNOT DETERMINE STARTING CHARACTER
+    // CANNOT DETERMINE STARTING CHARACTER -- runs if player gets equal choices
     return (
-      <div className="personalitytest">
+      <div className="personalitytest--characterselection-choice">
         <h2 className="personalitytest__title">Character Selection</h2>
+        {/* TODO: This is where the personality test results should show up, and there should be a button to start the main story for the specific character. */}
         <p className="personalitytest__scenario">
           Personality Assessment: Based on your choices, your personality traits
           are evaluated.
         </p>
-        <button
-          className="personalitytest__startstory"
-          onClick={() => handleCharacterSelection("")}
-        >
-          Choose Your Character
-        </button>
+        {/* TODO: if the player made equal points to the traits, then they can choose their own character instead and there should be buttons to click into either alara or nyx, then after a character is clicked, then there should be the button to start the main story for that specific character */}
+        <div className="personalitytest__equal-points">
+          <h3>
+            Your compassionate and pragmatic points are equal. Choose your own
+            character:
+          </h3>
+          <button
+            className="personalitytest__character-button"
+            onClick={() => handleCharacterSelection("Alara, the Guardian")}
+          >
+            Alara, the Guardian
+          </button>
+          <button
+            className="personalitytest__character-button"
+            onClick={() =>
+              handleCharacterSelection("Nyx, the Lost Cursebearer")
+            }
+          >
+            Nyx, the Lost Cursebearer
+          </button>
+        </div>
       </div>
     );
   }
