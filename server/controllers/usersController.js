@@ -1,4 +1,6 @@
 const knex = require("knex")(require("../knexfile"));
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // Get all users
 const getAllUsers = async (req, res) => {
@@ -27,12 +29,39 @@ const getUserById = async (req, res) => {
 };
 
 // Add a new user
-const createUser = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const newUser = await knex("users").insert({ name, email, password });
-    res.status(201).json({ id: newUser[0], name, email });
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(req.body.password, 10); 
+
+    const user = new User({
+      email: req.body.email,
+      password: hashedPassword,
+    });
+    
+  const savedUser = await user.save();
+  res.json(savedUser);
   } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+// User Login
+const loginUser = async (req, res) => {
+const user = await User.findOne({email: req.body.emails})
+
+  try {
+    const match = await bcrypt.compare(req.body.password, user.password);
+
+    // Once user authenticated, create encrypted token
+        const accessToken = jwt.sign(JSON.stringify(user), process.env.TOKEN_SECRET)
+    if (match) {
+      res.json({ accessToken: accessToken });
+    } else {
+      res.json({ message: "Invalid Credentials" });
+    }
+        } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
@@ -56,7 +85,7 @@ const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
     await knex("users").where({ id: userId }).del();
-    res..status(204).json({ message: "User deleted successfully" });
+    res.status(204).json({ message: "User deleted successfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -66,7 +95,8 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getUserById,
-  createUser,
+  registerUser,
+  loginUser,
   updateUser,
   deleteUser,
 };
