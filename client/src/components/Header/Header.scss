@@ -6,4 +6,25 @@
 .header {
     @include mavenpro-semibold;
     font-size: 1rem;
+    background-color: $black;
+
+    &__nav {
+        @include flex-row-start-center;
+        padding-left: 1rem;
+    }
+
+    &__logo {
+        width: 7.5rem;
+    }
+    
+    &__navlist {
+        @include flex-row-end-center;
+    }
+
+    &__navlist-item {
+        text-decoration: none;
+        list-style: none;
+        padding: 1rem;
+        color: $primary-color;
+    }
 }
