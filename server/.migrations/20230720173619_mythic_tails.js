@@ -33,6 +33,9 @@ exports.up = function (knex) {
             .inTable("creatures")
             .onDelete("CASCADE");
           table.integer("health").defaultTo(100); // Add a health attribute to creatures owned by users
+          table.text("description");
+          table.string("traits", 5000);
+          table.string("type").notNullable(); 
         })
         // INDIVIDUAL CREATURE DETAILS
         .createTable("creature_details", (table) => {
