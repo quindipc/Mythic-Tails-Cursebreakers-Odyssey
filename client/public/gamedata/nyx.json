@@ -1,0 +1,211 @@
+{
+    "story": "The Lost Cursebearer",
+    "scenarios": [
+      {
+        "story": "You use your powers to save the cursed creature from its agony and gain a powerful ally. As you release the creature from its torment, you feel a surge of gratitude and loyalty from it. The creature pledges to aid you in your quest to break the curse. Together, you venture forward, determined to confront Aveline.",
+        "choices": [
+          {
+            "option": "Use your powers to save the cursed creature from its agony and gain a powerful ally.",
+            "goto": 13
+          },
+          {
+            "option": "Coldly ignore the creature's plea and continue your search for the Tear of Radiance.",
+            "goto": 14
+          }
+        ]
+      },
+      {
+        "story": "You proceed to Aveline's lair, facing dangerous battles along the way. Your courage and determination lead you to a confrontation with the sorceress. As the final battle begins, you realize the path ahead will be treacherous.",
+        "choices": [
+          {
+            "option": "Stand your ground and face Aveline head-on.",
+            "goto": 15
+          },
+          {
+            "option": "Seek a moment of parley with Aveline before the battle begins.",
+            "goto": 16
+          }
+        ]
+      },
+      {
+        "story": "You decide to help Elowen and search for the Radiant Bloom. Guided by the forest spirit, you brave the dangers of the ancient temple to find the flower. Your compassion and bravery earn you a valuable ally in Elowen, but time is running out to confront Aveline.",
+        "choices": [
+          {
+            "option": "Hurry to confront Aveline, knowing that every second counts.",
+            "goto": 17
+          },
+          {
+            "option": "Stay and help Elowen heal the forest before facing Aveline.",
+            "goto": 18
+          }
+        ]
+      },
+      {
+        "story": "You stand your ground and face Aveline head-on. The battle is fierce, and dark magic crackles in the air. As you clash, it becomes evident that defeating Aveline will require every ounce of strength and wit.",
+        "choices": [
+          {
+            "option": "Unleash a powerful spell to break Aveline's defenses.",
+            "goto": 19
+          },
+          {
+            "option": "Conserve your energy and look for an opening in Aveline's attacks.",
+            "goto": 20
+          }
+        ]
+      },
+      {
+        "story": "You seek a moment of parley with Aveline before the battle begins. Surprisingly, Aveline agrees to talk. She reveals the origin of the curse and how she became corrupted by its power. Your heart softens as you witness her struggle, but you know she must still be stopped.",
+        "choices": [
+          {
+            "option": "Offer to help Aveline break free from the curse's influence.",
+            "goto": 21
+          },
+          {
+            "option": "Engage in one final duel to decide the fate of Ethoria.",
+            "goto": 22
+          }
+        ]
+      },
+      {
+        "story": "Hesitating for too long, you arrive at Aveline's lair too late. The sorceress has already unleashed a catastrophic spell that engulfs the entire realm in darkness. The curse tightens its grip, and the creatures of Ethoria suffer even more.",
+        "choices": [
+          {
+            "option": "Try to find a way to reverse the spell's effects.",
+            "goto": "ending13"
+          },
+          {
+            "option": "Regroup and seek help from powerful allies.",
+            "goto": "ending14"
+          }
+        ]
+      },
+      {
+        "story": "You hurry to confront Aveline, knowing that every second counts. However, in your haste, you fall into one of Aveline's traps. The lair's defenses activate, and you find yourself trapped in a magical prison.",
+        "choices": [
+          {
+            "option": "Try to break free using your powers.",
+            "goto": "ending15"
+          },
+          {
+            "option": "Seek help from Elowen or another ally outside the lair.",
+            "goto": "ending16"
+          }
+        ]
+      },
+      {
+        "story": "You stay and help Elowen heal the forest before facing Aveline. With the Radiant Bloom's magic, Elowen's glow grows brighter, and the forest begins to regain its vitality.",
+        "choices": [
+          {
+            "option": "Gather more allies to bolster your strength for the final confrontation.",
+            "goto": "ending17"
+          },
+          {
+            "option": "Head straight to Aveline, relying on the newfound power of the Radiant Bloom.",
+            "goto": "ending18"
+          }
+        ]
+      },
+      {
+        "story": "You unleash a powerful spell to break Aveline's defenses. The magic crackles and collides, creating a dazzling display of light and dark. Aveline is momentarily stunned, giving you an opportunity to strike.",
+        "choices": [
+          {
+            "option": "Deliver a decisive blow to defeat Aveline.",
+            "goto": "ending19"
+          },
+          {
+            "option": "Offer Aveline a chance to surrender and seek redemption.",
+            "goto": "ending20"
+          }
+        ]
+      },
+      {
+        "story": "You conserve your energy and look for an opening in Aveline's attacks. Patience proves to be a virtue as you notice a pattern in her spellcasting. With a swift and well-timed counter, you manage to disrupt her defenses.",
+        "choices": [
+          {
+            "option": "Press the advantage and launch a relentless assault.",
+            "goto": "ending21"
+          },
+          {
+            "option": "Take a moment to catch your breath and plan your next move carefully.",
+            "goto": "ending22"
+          }
+        ]
+      },
+      {
+        "story": "You offer to help Aveline break free from the curse's influence. Your compassionate offer catches her off guard, and she hesitates for a moment. Could it be that a glimmer of her former self remains?",
+        "choices": [
+          {
+            "option": "Reach out and try to channel the Spirit of Balance to cleanse the curse.",
+            "goto": "ending23"
+          },
+          {
+            "option": "Convince Aveline to join forces with you to confront a greater threat.",
+            "goto": "ending24"
+          }
+        ]
+      }
+    ],
+    "endings": [
+      {
+        "id": "ending13",
+        "story": "Despite your efforts, you couldn't find a way to reverse the spell's effects. Ethoria remains engulfed in darkness, and its fate seems sealed. Your heart aches for the suffering creatures, but hope is fading.",
+        "continue": false
+      },
+      {
+        "id": "ending14",
+        "story": "You regrouped and sought help from powerful allies, but the curse's influence spreads rapidly. Despite their aid, the darkness is unyielding, and your quest to break the curse faces an uncertain future.",
+        "continue": false
+      },
+      {
+        "id": "ending15",
+        "story": "With unwavering determination, you use your powers to break free from the magical prison. However, the lair is now on high alert, and confronting Aveline head-on becomes even more perilous.",
+        "continue": false
+      },
+      {
+        "id": "ending16",
+        "story": "You manage to seek help from Elowen, who rushes to your aid. With combined efforts, you escape the magical prison, but Aveline grows stronger by the minute. The ultimate battle is imminent.",
+        "continue": false
+      },
+      {
+        "id": "ending17",
+        "story": "Your decision to gather more allies proves wise. With an army of creatures and spirits, you march towards Aveline's lair, ready to confront her. The battle that awaits will be epic.",
+        "continue": false
+      },
+      {
+        "id": "ending18",
+        "story": "Filled with newfound power, you head straight to Aveline. The confrontation is intense, and the outcome hangs in the balance. The fate of Ethoria hinges on the result of this epic battle.",
+        "continue": false
+      },
+      {
+        "id": "ending19",
+        "story": "Your decisive blow connects, and Aveline's dark magic disperses. The curse begins to wane, and the realm is bathed in a soft glow. Victory seems within reach, but the story is far from over.",
+        "continue": false
+      },
+      {
+        "id": "ending20",
+        "story": "Aveline hesitates for a moment, touched by your offer of redemption. In that moment, a seed of doubt is planted within her. Could there be hope for her yet? The future remains uncertain.",
+        "continue": false
+      },
+      {
+        "id": "ending21",
+        "story": "With relentless determination, you press the advantage and push Aveline back. She struggles to regain her footing, and the balance tips in your favor. Victory is close, but the final hurdle is the greatest.",
+        "continue": false
+      },
+      {
+        "id": "ending22",
+        "story": "Taking a moment to catch your breath proves vital. Aveline launches a desperate surprise attack, but you manage to evade it. As the dust settles, you know the next move will be decisive.",
+        "continue": false
+      },
+      {
+        "id": "ending23",
+        "story": "With a surge of power, you reach out to channel the Spirit of Balance. The curse's grip on Aveline falters for a moment, revealing her true self. The battle takes an unexpected turn.",
+        "continue": false
+      },
+      {
+        "id": "ending24",
+        "story": "After much persuasion, Aveline agrees to join forces with you. A greater threat looms on the horizon, and you both decide to set aside your differences temporarily. The journey ahead will test your cooperation.",
+        "continue": false
+      }
+    ]
+  }
+  
