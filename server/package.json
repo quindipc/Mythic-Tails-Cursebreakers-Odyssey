@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "migrate": "knex migrate:latest"
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "start": "node --watch server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +20,8 @@
     "knex": "^2.5.1",
     "mysql": "^2.18.1",
     "node": "^20.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
