@@ -15,11 +15,11 @@ export default function Header() {
             <img className="header__logo" src={colorLogo} alt="Mythic Tails Logo" />
           </div>
           <ul className="header__navlist">
-            <Link className="header__navlist-item" to="/" element={HomePage}>
+            <Link className="header__navlist-item--link" to="/" element={HomePage}>
             <li className="header__navlist-item">Home</li>
             </Link>
 
-            <Link className="header__navlist-item" to="/play-game" element={GamePage}>
+            <Link className="header__navlist-item--link" to="/play-game" element={GamePage}>
             <li className="header__navlist-item">Play Now</li>
             </Link>
 

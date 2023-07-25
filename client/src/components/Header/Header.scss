@@ -4,27 +4,71 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
-    @include mavenpro-semibold;
-    font-size: 1rem;
-    background-color: $black;
+  @include mavenpro-semibold;
+  font-size: 1rem;
+  background-color: $black;
+  position: sticky;
+  width: 100%;
+  z-index: 1;
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 5rem;
+  }
+
+  &__navlist {
+    @include flex-row-center-center;
+    transition: 0.2s all ease-in-out;
+  }
+
+  &__navlist-item {
+    display: block;
+    text-decoration: none;
+    list-style: none;
+    padding: 1rem;
+    color: $primary-color;
+
+    &--link {
+      text-decoration: none;
+      list-style: none;
+    }
+  }
+
+  @include tablet {
+    font-size: 1.5rem;
 
     &__nav {
-        @include flex-row-start-center;
-        padding-left: 1rem;
+      @include flex-row-start-center;
     }
 
     &__logo {
-        width: 7.5rem;
+      width: 7.5rem;
     }
-    
+
     &__navlist {
-        @include flex-row-end-center;
+      @include flex-row-end-center;
     }
 
     &__navlist-item {
-        text-decoration: none;
-        list-style: none;
-        padding: 1rem;
-        color: $primary-color;
+      padding: 1.5rem;
+
     }
+  }
+
+  @include desktop {
+
+    &__navlist-item {
+       
+        &:hover {
+          transition: 0.2s all ease-in-out;
+          opacity: 0.7;
+          color: $primary-color-dark;
+        }
+      }
+  }
 }
