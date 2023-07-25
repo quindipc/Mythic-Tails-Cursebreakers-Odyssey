@@ -6,7 +6,7 @@ exports.up = function (knex) {
           table.increments("id"); //Primary key for the user
           table.string("name").notNullable();
           table.string("email").notNullable();
-          table.string("password").notNullable();
+          table.string("hashedPassword").notNullable();
         })
         // CREATURES TABLE (renamed from "pets")
         .createTable("creatures", (table) => {
