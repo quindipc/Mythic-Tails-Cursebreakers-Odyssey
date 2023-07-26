@@ -33,6 +33,10 @@ const getNyxEndings = async (req, res) => {
   }
 };
 
+// Get linked scenario
+
+// Get linked ending 
+
 module.exports = {
   getNyxScenarios,
   getNyxChoices,
