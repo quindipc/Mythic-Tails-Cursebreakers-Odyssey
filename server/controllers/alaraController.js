@@ -35,9 +35,13 @@ const getAllAlaraEndings = async (req, res) => {
 
 // Get single scenario by ID
 const getSingleAlaraScenario = async (req, res) => {
+  const scenarioId = req.params.id; // Get the scenario ID from the request parameters
   try {
-    // get a scenario to see which choices, next scenario, and ending it is linked to if applicable
-    res.status(200).json();
+    const scenario = await knex("alara_scenarios").where("alara_scenario_id", scenarioId).first();
+    if (!scenario) {
+      return res.status(404).json({ message: "Scenario not found" });
+    }
+    res.status(200).json(scenario);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -46,9 +50,13 @@ const getSingleAlaraScenario = async (req, res) => {
 
 // Get single choice by ID
 const getSingleAlaraChoice = async (req, res) => {
+  const choiceId = req.params.id; // Get the choice ID from the request parameters
   try {
-    // get a single choice to see which next scenario, scenario, and ending it is linked to if applicable
-    res.status(200).json();
+    const choice = await knex("alara_choices").where("alara_choice_id", choiceId).first();
+    if (!choice) {
+      return res.status(404).json({ message: "Choice not found" });
+    }
+    res.status(200).json(choice);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -57,9 +65,13 @@ const getSingleAlaraChoice = async (req, res) => {
 
 // Get single ending by ID
 const getSingleAlaraEnding = async (req, res) => {
+  const endingId = req.params.id; // Get the ending ID from the request parameters
   try {
-    // get an ending to see which choices, next scenario, and scenario it is linked to if applicable
-    res.status(200).json();
+    const ending = await knex("alara_endings").where("alara_ending_id", endingId).first();
+    if (!ending) {
+      return res.status(404).json({ message: "Ending not found" });
+    }
+    res.status(200).json(ending);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -74,9 +86,3 @@ module.exports = {
   getSingleAlaraChoice,
   getSingleAlaraEnding,
 };
-
-
-
-
-
-
