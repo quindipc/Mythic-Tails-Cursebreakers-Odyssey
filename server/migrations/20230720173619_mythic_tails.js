@@ -51,6 +51,69 @@ exports.up = function (knex) {
             .inTable("creatures")
             .onDelete("CASCADE");
         })
+          // Scenarios for Nyx
+    .createTable("nyx_scenarios", (table) => {
+      table.increments("nyx_scenario_id"); // Primary key for the scenario
+      table.string("nyx_name").notNullable();
+      table.text("nyx_additional_story").notNullable();
+      table.text("nyx_story").notNullable();
+    })
+    // Choices
+    .createTable("nyx_choices", (table) => {
+      table.increments("nyx_choice_id"); // Primary key for the choice
+      table.string("nyx_description").notNullable();
+      table.integer("nyx_linked_scenario_id").unsigned(); // Foreign key to nyx_scenarios table
+      table.integer("nyx_linked_ending_id").unsigned(); // Foreign key to nyx_endings table
+    })
+    // Endings
+    .createTable("nyx_endings", (table) => {
+      table.increments("nyx_ending_id"); // Primary key for the ending
+      table.string("nyx_name").notNullable();
+      table.text("nyx_story").notNullable();
+    })
+    // Add foreign key constraints
+    .alterTable("nyx_choices", (table) => {
+      table
+        .foreign("nyx_linked_scenario_id")
+        .references("nyx_scenario_id")
+        .inTable("nyx_scenarios");
+      table
+        .foreign("nyx_linked_ending_id")
+        .references("nyx_ending_id")
+        .inTable("nyx_endings");
+    })
+       // Scenarios for Alara
+    .createTable("alara_scenarios", (table) => {
+      table.increments("alara_scenario_id"); // Primary key for the scenario
+      table.string("alara_name").notNullable();
+      table.text("alara_additional_story").notNullable();
+      table.text("alara_story").notNullable();
+    })
+    // Choices
+    .createTable("alara_choices", (table) => {
+      table.increments("alara_choice_id"); // Primary key for the choice
+      table.string("alara_description").notNullable();
+      table.integer("alara_linked_scenario_id").unsigned(); // Foreign key to alara_scenarios table
+      table.integer("alara_linked_ending_id").unsigned(); // Foreign key to alara_endings table
+    })
+    // Endings
+    .createTable("alara_endings", (table) => {
+      table.increments("alara_ending_id"); // Primary key for the ending
+      table.string("alara_name").notNullable();
+      table.text("story").notNullable();
+    })
+    // Add foreign key constraints
+    .alterTable("alara_choices", (table) => {
+      table
+        .foreign("alara_linked_scenario_id")
+        .references("alara_scenario_id")
+        .inTable("alara_scenarios");
+      table
+        .foreign("alara_linked_ending_id")
+        .references("alara_ending_id")
+        .inTable("alara_endings");
+    })
+      
     );
   };
   
@@ -59,5 +122,11 @@ exports.up = function (knex) {
       .dropTable("creature_details")
       .dropTable("users_creatures")
       .dropTable("creatures")
-      .dropTable("users");
+      .dropTable("users")
+      .dropTable("nyx_choices")
+      .dropTable("nyx_endings")
+      .dropTable("nyx_scenarios")
+      .dropTable("alara_choices")
+      .dropTable("alara_endings")
+      .dropTable("alara_scenarios");
   };
