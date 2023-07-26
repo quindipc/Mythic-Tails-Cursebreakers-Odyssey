@@ -49,15 +49,6 @@ export default function Nyx() {
         </p>
         {/* Next button to continue the story -- add logic on button */}
         <button className="nyx__next">Next</button>
-        <p className="nyx__prolgoue">
-          "P-please, release me from this agony," the creature pleaded with a
-          trembling voice, "if you have the power, spare me from this wretched
-          fate." Nyx encounters a wretched and suffering creature. Its once
-          magnificent form is now twisted by a curse, and its eyes plead for
-          mercy.
-        </p>
-        {/* Next button to continue the story -- add logic on button */}
-        <button className="nyx__next">Next</button>
         {/* Need to map over the scenario, story and choices based on the users choices */}
         <h2 className="nyx__scenario"></h2>
         <p className="nyx__story"></p>

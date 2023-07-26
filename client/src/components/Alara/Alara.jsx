@@ -37,13 +37,6 @@ export default function Alara() {
         </p>
         {/* Next button to continue the story -- add logic on button */}
         <button className="alara__next">Next</button>
-        <p className="alara__prolgoue">
-          "Guardian," Elowen whispers in a faint voice, "the heart of the forest
-          withers, and my brethren suffer. Only a special healing flower, the
-          Radiant Bloom, hidden within the dangerous ruins of the forgotten
-          temple, can mend our home. Please, save us."
-        </p>
-
         {/* Need to map over the scenario, story and choices based on the users choices */}
         <h2 className="alara__scenario"></h2>
         <p className="alara__story"></p>
