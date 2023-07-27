@@ -5,7 +5,7 @@ import "./GameWindow.scss";
 // COMPONENTS
 import PersonalityTest from "../PersonalityTest/PersonalityTest";
 import Alara from "../Alara/Alara";
-// import Nyx from "../Nyx/Nyx";
+import Nyx from "../Nyx/Nyx";
 
 export default function GameWindow() {
   const [showPersonalityTest, setShowPersonalityTest] = useState(false);
@@ -46,9 +46,9 @@ export default function GameWindow() {
 
         {/* <PersonalityTest /> */}
 
-        <Alara />
+        {/* <Alara /> */}
 
-        {/* <Nyx /> */}
+        <Nyx />
       </div>
     </div>
   );

@@ -1,7 +1,47 @@
-import React, { useState } from "react";
+// DEPENDANCIES
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Alara() {
+  const ALARA_URL = "http://localhost:8080/api/alara/";
   const [currentStory, setCurrentStory] = useState(0);
+  const [showScenario, setShowScenario] = useState([])
+  const [showChoices, setShowChoices] = useState([])
+  const [showEnding, setShowEnding] = useState([])
+
+  // TODO: USEEFFECT HERE TO CALL THE API FOR THE SCENARIOS & CHOICES & ENDINGS
+  useEffect(() => {
+    // FETCH ALARA'S SCENARIOS http://localhost:8080/api/alara/alara_scenarios
+    const fetchAlaraScenarios = async () => {
+      try {
+        // AXIOS CALL HERE
+      } catch (error) {
+        console.log("Error fetching Alara's Scenario's:", error);
+      }
+    };
+
+    // FETCH ALARA'S ENDINGS http://localhost:8080/api/alara/alara_endings
+    const fetchAlaraEndings = async () => {
+      try {
+        // AXIOS CALL HERE
+      } catch (error) {
+        console.log("Error fetching Alara's Endings's:", error);
+      }
+    };
+
+    // FETCH ALARA'S CHOICES http://localhost:8080/api/alara/alara_choices
+    const fetchAlaraChoices = async () => {
+      try {
+        // AXIOS CALL HERE
+      } catch (error) {
+        console.log("Error fetching Alara's Choices:", error);
+      }
+    };
+
+    fetchAlaraScenarios();
+    fetchAlaraEndings();
+    fetchAlaraChoices();
+  }, []);
 
   // INITAL STORY LINE
   const storySteps = [
@@ -15,14 +55,12 @@ export default function Alara() {
     setCurrentStory((prevStory) => prevStory + 1);
   };
 
-  // TODO: USEEFFECT HERE TO CALL THE API FOR THE SCENARIOS & CHOICES
-
   return (
     <>
       <section className="alara">
         <h1 className="alara__title">Alara, The Cursed Guardian</h1>
 
-        {/* DISPLAY STORY PARAGRAPHS */}
+        {/* DISPLAY INITIAL STORY PARAGRAPHS */}
         <p className="alara__prologue">
           {currentStory < storySteps.length ? storySteps[currentStory] : ""}
         </p>
@@ -33,7 +71,7 @@ export default function Alara() {
             Next
           </button>
         )}
-
+      
         {/* TODO: START THE SCENARIOS WITH CHOICES */}
       </section>
     </>

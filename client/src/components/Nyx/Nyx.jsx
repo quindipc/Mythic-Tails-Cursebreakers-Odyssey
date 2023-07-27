@@ -1,7 +1,44 @@
+// DEPENDANCIES
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function Nyx() {
+  const NYX_URL = "http://localhost:8080/api/nyx/";
   const [currentStory, setCurrentStory] = useState(0);
+  const [showScenario, setShowScenario] = useState([])
+  const [showChoices, setShowChoices] = useState([])
+  const [showEnding, setShowEnding] = useState([])
+
+  // TODO: USEEFFECT HERE TO CALL THE API FOR THE SCENARIOS & CHOICES & ENDINGS
+  useEffect(() => {
+    // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
+    const fetchNyxScenarios = async () => {
+      try {
+        // AXIOS CALL HERE
+      } catch (error) {
+        console.log("Error fetching Nyx's Scenario's:", error);
+      }
+    };
+
+    // FETCH NYX'S ENDINGS http://localhost:8080/api/nyx/nyx_endings
+    const fetchNyxEndings = async () => {
+      try {
+        // AXIOS CALL HERE
+      } catch (error) {
+        console.log("Error fetching Nyx's Endings's:", error);
+      }
+    };
+
+    // FETCH NYX'S CHOICES http://localhost:8080/api/nyx/nyx_choices
+    const fetchNyxChoices = async () => {
+      try {
+        // AXIOS CALL HERE
+      } catch (error) {
+        console.log("Error fetching Nyx's Choices:", error);
+      }
+    };
+
+  }, []);
 
   // INITAL STORY LINE
   const storySteps = [
@@ -15,26 +52,24 @@ export default function Nyx() {
     setCurrentStory((prevStory) => prevStory + 1);
   };
 
-  // TODO: USEEFFECT HERE TO CALL THE API FOR THE SCENARIOS & CHOICES
-
   return (
     <>
-      <section className="alara">
-        <h1 className="alara__title">Alara, The Cursed Guardian</h1>
+      <section className="nyx">
+        <h1 className="nyx__title">Nyx, The Cursed Guardian</h1>
 
-        {/* DISPLAY STORY PARAGRAPHS */}
-        <p className="alara__prologue">
+        {/* DISPLAY INITAL STORY PARAGRAPHS */}
+        <p className="nyx__prologue">
           {currentStory < storySteps.length ? storySteps[currentStory] : ""}
         </p>
 
         {/* DISPLAY NEXT BUTTON */}
         {currentStory < storySteps.length - 1 && (
-          <button className="alara__next" onClick={handleNextButton}>
+          <button className="nyx__next" onClick={handleNextButton}>
             Next
           </button>
         )}
 
-       {/* TODO: START THE SCENARIOS WITH CHOICES */}
+        {/* TODO: START THE SCENARIOS WITH CHOICES */}
       </section>
     </>
   );
