@@ -1,16 +1,17 @@
 // DEPENDANCIES
 import React, { useState } from "react";
-import "./GameTitle.scss"
+import "./GameTitle.scss";
 
 
 export default function GameTitle({onStartGame}) {
   const [showPlayButton, setShowPlayButton] = useState(true);
+  const [showPersonalityTest, setShowPersonalityTest] = useState(false);
 
   let gameText = "Wecome to Mythic Tails: Cursebreaker's Odyssey";
 
   const handlePlayNow = () => {
     setShowPlayButton(false)
-    onStartGame();
+    setShowPersonalityTest(true);
   }
   return (
     <div className="gametitle">

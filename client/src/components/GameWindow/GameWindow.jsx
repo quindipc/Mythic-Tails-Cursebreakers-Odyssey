@@ -5,18 +5,11 @@ import "./GameWindow.scss";
 // COMPONENTS
 import PersonalityTest from "../PersonalityTest/PersonalityTest";
 import Alara from "../Alara/Alara";
-import Nyx from "../Nyx/Nyx";
-import GameTitle from "../GameTitle/GameTitle";
+// import Nyx from "../Nyx/Nyx";
 
 export default function GameWindow() {
-  const [progress, setProgress] = useState(0);
   const [showPersonalityTest, setShowPersonalityTest] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-
-  // STARTING CHARACTER TRAIT POINTS
-  const handlePersonalityTestComplete = () => {
-    setProgress(1); // Progress to the next section after the personality test completion
-  };
 
   const handleStartGame = () => {
     setShowPersonalityTest(true); // Show the PersonalityTest component
@@ -29,12 +22,8 @@ export default function GameWindow() {
 
   return (
     <div className={`game ${darkMode ? "dark" : ""}`}>
-      <div
-        className={`game__toggle-container ${
-          darkMode ? "game__dark" : ""
-        }`}
-      >
-      {/* Dark Mode Toggle */}
+      <div className={`game__toggle-container ${darkMode ? "game__dark" : ""}`}>
+        {/* Dark Mode Toggle */}
         <input
           type="checkbox"
           id="switch"
@@ -46,30 +35,21 @@ export default function GameWindow() {
         </label>
 
         {/* Game Title */}
-        {progress === 0 && !showPersonalityTest ? (
-          <div className="game__gametitle">
-            <h1 className="game__gametitle-title">
-              Welcome to Mythic Tails: Cursebreaker's Odyssey
-            </h1>
-            <button
-              className="game__gametitle-button"
-              onClick={handleStartGame}
-            >
-              Play Now
-            </button>
-          </div>
-        ) : null}
+        {/* <div className="game__gametitle">
+          <h1 className="game__gametitle-title">
+            Welcome to Mythic Tails: Cursebreaker's Odyssey
+          </h1>
+          <button className="game__gametitle-button" onClick={handleStartGame}>
+            Play Now
+          </button>
+        </div> */}
 
-        {/* Personality Test */}
-        {progress === 0 && showPersonalityTest ? (
-          <PersonalityTest onComplete={handlePersonalityTestComplete} />
-        ) : null}
 
-        {/* Alara */}
-        {progress === 1 ? <Alara /> : null}
+        <PersonalityTest />
 
-        {/* Nyx */}
-        {progress === 2 ? <Nyx /> : null}
+        {/* <Alara /> */}
+
+        {/* <Nyx /> */}
       </div>
     </div>
   );
