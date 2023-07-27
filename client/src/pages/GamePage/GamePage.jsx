@@ -9,7 +9,9 @@ export default function GamePage() {
             
             {/* Header */}
 
-         <GameWindow />
+            <GameWindow />
+            {/* Login? */}
+            {/* Register? */}
 
             {/* Footer */}
 

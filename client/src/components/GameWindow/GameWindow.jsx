@@ -16,12 +16,12 @@ export default function GameWindow() {
 
   // GAME START
   const handleStartGame = () => {
-  
+  // Add Game Start component here
   };
 
   // GAME CONTINUE
   const handleContinueGame = () => {
-  
+  // Add Login component here
   };
 
   return (
@@ -45,6 +45,9 @@ export default function GameWindow() {
           </h1>
           <button className="game__gametitle-button" onClick={handleStartGame}>
             Play Now
+          </button>
+          <button className="game__gametitle-button" onClick={handleStartGame}>
+            Continue Game
           </button>
         </div> */}
 
