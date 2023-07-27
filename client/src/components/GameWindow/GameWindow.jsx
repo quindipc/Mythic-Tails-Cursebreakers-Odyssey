@@ -3,17 +3,11 @@ import React, { useState } from "react";
 import "./GameWindow.scss";
 
 // COMPONENTS
-import PersonalityTest from "../PersonalityTest/PersonalityTest";
 import Alara from "../Alara/Alara";
 import Nyx from "../Nyx/Nyx";
 
 export default function GameWindow() {
-  const [showPersonalityTest, setShowPersonalityTest] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-
-  const handleStartGame = () => {
-    setShowPersonalityTest(true); // Show the PersonalityTest component
-  };
 
   // DARK MODE
   const handleDarkModeToggle = () => {
@@ -44,11 +38,9 @@ export default function GameWindow() {
           </button>
         </div> */}
 
-        {/* <PersonalityTest /> */}
-
         {/* <Alara /> */}
 
-        <Nyx />
+        {/* <Nyx /> */}
       </div>
     </div>
   );
