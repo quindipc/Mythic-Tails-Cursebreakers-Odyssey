@@ -1,8 +1,9 @@
 // DEPENDANCIES
 import React, { useState } from "react";
 
-export default function GameStart() {
+export default function GameStart({handleStartGame}) {
   const [showCurrentStory, setShowCurrentStory] = useState(0);
+  const [showCurrentOptions, setShowCurrentOptions] = useState(0);
 
   // STORY
   const storySteps = [
@@ -11,6 +12,10 @@ export default function GameStart() {
     "What armour are you picking up? Choose 1",
     "What skills will you be using? Choose 3",
   ];
+
+  const [selectedWeapon, setSelectedWeapon] = useState([]);
+  const [selectedArmour, setSelectedArmour] = useState('');
+  const [selectedSkill, setSelectedSkills] = useState([]);
 
 // OPTIONS  
   const weaponSteps = [
@@ -43,11 +48,16 @@ export default function GameStart() {
   // SHOW NEXT BUTTON
   const handleNextButton = () => {
     setShowCurrentStory((prevStory) => prevStory + 1);
+    setShowCurrentOptions((prevOptions) => prevOptions + 1);
+  };
+
+  // SHOW OPTIONS BUTTON
+  const handleOptionsButton = () => {
+    setShowCurrentOptions((prevOptions) => prevOptions + 1);
   };
 
   // LOGIC FOR CALCULATING PLAYER CHOICE
 
-  // 1. I want the next button to work after the player clicks on it and then have the previous story classname: gamestart__story to disappear and the first question classname gamestart__question to appear.
   //   2. When the questions start, I want the player to have an option to choose 2 for the weapon then the button to click next and move to the next question.
   // 3. When the next question starts, I want the player to have an option to choose only 1 armour then the button to click next to move onto the next question/
   // 4. For the final question, I want the player to have the open to choose only 3 skills, then the next button will display the classname gamestart__story--selected and then the button to start game -- which moves them into the game character component, either Nyx or Alara based on theri choices
@@ -56,80 +66,65 @@ export default function GameStart() {
   return (
     <>
       <section className="gamestart">
-        {/* <p className="gamestart__story">
-          As the sun rises over the mythical land of Ethoria, two warriors awake
-          at dawn, ready to embark on their epic journey. A mysterious presence
-          beckons them, offering a choice that will shape their destinies. The
-          fate of Ethoria rests in your hands. Will you be a valiant hero, a
-          cunning rogue, or something entirely different? The time has come to
-          make your decision.
-        </p> */}
-
-        {/* DISPLAY INITAL GAME START STORY PARAGRAPHS */}
-        <p className="nyx__prologue">
+        {/* DISPLAY INITAL GAME START STORY PARAGRAPH */}
+        <p className="gamestart__story">
           {showCurrentStory < storySteps.length
             ? storySteps[showCurrentStory]
             : ""}
         </p>
 
-        {/* DISPLAY NEXT BUTTON */}
+        {/* DISPLAY NEXT BUTTON FOR STORY & QUESTION*/}
         {showCurrentStory < storySteps.length - 1 && (
           <button className="gamestart__next" onClick={handleNextButton}>
             Next
           </button>
         )}
 
-        {/* Buttons will be linked to if logic calculating alara vs nyx choices */}
-        {/* DISPLAY OPTIONS AS BUTTONS-- WEAPONS FOR STORYSTEP 1 */}
-        {/* DISPLAY OPTIONS AS BUTTONS -- WEAPONS FOR STORYSTEP 2 */}
-        {/* DISPLAY OPTIONS AS BUTTONS -- WEAPONS FOR STORYSTEP 3 */}
+        {/* WEAPONS */}
+        {showCurrentStory === 1 &&
+          weaponSteps.map((weapon, index) => {
+            <button
+              key={index}
+              className="gamestart__option"
+              onClick={() =>
+                setSelectedWeapon((prevSelected) => [...prevSelected, weapon])
+              }
+            >
+              {weapon}
+            </button>;
+          })}
 
-        {/* <div className="gamestart__question"> */}
-          {/* <p className="gamestart__weapon">
-            What weapons are you picking up?(Choose 2)
-                  </p>
-                   */}
+    {/* ARMOUR */}
+        {/* {showCurrentStory === 2 &&
+          armourSteps.map((armour, index) => {
+            <button
+              key={index}
+              className="gamestart__option"
+              onClick={() =>
+                setSelectedArmour((prevSelected) => [...prevSelected, armour])
+              }
+            >
+              {armour}
+            </button>;
+          })} */}
 
-          {/* <ul className="gamestart__options--weapon"> */}
-            {/* LEADS TO ALARA */}
-            {/* <li className="gamestart__choice">Sword and Shield</li> */}
-            {/* <li className="gamestart__choice">Hammer</li> */}
+        {/* SKILLS */}
+        {/* {showCurrentStory === 3 &&
+          skillsSteps.map((skill, index) => {
+            <button
+              key={index}
+              className="gamestart__option"
+              onClick={() =>
+                setSelectedWeapon((prevSelected) => [...prevSelected, skill])
+              }
+            >
+              {skill}
+            </button>;
+          })} */}
 
-            {/* LEADS TO NYX */}
-            {/* <li className="gamestart__choice">Dual Daggers</li> */}
-            {/* <li className="gamestart__choice">Staff</li> */}
-          {/* </ul> */}
-        {/* </div> */}
+        {/* SHOW CHARACTER RESULT OR CHARACTER SELECTION */}
 
-        {/* <div className="gamestart__question"> */}
-          {/* <p className="gamestart__armour">What armour will you pick up?</p> */}
 
-          {/* <ul className="gamestart__options--armour"> */}
-            {/* LEADS TO ALARA */}
-            {/* <li className="gamestart__choice">Heavy Armour</li> */}
-
-            {/* LEADS TO NYX */}
-            {/* <li className="gamestart__choice">Shadow Cloak</li> */}
-          {/* </ul> */}
-        {/* </div> */}
-
-        {/* <div className="gamestart__question"> */}
-          {/* <p className="gamestart__skills">
-            What skills will you be using?(Choose 3)
-                  </p> */}
-
-          {/* <ul className="gamestart__options--skills"> */}
-            {/* LEADS TO ALARA */}
-            {/* <li className="gamestart__choice">Shield Wall</li> */}
-            {/* <li className="gamestart__choice">Healing Aura</li> */}
-            {/* <li className="gamestart__choice">Taunt</li> */}
-
-            {/* LEADS TO NYX */}
-            {/* <li className="gamestart__choice">Shadow Step</li> */}
-            {/* <li className="gamestart__choice">Cursed Bolt</li> */}
-            {/* <li className="gamestart__choice">Shadow Form</li> */}
-          {/* </ul> */}
-        {/* </div> */}
 
         {/* IF CHOICES CALCULATED ALARA > NYX OR ALARA < NYX */}
         {/* <p className="gamestart__story--selected">

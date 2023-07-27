@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./GameWindow.scss";
 
 // COMPONENTS
+import GameTitle from "../GameTitle/GameTitle";
 import GameStart from "../GameStart/GameStart";
 import Alara from "../Alara/Alara";
 import Nyx from "../Nyx/Nyx";
@@ -19,11 +20,8 @@ export default function GameWindow() {
 
   // GAME START
   const handleStartGame = () => {
-    // OnClick attached to the Play Now button
-    // If player new --- Game Start component will open
     setShowGameStart(true);
 
-    // If player is logged in -- it will start where they have left off
   };
 
   return (
@@ -40,18 +38,9 @@ export default function GameWindow() {
           <div className="game__toggle"></div>
         </label>
 
-        {/* Game Title */}
-        {/* <div className="game__gametitle">
-          <h1 className="game__gametitle-title">
-            Welcome to Mythic Tails: Cursebreaker's Odyssey
-          </h1>
-          <button className="game__gametitle-button" onClick={handleStartGame}>
-            Play Now
-          </button>
-        </div> */}
+        {!showGameStart && <GameTitle handleStartGame={handleStartGame} />}
 
-        {/* add use state show game start here */}
-        <GameStart/>
+        {showGameStart && <GameStart handleStartGame={handleStartGame} />}
 
         {/* <Alara /> */}
 
