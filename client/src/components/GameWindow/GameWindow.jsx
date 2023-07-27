@@ -14,6 +14,16 @@ export default function GameWindow() {
     setDarkMode((prevMode) => !prevMode);
   };
 
+  // GAME START
+  const handleStartGame = () => {
+  
+  };
+
+  // GAME CONTINUE
+  const handleContinueGame = () => {
+  
+  };
+
   return (
     <div className={`game ${darkMode ? "dark" : ""}`}>
       <div className={`game__toggle-container ${darkMode ? "game__dark" : ""}`}>
