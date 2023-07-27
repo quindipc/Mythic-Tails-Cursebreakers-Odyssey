@@ -14,7 +14,7 @@ class User {
     }
   }
 
-  static async findByEmail(email) {
+  static async findByEmail({ email }) {
     try {
       const user = await knex("users").where({ email }).first();
       return user;

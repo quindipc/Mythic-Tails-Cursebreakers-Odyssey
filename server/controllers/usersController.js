@@ -6,7 +6,6 @@ const User = require("../models/userModel");
 // Get all users
 const getAllUsers = async (req, res) => {
   try {
-    console.log('hit')
     const users = await knex("users").select("*");
     res.status(200).json(users);
   } catch (error) {
@@ -34,8 +33,9 @@ const getUserById = async (req, res) => {
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    const hashedPassword = bcrypt.hashSync(password, 10)
     // Hash the password
-    const user = await User.create({ name, email, password: hashedPassword });
+    const user = await User.create({ name, email, hashedPassword });
 
     res.status(201).json(user);
   } catch (error) {
@@ -46,10 +46,9 @@ const registerUser = async (req, res) => {
 
 // User Login
 const loginUser = async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
-
   try {
-    const match = await bcrypt.compare(req.body.password, user.password);
+    const user = await User.findByEmail({ email: req.body.email });
+    const match = await bcrypt.compare(req.body.password, user.hashedPassword);
 
     // Once user authenticated, create encrypted token
     const accessToken = jwt.sign(
@@ -59,7 +58,7 @@ const loginUser = async (req, res) => {
     if (match) {
       res.json({ accessToken: accessToken });
     } else {
-      res.json({ message: "Invalid Credentials" });
+      res.status(403).json({ message: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);
