@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import "./GameWindow.scss";
 
 // COMPONENTS
+import GameStart from "../GameStart/GameStart";
 import Alara from "../Alara/Alara";
 import Nyx from "../Nyx/Nyx";
 
+
 export default function GameWindow() {
   const [darkMode, setDarkMode] = useState(false);
+  const [showGameStart, setShowGameStart] = useState(false);
 
   // DARK MODE
   const handleDarkModeToggle = () => {
@@ -16,12 +19,11 @@ export default function GameWindow() {
 
   // GAME START
   const handleStartGame = () => {
-  
-  };
+    // OnClick attached to the Play Now button
+    // If player new --- Game Start component will open
+    setShowGameStart(true);
 
-  // GAME CONTINUE
-  const handleContinueGame = () => {
-  
+    // If player is logged in -- it will start where they have left off
   };
 
   return (
@@ -47,6 +49,9 @@ export default function GameWindow() {
             Play Now
           </button>
         </div> */}
+
+        {/* add use state show game start here */}
+        <GameStart/>
 
         {/* <Alara /> */}
 
