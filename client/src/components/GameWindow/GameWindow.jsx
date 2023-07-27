@@ -44,10 +44,9 @@ export default function GameWindow() {
           </button>
         </div> */}
 
+        {/* <PersonalityTest /> */}
 
-        <PersonalityTest />
-
-        {/* <Alara /> */}
+        <Alara />
 
         {/* <Nyx /> */}
       </div>
