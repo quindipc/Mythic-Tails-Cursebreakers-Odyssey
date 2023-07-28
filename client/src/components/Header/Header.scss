@@ -10,8 +10,11 @@
   position: sticky;
   width: 100%;
   z-index: 1;
+ width: 100%;
 
   @include desktop {
+max-width: 80rem;
+margin: auto;
     &__navlist-item {
       &:hover {
         transition: 0.2s all ease-in-out;

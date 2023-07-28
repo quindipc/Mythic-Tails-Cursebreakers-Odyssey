@@ -17,11 +17,13 @@ export default function Header() {
       <header className="header">
         <nav className="header__nav">
           <div className="header__logo-container">
+            <Link to="/" element={HomePage}>
             <img
               className="header__logo"
               src={colorLogo}
               alt="Mythic Tails Logo"
             />
+            </Link>
           </div>
           <div className={`header__burger ${toggled ? "active" : ""}`} onClick={handleBurger}>
             <span></span>
