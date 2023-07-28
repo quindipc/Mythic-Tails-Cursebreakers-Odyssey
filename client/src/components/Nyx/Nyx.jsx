@@ -1,44 +1,96 @@
 // DEPENDANCIES
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Nyx() {
   const NYX_URL = "http://localhost:8080/api/nyx/";
   const [currentStory, setCurrentStory] = useState(0);
-  const [showScenario, setShowScenario] = useState([])
-  const [showChoices, setShowChoices] = useState([])
-  const [showEnding, setShowEnding] = useState([])
+  const [showScenario, setShowScenario] = useState([]);
+  const [showSingleScenario, setShowSingleScenario] = useState({});
+  const [showChoices, setShowChoices] = useState([]); 
+  const [showSingleChoices, setShowSingleChoices] = useState({}); 
+  const [showEnding, setShowEnding] = useState([]);
+  const [showSingleEnding, setShowSingleEnding] = useState({});
 
-  // TODO: USEEFFECT HERE TO CALL THE API FOR THE SCENARIOS & CHOICES & ENDINGS
   useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
-    const fetchNyxScenarios = async () => {
-      try {
-        // AXIOS CALL HERE
-      } catch (error) {
-        console.log("Error fetching Nyx's Scenario's:", error);
-      }
-    };
-
-    // FETCH NYX'S ENDINGS http://localhost:8080/api/nyx/nyx_endings
-    const fetchNyxEndings = async () => {
-      try {
-        // AXIOS CALL HERE
-      } catch (error) {
-        console.log("Error fetching Nyx's Endings's:", error);
-      }
-    };
-
-    // FETCH NYX'S CHOICES http://localhost:8080/api/nyx/nyx_choices
-    const fetchNyxChoices = async () => {
-      try {
-        // AXIOS CALL HERE
-      } catch (error) {
-        console.log("Error fetching Nyx's Choices:", error);
-      }
-    };
-
+    axios
+      .get(`${NYX_URL}/nyx_scenarios`)
+      .then((response) => {
+        setShowScenario(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching scenarios:", error);
+      });
   }, []);
+
+  useEffect(() => {
+    // FETCH SINGLE NYX SCENARIO http://localhost:8080/api/nyx/nyx_scenarios/:id
+    axios
+      .get(`${NYX_URL}/nyx_scenarios/1`)
+      .then((response) => {
+        setShowSingleScenario(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching scenario:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    // FETCH NYX'S ENDINGS http://localhost:8080/api/nyx/nyx_endings
+    axios
+      .get(`${NYX_URL}/nyx_endings`)
+      .then((response) => {
+        setShowEnding(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching endings:", error);
+      });
+  }, []);
+  
+  useEffect(() => {
+    // FETCH SINGLE NYX ENDING http://localhost:8080/api/nyx/nyx_endings/:id
+    axios
+      .get(`${NYX_URL}/nyx_endings/1`)
+      .then((response) => {
+        setShowSingleEnding(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching ending:", error);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    // FETCH NYX CHOICES http://localhost:8080/api/nyx/nyx_choices
+    axios
+      .get(`${NYX_URL}/nyx_choices`)
+      .then((response) => {
+        setShowChoices(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching choices:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    // FETCH SINGLE NYX SINGLE CHOICES http://localhost:8080/api/nyx/nyx_choices/:id
+    axios
+      .get(`${NYX_URL}/nyx_choices/1`)
+      .then((response) => {
+        setShowSingleChoices(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching choice:", error);
+      });
+  }, []);
+
 
   // INITAL STORY LINE
   const storySteps = [
@@ -69,7 +121,10 @@ export default function Nyx() {
           </button>
         )}
 
-        {/* TODO: START THE SCENARIOS WITH CHOICES */}
+        {/* TODO: Map through scenario and display choices -- each choice is either linked with another scenario or an ending. Based on players actions will determine the result. */}
+
+        <p className="nyx__scenario"></p>
+        <button className="nyx__choices"></button>
       </section>
     </>
   );
