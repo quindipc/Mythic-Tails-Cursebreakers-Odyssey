@@ -1,4 +1,3 @@
-// DEPENDANCIES
 import React, { useState } from "react";
 import "./GameWindow.scss";
 
@@ -8,10 +7,10 @@ import GameStart from "../GameStart/GameStart";
 import Alara from "../Alara/Alara";
 import Nyx from "../Nyx/Nyx";
 
-
 export default function GameWindow() {
   const [darkMode, setDarkMode] = useState(false);
   const [showGameStart, setShowGameStart] = useState(false);
+  const [chosenCharacter, setChosenCharacter] = useState(null);
 
   // DARK MODE
   const handleDarkModeToggle = () => {
@@ -21,7 +20,11 @@ export default function GameWindow() {
   // GAME START
   const handleStartGame = () => {
     setShowGameStart(true);
+  };
 
+  // CHARACTER SELECTION
+  const handleCharacterSelection = (character) => {
+    setChosenCharacter(character);
   };
 
   return (
@@ -40,11 +43,12 @@ export default function GameWindow() {
 
         {!showGameStart && <GameTitle handleStartGame={handleStartGame} />}
 
-        {showGameStart && <GameStart handleStartGame={handleStartGame} />}
+        {showGameStart && !chosenCharacter && (
+          <GameStart handleStartGame={handleStartGame} onCharacterSelect={handleCharacterSelection} />
+        )}
 
-        {/* <Alara /> */}
-
-        {/* <Nyx /> */}
+        {chosenCharacter === "Nyx" && <Nyx />}
+        {chosenCharacter === "Alara" && <Alara />}
       </div>
     </div>
   );
