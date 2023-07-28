@@ -66,21 +66,24 @@ export default function Nyx() {
   };
 
   useEffect(() => {
-    console.log("Updating currentScenario based on selectedChoiceId...");
+    console.log(`Updating ${currentScenario} based on ${selectedChoiceId}...`);
     const selectedChoice = showChoices.find(
       (choice) => choice.nyx_choice_id === selectedChoiceId,
     );
 
     if (selectedChoice) {
+      // If the selected choice is linked to another scenario, it will update the current scenario to the new scenario
       if (selectedChoice.nyx_linked_scenario_id) {
         console.log(
-          "Updating currentScenario to linked scenario:",
-          selectedChoice.nyx_linked_scenario_id,
+          `Updating ${currentScenario} based on linked...`,
+          selectedChoice.nyx_next_scenario_id,
         );
-        setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
+        setCurrentScenario(selectedChoice.nyx_next_scenario_id);
+
+// If the selected choice is linked to an ending, it will update the current scenario to an ending
       } else if (selectedChoice.nyx_linked_ending_id) {
         console.log(
-          "Updating currentScenario to 0 for linked ending:",
+          `Updating ${currentScenario} based on linked ending...`,
           selectedChoice.nyx_linked_ending_id,
         );
         const selectedEnding = showEnding.find(
@@ -88,10 +91,10 @@ export default function Nyx() {
             ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id,
         );
         setShowSingleEnding(selectedEnding);
-        setCurrentScenario(0);
+        // setCurrentScenario(showSingleEnding);
       }
     }
-  }, [selectedChoiceId, showChoices, showEnding]);
+  }, [currentScenario, selectedChoiceId, showChoices, showEnding, showSingleEnding]);
 
   // CHOICE HANDLER
   const handleChoiceSelect = (choiceId) => {
@@ -103,22 +106,6 @@ export default function Nyx() {
     setCurrentStory(0);
   };
 
-  
-  const handleNextButtonTwo = () => {
-    const selectedChoice = showChoices.find((choice) => choice.nyx_choice_id === selectedChoiceId);
-    if (selectedChoice) {
-      if (selectedChoice.nyx_linked_scenario_id) {
-        setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
-      } else if (selectedChoice.nyx_linked_ending_id) {
-        const selectedEnding = showEnding.find((ending) => ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id);
-        setShowSingleEnding(selectedEnding);
-        setCurrentScenario(0);
-      }
-    }
-    setChoiceSelected(false);
-    setNextClicked(true);
-  };
-
   return (
     <>
       <section className="nyx">
@@ -128,6 +115,15 @@ export default function Nyx() {
         <p className="nyx__prologue">
           {currentStory < storySteps.length ? storySteps[currentStory] : ""}
         </p>
+      
+           {/* DISPLAY ADDITIONAL STORY */}
+             {choiceSelected && (
+          <p className="nyx__additional_story">
+            {currentScenario <= showScenario.length
+              ? showScenario[currentScenario - 1].nyx_additional_story
+              : ""}
+          </p>
+        )}
 
         {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
         {currentStory >= storySteps.length && (
@@ -160,21 +156,6 @@ export default function Nyx() {
           </>
         )}
 
-        {/* DISPLAY ADDITIONAL STORY */}
-        {choiceSelected && (
-          <p className="nyx__additional_story">
-            {currentScenario <= showScenario.length
-              ? showScenario[currentScenario - 1].nyx_additional_story
-              : ""}
-          </p>
-        )}
-
-        {choiceSelected && (
-          <button className="nyx__next" onClick={handleNextButton}>
-            Next
-          </button>
-        )}
-
         {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
         {currentStory > showScenario.length && (
           <div className="nyx__ending">
@@ -186,7 +167,7 @@ export default function Nyx() {
           </div>
         )}
 
-        {/* DISPLAY NEXT BUTTON AFTER SCENARIO AND CHOICES */}
+        {/* DISPLAY NEXT BUTTON ONLY FOR PROLOGUE STORY LINES -- REMOVE WHEN SCENARIO APPEAR*/}
         {currentScenario !== 0 && (
           <button className="nyx__next--after" onClick={handleNextButton}>
             Next
