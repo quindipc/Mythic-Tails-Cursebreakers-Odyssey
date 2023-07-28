@@ -25,7 +25,7 @@ export default function Nyx() {
       .catch((error) => {
         console.error("Error fetching scenarios:", error);
       });
-  }, []);
+  }, []);0
 
   useEffect(() => {
     // FETCH NYX'S ENDINGS http://localhost:8080/api/nyx/nyx_endings
