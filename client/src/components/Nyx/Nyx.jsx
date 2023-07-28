@@ -11,6 +11,8 @@ export default function Nyx() {
   const [showEnding, setShowEnding] = useState([]);
   const [showSingleEnding, setShowSingleEnding] = useState({});
   const [selectedChoiceId, setSelectedChoiceId] = useState(null);
+  const [choiceSelected, setChoiceSelected] = useState(false);
+  const [nextClicked, setNextClicked] = useState(false);
 
   useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
@@ -63,23 +65,47 @@ export default function Nyx() {
     setCurrentStory((prevStory) => prevStory + 1);
   };
 
+  useEffect(() => {
+    console.log("Updating currentScenario based on selectedChoiceId...");
+    const selectedChoice = showChoices.find(
+      (choice) => choice.nyx_choice_id === selectedChoiceId,
+    );
+
+    if (selectedChoice) {
+      if (selectedChoice.nyx_linked_scenario_id) {
+        console.log(
+          "Updating currentScenario to linked scenario:",
+          selectedChoice.nyx_linked_scenario_id,
+        );
+        setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
+      } else if (selectedChoice.nyx_linked_ending_id) {
+        console.log(
+          "Updating currentScenario to 0 for linked ending:",
+          selectedChoice.nyx_linked_ending_id,
+        );
+        const selectedEnding = showEnding.find(
+          (ending) =>
+            ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id,
+        );
+        setShowSingleEnding(selectedEnding);
+        setCurrentScenario(0);
+      }
+    }
+  }, [selectedChoiceId, showChoices, showEnding]);
+
   // CHOICE HANDLER
   const handleChoiceSelect = (choiceId) => {
     setSelectedChoiceId(choiceId);
-  
-    // Find the selected choice
-    const selectedChoice = showChoices.find((choice) => choice.nyx_choice_id === choiceId);
-  
-    // Update the currentScenario state only if the selected choice is linked to a scenario
-    if (selectedChoice && selectedChoice.nyx_linked_scenario_id) {
-      setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
-    }
+    setChoiceSelected(true);
   };
-  
-  
-  useEffect(() => {
-    const selectedChoice = showChoices.find((choice) => choice.nyx_choice_id === selectedChoiceId);
 
+  const handleRestart = () => {
+    setCurrentStory(0);
+  };
+
+  
+  const handleNextButtonTwo = () => {
+    const selectedChoice = showChoices.find((choice) => choice.nyx_choice_id === selectedChoiceId);
     if (selectedChoice) {
       if (selectedChoice.nyx_linked_scenario_id) {
         setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
@@ -89,23 +115,20 @@ export default function Nyx() {
         setCurrentScenario(0);
       }
     }
-  }, [selectedChoiceId, showChoices, showEnding]);
-  
-
-  const handleRestart = () => {
-    setCurrentStory(0);
+    setChoiceSelected(false);
+    setNextClicked(true);
   };
 
   return (
     <>
       <section className="nyx">
         <h1 className="nyx__title">Nyx, The Cursed Guardian</h1>
-  
+
         {/* DISPLAY INITAL STORY PARAGRAPHS */}
         <p className="nyx__prologue">
           {currentStory < storySteps.length ? storySteps[currentStory] : ""}
         </p>
-  
+
         {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
         {currentStory >= storySteps.length && (
           <>
@@ -115,7 +138,7 @@ export default function Nyx() {
                 ? showScenario[currentScenario - 1].nyx_story
                 : ""}
             </p>
-  
+
             {/* DISPLAY CHOICES FOR CURRENT SCENARIO */}
             <div className="nyx__choices">
               {showChoices.map((choice) =>
@@ -123,34 +146,53 @@ export default function Nyx() {
                   <button
                     key={choice.nyx_choice_id}
                     onClick={() => handleChoiceSelect(choice.nyx_choice_id)}
-                    className={`nyx__choice ${selectedChoiceId === choice.nyx_choice_id ? "selected" : ""}`}
+                    className={`nyx__choice ${
+                      selectedChoiceId === choice.nyx_choice_id
+                        ? "selected"
+                        : ""
+                    }`}
                   >
                     {choice.nyx_description}
                   </button>
-                ) : null
+                ) : null,
               )}
             </div>
           </>
         )}
-  
+
+        {/* DISPLAY ADDITIONAL STORY */}
+        {choiceSelected && (
+          <p className="nyx__additional_story">
+            {currentScenario <= showScenario.length
+              ? showScenario[currentScenario - 1].nyx_additional_story
+              : ""}
+          </p>
+        )}
+
+        {choiceSelected && (
+          <button className="nyx__next" onClick={handleNextButton}>
+            Next
+          </button>
+        )}
+
         {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
         {currentStory > showScenario.length && (
           <div className="nyx__ending">
             <h2>{showSingleEnding.nyx_name}</h2>
             <p>{showSingleEnding.nyx_story}</p>
-  
+
             {/* This may be removed */}
             <button onClick={handleRestart}>Play again</button>
           </div>
         )}
-  
+
         {/* DISPLAY NEXT BUTTON AFTER SCENARIO AND CHOICES */}
         {currentScenario !== 0 && (
-          <button className="nyx__next" onClick={handleNextButton}>
+          <button className="nyx__next--after" onClick={handleNextButton}>
             Next
           </button>
         )}
       </section>
     </>
   );
-}  
+}
