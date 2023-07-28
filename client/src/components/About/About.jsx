@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <>
       <section className="about" id="about">
         <div className="about__container">
           <h2 className="about__title">ABOUT THE GAME</h2>
@@ -51,6 +50,5 @@ export default function About() {
           </div>
         </div>
       </section>
-    </>
   );
 }
