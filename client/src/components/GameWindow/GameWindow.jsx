@@ -41,22 +41,7 @@ export default function GameWindow() {
           <div className="game__toggle"></div>
         </label>
 
-<<<<<<< HEAD
-        {/* Game Title */}
-        {/* <div className="game__gametitle">
-          <h1 className="game__gametitle-title">
-            Welcome to Mythic Tails: Cursebreaker's Odyssey
-          </h1>
-          <button className="game__gametitle-button" onClick={handleStartGame}>
-            Play Now
-          </button>
-          <button className="game__gametitle-button" onClick={handleStartGame}>
-            Continue Game
-          </button>
-        </div> */}
-=======
         {!showGameStart && <GameTitle handleStartGame={handleStartGame} />}
->>>>>>> feature__story
 
         {showGameStart && !chosenCharacter && (
           <GameStart handleStartGame={handleStartGame} onCharacterSelect={handleCharacterSelection} />
