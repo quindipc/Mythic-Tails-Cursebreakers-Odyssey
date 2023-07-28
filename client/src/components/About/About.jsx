@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function About() {
   return (
     <>
-      <section className="about">
+      <section className="about" id="about">
         <div className="about__container">
           <h2 className="about__title">ABOUT THE GAME</h2>
           <p className="about__description">
@@ -44,8 +44,7 @@ export default function About() {
               make a pivotal decision when confronted by a cursed creature
               begging for release. Nyx can choose to continue their solitary
               pursuit of the Tear of Radiance or show compassion to the creature
-              and gain a powerful ally. As Nyx's powers grow, they face the
-              consequences of their choices, and their destiny hangs in the
+              and gain a powerful ally. As Nyx's powers grow their destiny hangs in the
               balance.
             </p>
           </div>
