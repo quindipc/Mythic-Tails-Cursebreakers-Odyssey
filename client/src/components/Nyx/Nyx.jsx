@@ -12,7 +12,6 @@ export default function Nyx() {
   const [showSingleEnding, setShowSingleEnding] = useState({});
   const [selectedChoiceId, setSelectedChoiceId] = useState(null);
   const [choiceSelected, setChoiceSelected] = useState(false);
-  const [nextClicked, setNextClicked] = useState(false);
 
   useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
@@ -67,28 +66,15 @@ export default function Nyx() {
 
   // SHOW NEXT SCENARIO, UPDATE SCENARIO, AND SHOW ENDINGS
   useEffect(() => {
-    console.log(`Updating scenario ${currentScenario} based on choice ${selectedChoiceId}...`);
     const selectedChoice = showChoices.find(
       (choice) => choice.nyx_choice_id === selectedChoiceId,
     );
-
     if (selectedChoice) {
       // If the selected choice is linked to another scenario, it will update the current scenario to the new scenario
       if (selectedChoice.nyx_next_scenario_id) {
-          // TODO: Delete after debugging -- THIS LINE BREAKS, if it is null, then it should link to an ending, but it does not
-        console.log(
-          `Updating scenario ${currentScenario} based on linked scenario`,
-          selectedChoice.nyx_next_scenario_id,
-        );
         setCurrentScenario(selectedChoice.nyx_next_scenario_id);
-
         // If the selected choice is linked to an ending, it will update the current scenario to an ending
       } else if (selectedChoice.nyx_linked_ending_id) {
-        // TODO: Delete after debugging
-        console.log(
-          `Updating scenario ${currentScenario} based on linked ending`,
-          selectedChoice.nyx_linked_ending_id,
-        );
         const selectedEnding = showEnding.find(
           (ending) =>
             ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id,
@@ -116,73 +102,85 @@ export default function Nyx() {
   };
 
   return (
-    <>
-      <section className="nyx">
-        <h1 className="nyx__title">Nyx, The Cursed Guardian</h1>
+    <section className="nyx">
+      {/* DISPLAY INITIAL STORY PARAGRAPHS */}
+      <p className="nyx__prologue">
+        {currentStory < storySteps.length ? storySteps[currentStory] : ""}
+      </p>
 
-        {/* DISPLAY INITAL STORY PARAGRAPHS */}
-        <p className="nyx__prologue">
-          {currentStory < storySteps.length ? storySteps[currentStory] : ""}
-        </p>
-
-        {/* DISPLAY ADDITIONAL STORY */}
-        {choiceSelected && (
-          <p className="nyx__additional_story">
-            {currentScenario <= showScenario.length
-              ? showScenario[currentScenario - 1].nyx_additional_story
-              : ""}
-          </p>
-        )}
-
-        {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
-        {currentStory >= storySteps.length && (
-          <>
-            {/* CURRENT SCENARIO */}
-            <p className="nyx__scenario">
+      {/* DISPLAY ADDITIONAL STORY IF APPLICABLE*/}
+      {choiceSelected && (
+        <>
+          {currentScenario > 0 && (
+            <p className="nyx__additional_story">
               {currentScenario <= showScenario.length
-                ? showScenario[currentScenario - 1].nyx_story
+                ? showScenario[currentScenario - 1].nyx_additional_story
                 : ""}
             </p>
+          )}
 
-            {/* DISPLAY CHOICES FOR CURRENT SCENARIO */}
-            <div className="nyx__choices">
-              {showChoices.map((choice) =>
-                choice.nyx_linked_scenario_id === currentScenario ? (
-                  <button
-                    key={choice.nyx_choice_id}
-                    onClick={() => handleChoiceSelect(choice.nyx_choice_id)}
-                    className={`nyx__choice ${
-                      selectedChoiceId === choice.nyx_choice_id
-                        ? "selected"
-                        : ""
-                    }`}
-                  >
-                    {choice.nyx_description}
-                  </button>
-                ) : null,
-              )}
+          {currentScenario === 0 && (
+            <div className="nyx__ending">
+              <h2>{showSingleEnding.nyx_name}</h2>
+              <p>{showSingleEnding.nyx_story}</p>
+              {/* This may be removed */}
+              <button onClick={handleRestart}>Play again</button>
             </div>
-          </>
-        )}
+          )}
+        </>
+      )}
 
-        {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
-        {currentStory > showScenario.length && (
-          <div className="nyx__ending">
-            <h2>{showSingleEnding.nyx_name}</h2>
-            <p>{showSingleEnding.nyx_story}</p>
+      {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
+      {currentStory >= storySteps.length && (
+        <>
+          {/* CURRENT SCENARIO */}
+          <h2 className="nyx__scenario-name">
+            {currentScenario <= showScenario.length
+              ? showScenario[currentScenario - 1].nyx_name
+              : ""}
+          </h2>
+          <p className="nyx__scenario">
+            {currentScenario <= showScenario.length
+              ? showScenario[currentScenario - 1].nyx_story
+              : ""}
+          </p>
 
-            {/* This may be removed */}
-            <button onClick={handleRestart}>Play again</button>
+          {/* DISPLAY CHOICES FOR CURRENT SCENARIO */}
+          <div className="nyx__choices">
+            {showChoices.map((choice) =>
+              choice.nyx_linked_scenario_id === currentScenario ? (
+                <button
+                  key={choice.nyx_choice_id}
+                  onClick={() => handleChoiceSelect(choice.nyx_choice_id)}
+                  className={`nyx__choice ${
+                    selectedChoiceId === choice.nyx_choice_id ? "selected" : ""
+                  }`}
+                >
+                  {choice.nyx_description}
+                </button>
+              ) : null,
+            )}
           </div>
-        )}
+        </>
+      )}
 
-        {/* DISPLAY NEXT BUTTON ONLY FOR PROLOGUE STORY LINES -- REMOVE WHEN SCENARIO APPEAR*/}
-        {currentScenario !== 0 && (
-          <button className="nyx__next--after" onClick={handleNextButton}>
-            Next
-          </button>
-        )}
-      </section>
-    </>
+      {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
+      {currentStory > showScenario.length && (
+        <div className="nyx__ending">
+          <h2>{showSingleEnding.nyx_name}</h2>
+          <p>{showSingleEnding.nyx_story}</p>
+
+          {/* This may be removed */}
+          <button onClick={handleRestart}>Play again</button>
+        </div>
+      )}
+
+      {/* DISPLAY NEXT BUTTON ONLY FOR PROLOGUE STORY LINES -- REMOVE WHEN SCENARIO APPEAR*/}
+      {currentScenario !== 0 && (
+        <button className="nyx__next--after" onClick={handleNextButton}>
+          Next
+        </button>
+      )}
+    </section>
   );
 }
