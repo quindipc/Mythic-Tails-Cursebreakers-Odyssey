@@ -1,13 +1,16 @@
-// DEPENDANCIES
 import React, { useState } from "react";
 import "./GameWindow.scss";
 
 // COMPONENTS
+import GameTitle from "../GameTitle/GameTitle";
+import GameStart from "../GameStart/GameStart";
 import Alara from "../Alara/Alara";
 import Nyx from "../Nyx/Nyx";
 
 export default function GameWindow() {
   const [darkMode, setDarkMode] = useState(false);
+  const [showGameStart, setShowGameStart] = useState(false);
+  const [chosenCharacter, setChosenCharacter] = useState(null);
 
   // DARK MODE
   const handleDarkModeToggle = () => {
@@ -16,12 +19,12 @@ export default function GameWindow() {
 
   // GAME START
   const handleStartGame = () => {
-  // Add Game Start component here
+    setShowGameStart(true);
   };
 
-  // GAME CONTINUE
-  const handleContinueGame = () => {
-  // Add Login component here
+  // CHARACTER SELECTION
+  const handleCharacterSelection = (character) => {
+    setChosenCharacter(character);
   };
 
   return (
@@ -38,6 +41,7 @@ export default function GameWindow() {
           <div className="game__toggle"></div>
         </label>
 
+<<<<<<< HEAD
         {/* Game Title */}
         {/* <div className="game__gametitle">
           <h1 className="game__gametitle-title">
@@ -50,10 +54,16 @@ export default function GameWindow() {
             Continue Game
           </button>
         </div> */}
+=======
+        {!showGameStart && <GameTitle handleStartGame={handleStartGame} />}
+>>>>>>> feature__story
 
-        {/* <Alara /> */}
+        {showGameStart && !chosenCharacter && (
+          <GameStart handleStartGame={handleStartGame} onCharacterSelect={handleCharacterSelection} />
+        )}
 
-        {/* <Nyx /> */}
+        {chosenCharacter === "Nyx" && <Nyx />}
+        {chosenCharacter === "Alara" && <Alara />}
       </div>
     </div>
   );

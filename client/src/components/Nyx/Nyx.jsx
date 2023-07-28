@@ -1,55 +1,122 @@
 // DEPENDANCIES
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Nyx() {
   const NYX_URL = "http://localhost:8080/api/nyx/";
   const [currentStory, setCurrentStory] = useState(0);
-  const [showScenario, setShowScenario] = useState([])
-  const [showChoices, setShowChoices] = useState([])
-  const [showEnding, setShowEnding] = useState([])
+  const [currentScenario, setCurrentScenario] = useState(1);
+  const [showScenario, setShowScenario] = useState([]);
+  const [showChoices, setShowChoices] = useState([]);
+  const [showEnding, setShowEnding] = useState([]);
+  const [showSingleEnding, setShowSingleEnding] = useState({});
+  const [selectedChoiceId, setSelectedChoiceId] = useState(null);
+  const [choiceSelected, setChoiceSelected] = useState(false);
+  const [nextClicked, setNextClicked] = useState(false);
 
-  // TODO: USEEFFECT HERE TO CALL THE API FOR THE SCENARIOS & CHOICES & ENDINGS
   useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
-    const fetchNyxScenarios = async () => {
-      try {
-        // AXIOS CALL HERE
-      } catch (error) {
-        console.log("Error fetching Nyx's Scenario's:", error);
-      }
-    };
-
-    // FETCH NYX'S ENDINGS http://localhost:8080/api/nyx/nyx_endings
-    const fetchNyxEndings = async () => {
-      try {
-        // AXIOS CALL HERE
-      } catch (error) {
-        console.log("Error fetching Nyx's Endings's:", error);
-      }
-    };
-
-    // FETCH NYX'S CHOICES http://localhost:8080/api/nyx/nyx_choices
-    const fetchNyxChoices = async () => {
-      try {
-        // AXIOS CALL HERE
-      } catch (error) {
-        console.log("Error fetching Nyx's Choices:", error);
-      }
-    };
-
+    axios
+      .get(`${NYX_URL}/nyx_scenarios`)
+      .then((response) => {
+        setShowScenario(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching scenarios:", error);
+      });
   }, []);
 
-  // INITAL STORY LINE
+  useEffect(() => {
+    // FETCH NYX'S ENDINGS http://localhost:8080/api/nyx/nyx_endings
+    axios
+      .get(`${NYX_URL}/nyx_endings`)
+      .then((response) => {
+        setShowEnding(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching endings:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    // FETCH NYX CHOICES http://localhost:8080/api/nyx/nyx_choices
+    axios
+      .get(`${NYX_URL}/nyx_choices`)
+      .then((response) => {
+        setShowChoices(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching choices:", error);
+      });
+  }, []);
+
+  // INITIAL STORY LINE
   const storySteps = [
-    "In the realm of Ethoria, where darkness casts a shadow upon the land, a mysterious figure known as the Lost Cursebearer roams aimlessly. Veiled in obscurity, the Cursebearer is known as Nyx, a name whispered in hushed tones among the cursed inhabitants of the desolate realm. Nyx has long forgotten their true identity, plagued by visions that feel like fragmented memories from another life.",
     "In the heart of Ethoria's cursed lands, where once-thriving forests had withered, and the creatures suffer under the malevolence of the sorceress Aveline's curse, Nyx emerges as an enigmatic being. Unbeknownst to Nyx, they possess an innate ability to wield dark magic, tapping into the suffering of the cursed creatures and channeling it into formidable power. Guided by cryptic whispers and haunting visions, Nyx finds themselves inexorably drawn towards a mysterious artifact known as the 'Tear of Radiance.'",
+    "Rumors and legends whisper that the Tear of Radiance holds the power to break even the most potent enchantments and lift curses from the land. Nyx believes that obtaining this artifact will hold the key to their true purpose and identity. The visions they experience show them an elusive figure, the sorceress Aveline, who is both the source of the curse and a reflection of Nyx's dark abilities.",
     "Guided by cryptic whispers and haunting visions, Nyx embarked on a relentless pursuit of the Tear of Radiance, which was rumored to be hidden within the ruins of an ancient village long abandoned by civilization. As they approached the ghostly village, Nyx stumbled upon a pitiful sight - a cursed creature, its eyes filled with terror.",
   ];
 
   // SHOW NEXT BUTTON
   const handleNextButton = () => {
     setCurrentStory((prevStory) => prevStory + 1);
+  };
+
+  useEffect(() => {
+    console.log("Updating currentScenario based on selectedChoiceId...");
+    const selectedChoice = showChoices.find(
+      (choice) => choice.nyx_choice_id === selectedChoiceId,
+    );
+
+    if (selectedChoice) {
+      if (selectedChoice.nyx_linked_scenario_id) {
+        console.log(
+          "Updating currentScenario to linked scenario:",
+          selectedChoice.nyx_linked_scenario_id,
+        );
+        setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
+      } else if (selectedChoice.nyx_linked_ending_id) {
+        console.log(
+          "Updating currentScenario to 0 for linked ending:",
+          selectedChoice.nyx_linked_ending_id,
+        );
+        const selectedEnding = showEnding.find(
+          (ending) =>
+            ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id,
+        );
+        setShowSingleEnding(selectedEnding);
+        setCurrentScenario(0);
+      }
+    }
+  }, [selectedChoiceId, showChoices, showEnding]);
+
+  // CHOICE HANDLER
+  const handleChoiceSelect = (choiceId) => {
+    setSelectedChoiceId(choiceId);
+    setChoiceSelected(true);
+  };
+
+  const handleRestart = () => {
+    setCurrentStory(0);
+  };
+
+  
+  const handleNextButtonTwo = () => {
+    const selectedChoice = showChoices.find((choice) => choice.nyx_choice_id === selectedChoiceId);
+    if (selectedChoice) {
+      if (selectedChoice.nyx_linked_scenario_id) {
+        setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
+      } else if (selectedChoice.nyx_linked_ending_id) {
+        const selectedEnding = showEnding.find((ending) => ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id);
+        setShowSingleEnding(selectedEnding);
+        setCurrentScenario(0);
+      }
+    }
+    setChoiceSelected(false);
+    setNextClicked(true);
   };
 
   return (
@@ -62,14 +129,69 @@ export default function Nyx() {
           {currentStory < storySteps.length ? storySteps[currentStory] : ""}
         </p>
 
-        {/* DISPLAY NEXT BUTTON */}
-        {currentStory < storySteps.length - 1 && (
+        {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
+        {currentStory >= storySteps.length && (
+          <>
+            {/* CURRENT SCENARIO */}
+            <p className="nyx__scenario">
+              {currentScenario <= showScenario.length
+                ? showScenario[currentScenario - 1].nyx_story
+                : ""}
+            </p>
+
+            {/* DISPLAY CHOICES FOR CURRENT SCENARIO */}
+            <div className="nyx__choices">
+              {showChoices.map((choice) =>
+                choice.nyx_linked_scenario_id === currentScenario ? (
+                  <button
+                    key={choice.nyx_choice_id}
+                    onClick={() => handleChoiceSelect(choice.nyx_choice_id)}
+                    className={`nyx__choice ${
+                      selectedChoiceId === choice.nyx_choice_id
+                        ? "selected"
+                        : ""
+                    }`}
+                  >
+                    {choice.nyx_description}
+                  </button>
+                ) : null,
+              )}
+            </div>
+          </>
+        )}
+
+        {/* DISPLAY ADDITIONAL STORY */}
+        {choiceSelected && (
+          <p className="nyx__additional_story">
+            {currentScenario <= showScenario.length
+              ? showScenario[currentScenario - 1].nyx_additional_story
+              : ""}
+          </p>
+        )}
+
+        {choiceSelected && (
           <button className="nyx__next" onClick={handleNextButton}>
             Next
           </button>
         )}
 
-        {/* TODO: START THE SCENARIOS WITH CHOICES */}
+        {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
+        {currentStory > showScenario.length && (
+          <div className="nyx__ending">
+            <h2>{showSingleEnding.nyx_name}</h2>
+            <p>{showSingleEnding.nyx_story}</p>
+
+            {/* This may be removed */}
+            <button onClick={handleRestart}>Play again</button>
+          </div>
+        )}
+
+        {/* DISPLAY NEXT BUTTON AFTER SCENARIO AND CHOICES */}
+        {currentScenario !== 0 && (
+          <button className="nyx__next--after" onClick={handleNextButton}>
+            Next
+          </button>
+        )}
       </section>
     </>
   );
