@@ -20,7 +20,7 @@ export default function Nyx() {
       .get(`${NYX_URL}/nyx_scenarios`)
       .then((response) => {
         setShowScenario(response.data);
-        console.log(response.data);
+        console.log("ALL SCENARIOS", response.data);
       })
       .catch((error) => {
         console.error("Error fetching scenarios:", error);
@@ -33,7 +33,7 @@ export default function Nyx() {
       .get(`${NYX_URL}/nyx_endings`)
       .then((response) => {
         setShowEnding(response.data);
-        console.log(response.data);
+        console.log("ALL ENDINGS", response.data);
       })
       .catch((error) => {
         console.error("Error fetching endings:", error);
@@ -46,7 +46,7 @@ export default function Nyx() {
       .get(`${NYX_URL}/nyx_choices`)
       .then((response) => {
         setShowChoices(response.data);
-        console.log(response.data);
+        console.log("ALL CHOICES", response.data);
       })
       .catch((error) => {
         console.error("Error fetching choices:", error);
@@ -65,25 +65,28 @@ export default function Nyx() {
     setCurrentStory((prevStory) => prevStory + 1);
   };
 
+  // SHOW NEXT SCENARIO, UPDATE SCENARIO, AND SHOW ENDINGS
   useEffect(() => {
-    console.log(`Updating ${currentScenario} based on ${selectedChoiceId}...`);
+    console.log(`Updating scenario ${currentScenario} based on choice ${selectedChoiceId}...`);
     const selectedChoice = showChoices.find(
       (choice) => choice.nyx_choice_id === selectedChoiceId,
     );
 
     if (selectedChoice) {
       // If the selected choice is linked to another scenario, it will update the current scenario to the new scenario
-      if (selectedChoice.nyx_linked_scenario_id) {
+      if (selectedChoice.nyx_next_scenario_id) {
+          // TODO: Delete after debugging -- THIS LINE BREAKS, if it is null, then it should link to an ending, but it does not
         console.log(
-          `Updating ${currentScenario} based on linked...`,
+          `Updating scenario ${currentScenario} based on linked scenario`,
           selectedChoice.nyx_next_scenario_id,
         );
         setCurrentScenario(selectedChoice.nyx_next_scenario_id);
 
-// If the selected choice is linked to an ending, it will update the current scenario to an ending
+        // If the selected choice is linked to an ending, it will update the current scenario to an ending
       } else if (selectedChoice.nyx_linked_ending_id) {
+        // TODO: Delete after debugging
         console.log(
-          `Updating ${currentScenario} based on linked ending...`,
+          `Updating scenario ${currentScenario} based on linked ending`,
           selectedChoice.nyx_linked_ending_id,
         );
         const selectedEnding = showEnding.find(
@@ -91,10 +94,16 @@ export default function Nyx() {
             ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id,
         );
         setShowSingleEnding(selectedEnding);
-        // setCurrentScenario(showSingleEnding);
+        setCurrentScenario(0);
       }
     }
-  }, [currentScenario, selectedChoiceId, showChoices, showEnding, showSingleEnding]);
+  }, [
+    currentScenario,
+    selectedChoiceId,
+    showChoices,
+    showEnding,
+    showSingleEnding,
+  ]);
 
   // CHOICE HANDLER
   const handleChoiceSelect = (choiceId) => {
@@ -115,9 +124,9 @@ export default function Nyx() {
         <p className="nyx__prologue">
           {currentStory < storySteps.length ? storySteps[currentStory] : ""}
         </p>
-      
-           {/* DISPLAY ADDITIONAL STORY */}
-             {choiceSelected && (
+
+        {/* DISPLAY ADDITIONAL STORY */}
+        {choiceSelected && (
           <p className="nyx__additional_story">
             {currentScenario <= showScenario.length
               ? showScenario[currentScenario - 1].nyx_additional_story
