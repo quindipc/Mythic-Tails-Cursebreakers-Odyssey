@@ -6,8 +6,6 @@ Mythic Tails: Cursebreaker’s Odyssey is an immersive text adventure game that 
 
 Engaging Narrative: Immerse yourself in an interactive story filled with choices that impact the outcome of the game.
 
-Pet Adoption and Care: Adopt mythical creatures as virtual pets, each with their own buffs and abilities, and build a special bond by caring for them throughout your adventure.
-
 Dynamic Endings: Your decisions shape the storyline, leading to multiple endings based on your choices.
 
 User Accounts: Create a user account to save your progress and explore different paths in subsequent playthroughs.
@@ -27,10 +25,13 @@ Pending...
 3) Install dependencies for the server: cd server && npm install
 4) Create and configure the database: Instructions pending...
 5) Run the development server: cd client && npm run dev
-6) Run the backend server: cd server && npm run start 
+6) Run the backend server: cd server && npm run start
 
 ## How to Play
 
+Pending...
+
+## Endpoints
 Pending...
 
 ## Contributing
