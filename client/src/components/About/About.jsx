@@ -33,6 +33,8 @@ export default function About() {
               ultimate showdown with Aveline.
             </p>
           </div>
+          <hr className="about__divider--horizontal" />
+
           <div className="about__container--characterdetails">
             <h3 className="about__subtitle">Nyx, The Lost Cursebearer</h3>
             <p className="about__description">
