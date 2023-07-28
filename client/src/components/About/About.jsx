@@ -7,6 +7,7 @@ export default function About() {
   return (
     <>
       <section className="about" id="about">
+        <div className="about__container--section">
         <div className="about__container">
           <h2 className="about__title">ABOUT THE GAME</h2>
           <p className="about__description">
@@ -49,6 +50,7 @@ export default function About() {
             </p>
           </div>
           </div>
+        </div>
         </div>
       </section>
     </>
