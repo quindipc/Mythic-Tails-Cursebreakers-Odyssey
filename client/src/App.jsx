@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import GamePage from "./pages/GamePage/GamePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import LogOutPage from "./pages/LogOutPage/LogOutPage";
 
 // Components
 import Header from "./components/Header/Header";
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/play-game" element={<GamePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/logout" element={<LogOutPage />} />
 
         {/* <Route path="/about" element={} />
         <Route path="/profile/:id" element={} />

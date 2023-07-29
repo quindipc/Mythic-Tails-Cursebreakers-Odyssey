@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Login.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [error, setError] = useState("");
@@ -19,17 +20,24 @@ export default function Login() {
         password: event.target.password.value,
       });
 
-         // STORE TOKEN FROM SERVER
+      // HANDLE SUCCESSFUL LOGIN
       console.log(response);
-
+      
+      // STORE TOKEN FROM SERVER
       sessionStorage.authToken = response.data.accessToken;
       setError("");
       setIsUserLoggedIn(true);
 
+      // RESET
+      event.target.reset();
+
+      // REDIRECT TO PROFILE or PLAY GAME (?)
+      navigate("/play-game")
+
        // SAVE PROGRESS
-      // saveUserProgress();
+      // saveUserProgress(); -- need to add to save progress
     } catch (error) {
-      setError(`Login failed: ${error}`);
+      setError(`Invalid email or password. Please try again.`);
     }
   };
 

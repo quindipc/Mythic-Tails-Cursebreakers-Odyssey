@@ -12,19 +12,21 @@ export default function Register() {
   const handleRegister = async (event) => {
     event.preventDefault();
 
-     // POST REQUEST TO LOGIN WITH EMAIL AND PASSWORD
+     // POST REQUEST TO REGISTER WITH  NAME, EMAIL AND PASSWORD
      try {
       const response = await axios.post(REGISTER_URL, {
         name: event.target.name.value,
         email: event.target.email.value,
         password: event.target.password.value,
       });
-
+       
       // HANDLE SUCCESSFUL REGISTRATION
-      console.log(response);
-      setError("");
+       if (response.status === 201) {
+         console.log("Registration successful:", response.data);
+         setError("")
+       }
     } catch (error) {
-      setError(`Login failed: ${error}`);
+      setError(`REgistration failed: ${error.message}`);
     }
   }
 

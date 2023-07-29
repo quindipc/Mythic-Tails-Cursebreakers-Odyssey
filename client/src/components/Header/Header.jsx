@@ -11,6 +11,7 @@ import HomePage from "../../pages/HomePage/HomePage";
 import GamePage from "../../pages/GamePage/GamePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
+import LogOutPage from "../../pages/LogOutPage/LogOutPage"
 
 export default function Header() {
   const [toggled, setToggled] = useState(false);
@@ -68,6 +69,14 @@ export default function Header() {
               <li className="header__navlist-item">Register</li>
             </Link>
 
+            <Link
+              className="header__navlist-item--link"
+              to="/logout"
+              element={<LogOutPage/>}
+            >
+              <li className="header__navlist-item">LogOut</li>
+            </Link>
+
             {/* <li className="header__navlist-item">Creature List</li>
             <li className="header__navlist-item">Creature Details</li>
             <li className="header__navlist-item">Creature Management</li>
@@ -106,6 +115,14 @@ export default function Header() {
               element={<RegisterPage/>}
             >
               <li className="header__navlist-item">Register</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/logout"
+              element={<LogOutPage/>}
+            >
+              <li className="header__navlist-item">LogOut</li>
             </Link>
 
             {/* <li className="header__navlist-item">Creature List</li>
