@@ -1,10 +1,15 @@
-// Dependancies
+// DEPENDENCIES
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
+
+// ASSETS
+import colorLogo from "../../assets/images/logo/Mythic-Tails-Logo-Color.svg";
+
+// PAGES
 import HomePage from "../../pages/HomePage/HomePage";
 import GamePage from "../../pages/GamePage/GamePage";
-import colorLogo from "../../assets/images/logo/Mythic-Tails-Logo-Color.svg";
+import LoginPage from "../../pages/LoginPage/LoginPage";
 
 export default function Header() {
   const [toggled, setToggled] = useState(false);
@@ -33,7 +38,7 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/"
-              element={HomePage}
+              element={<HomePage/>}
             >
               <li className="header__navlist-item">Home</li>
             </Link>
@@ -41,7 +46,15 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/play-game"
-              element={GamePage}
+              element={<GamePage/>}
+            >
+              <li className="header__navlist-item">Play Now</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/login"
+              element={<LoginPage/>}
             >
               <li className="header__navlist-item">Play Now</li>
             </Link>

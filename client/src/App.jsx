@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages
 import HomePage from "./pages/HomePage/HomePage";
 import GamePage from "./pages/GamePage/GamePage"
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 // Components
 import Header from "./components/Header/Header";
@@ -21,9 +22,10 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/play-game" element={<GamePage />} />
+        <Route path="/play-game" element={<GamePage />} />
+        <Route path="/login" element={<LoginPage/>} />
+        
         {/* <Route path="/about" element={} />
-        <Route path="/login" element={} />
         <Route path="/profile/:id" element={} />
         <Route path="/creature-list/:id" element={} />
         <Route path="/creature-details/:id" element={} />

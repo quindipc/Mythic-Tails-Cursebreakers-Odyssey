@@ -1,10 +1,10 @@
-// DEPENDANCIES
+// DEPENDENCIES
 import React, { useState } from "react";
 import axios from "axios";
 import "./Login.scss";
 
 export default function Login() {
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const LOGIN_URL = "http://localhost:8080/api/users/login";
 
@@ -54,7 +54,7 @@ export default function Login() {
         <h1 className="login__title">Log in</h1>
 
         <label>Email:</label>
-        <input type="text" name="Email" />
+        <input type="text" name="email" />
 
         <label>Password:</label>
         <input type="password" name="password" />
