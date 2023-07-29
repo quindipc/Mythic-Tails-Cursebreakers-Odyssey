@@ -56,7 +56,7 @@ export default function Header() {
               to="/login"
               element={<LoginPage/>}
             >
-              <li className="header__navlist-item">Play Now</li>
+              <li className="header__navlist-item">Login</li>
             </Link>
 
             {/* <li className="header__navlist-item">Creature List</li>
@@ -81,6 +81,14 @@ export default function Header() {
               element={GamePage}
             >
               <li className="header__navlist-item">Play Now</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/login"
+              element={<LoginPage/>}
+            >
+              <li className="header__navlist-item">Login</li>
             </Link>
 
             {/* <li className="header__navlist-item">Creature List</li>
