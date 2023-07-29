@@ -12,7 +12,8 @@ export default function Nyx() {
   const [showSingleEnding, setShowSingleEnding] = useState({});
   const [selectedChoiceId, setSelectedChoiceId] = useState(null);
   const [choiceSelected, setChoiceSelected] = useState(false);
-  const [nextClicked, setNextClicked] = useState(false);
+  const [isEnding, setIsEnding] = useState(false);
+  const [showCredits, setShowCredits] = useState(false);
 
   useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
@@ -20,7 +21,7 @@ export default function Nyx() {
       .get(`${NYX_URL}/nyx_scenarios`)
       .then((response) => {
         setShowScenario(response.data);
-        console.log(response.data);
+        console.log("ALL SCENARIOS", response.data);
       })
       .catch((error) => {
         console.error("Error fetching scenarios:", error);
@@ -33,7 +34,7 @@ export default function Nyx() {
       .get(`${NYX_URL}/nyx_endings`)
       .then((response) => {
         setShowEnding(response.data);
-        console.log(response.data);
+        console.log("ALL ENDINGS", response.data);
       })
       .catch((error) => {
         console.error("Error fetching endings:", error);
@@ -46,7 +47,7 @@ export default function Nyx() {
       .get(`${NYX_URL}/nyx_choices`)
       .then((response) => {
         setShowChoices(response.data);
-        console.log(response.data);
+        console.log("ALL CHOICES", response.data);
       })
       .catch((error) => {
         console.error("Error fetching choices:", error);
@@ -60,38 +61,48 @@ export default function Nyx() {
     "Guided by cryptic whispers and haunting visions, Nyx embarked on a relentless pursuit of the Tear of Radiance, which was rumored to be hidden within the ruins of an ancient village long abandoned by civilization. As they approached the ghostly village, Nyx stumbled upon a pitiful sight - a cursed creature, its eyes filled with terror.",
   ];
 
+  // ENDING DEMO
+  const endingSteps = [
+    "Congratulations on completing the demo of 'Mythic Tails: Cursebreaker's Odyssey'! You've experienced the captivating journeys of both Alara, the chosen guardian of nature, and Nyx, the enigmatic Cursebearer. Their paths are intertwined, and their destinies hang in the balance as they navigate the treacherous landscapes of Ethoria.",
+    "Alara, with her unwavering determination and connection to nature, seeks to break the ancient curse that plagues the realm. Her choices will determine the fate of Ethoria and its inhabitants, and her bravery in the face of darkness shines like a beacon of hope.",
+    "Nyx, grappling with the allure of dark magic and their own identity asthe Cursebearer, walks a path veiled in shadows. Their decisions shape the course of their powers and influence the fate of those they encounter. The enigma surrounding Nyx deepens as they learn to wield the very curse that threatens Ethoria.",
+    "This demo only scratches the surface of the epic adventure that awaits. The full game will unravel even more mysteries, and the choices you make will carry far-reaching consequences. We hope you enjoyed this glimpse into the world of 'Mythic Tails: Cursebreaker's Odyssey. Keep an eye out for the official release, where you can continue the saga and shape the destinies of Alara and Nyx. Thank you for playing!",
+  ];
+
   // SHOW NEXT BUTTON
   const handleNextButton = () => {
     setCurrentStory((prevStory) => prevStory + 1);
   };
 
+  // SHOW NEXT SCENARIO, UPDATE SCENARIO, AND SHOW ENDINGS
   useEffect(() => {
-    console.log("Updating currentScenario based on selectedChoiceId...");
     const selectedChoice = showChoices.find(
       (choice) => choice.nyx_choice_id === selectedChoiceId,
     );
-
     if (selectedChoice) {
-      if (selectedChoice.nyx_linked_scenario_id) {
-        console.log(
-          "Updating currentScenario to linked scenario:",
-          selectedChoice.nyx_linked_scenario_id,
-        );
-        setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
+      // If the selected choice is linked to another scenario, it will update the current scenario to the new scenario
+      if (selectedChoice.nyx_next_scenario_id) {
+        setCurrentScenario(selectedChoice.nyx_next_scenario_id);
+        setShowSingleEnding(null);
+        setIsEnding(false);
+        // If the selected choice is linked to an ending, it will update the current scenario to an ending
       } else if (selectedChoice.nyx_linked_ending_id) {
-        console.log(
-          "Updating currentScenario to 0 for linked ending:",
-          selectedChoice.nyx_linked_ending_id,
-        );
         const selectedEnding = showEnding.find(
           (ending) =>
             ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id,
         );
         setShowSingleEnding(selectedEnding);
-        setCurrentScenario(0);
+        setCurrentScenario(undefined);
+        setIsEnding(true);
       }
     }
-  }, [selectedChoiceId, showChoices, showEnding]);
+  }, [
+    currentScenario,
+    selectedChoiceId,
+    showChoices,
+    showEnding,
+    showSingleEnding,
+  ]);
 
   // CHOICE HANDLER
   const handleChoiceSelect = (choiceId) => {
@@ -100,99 +111,109 @@ export default function Nyx() {
   };
 
   const handleRestart = () => {
-    setCurrentStory(0);
+    setCurrentStory(0); // Reset the current story to the beginning
+    setCurrentScenario(1); // Reset the current scenario to the beginning
+    setSelectedChoiceId(null); // Reset the selected choice ID
+    setChoiceSelected(false); // Reset the choice selected state
+    setIsEnding(false); // Reset the isEnding state
+    setShowCredits(false); // Hide the credits
   };
 
-  
-  const handleNextButtonTwo = () => {
-    const selectedChoice = showChoices.find((choice) => choice.nyx_choice_id === selectedChoiceId);
-    if (selectedChoice) {
-      if (selectedChoice.nyx_linked_scenario_id) {
-        setCurrentScenario(selectedChoice.nyx_linked_scenario_id);
-      } else if (selectedChoice.nyx_linked_ending_id) {
-        const selectedEnding = showEnding.find((ending) => ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id);
-        setShowSingleEnding(selectedEnding);
-        setCurrentScenario(0);
-      }
-    }
-    setChoiceSelected(false);
-    setNextClicked(true);
+  const handleEndOfDemo = () => {
+    setIsEnding(false);
+    setShowCredits(!showCredits);
   };
 
   return (
-    <>
-      <section className="nyx">
-        <h1 className="nyx__title">Nyx, The Cursed Guardian</h1>
+    <section className="nyx">
+      {/* DISPLAY INITIAL STORY PARAGRAPHS */}
+      <p className="nyx__prologue">
+        {currentStory < storySteps.length ? storySteps[currentStory] : ""}
+      </p>
 
-        {/* DISPLAY INITAL STORY PARAGRAPHS */}
-        <p className="nyx__prologue">
-          {currentStory < storySteps.length ? storySteps[currentStory] : ""}
-        </p>
-
-        {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
-        {currentStory >= storySteps.length && (
-          <>
-            {/* CURRENT SCENARIO */}
-            <p className="nyx__scenario">
+      {/* DISPLAY ADDITIONAL STORY IF APPLICABLE*/}
+      {choiceSelected && (
+        <>
+          {currentScenario > 0 && (
+            <p className="nyx__additional_story">
               {currentScenario <= showScenario.length
-                ? showScenario[currentScenario - 1].nyx_story
+                ? showScenario[currentScenario - 1].nyx_additional_story
                 : ""}
             </p>
+          )}
 
-            {/* DISPLAY CHOICES FOR CURRENT SCENARIO */}
-            <div className="nyx__choices">
-              {showChoices.map((choice) =>
-                choice.nyx_linked_scenario_id === currentScenario ? (
-                  <button
-                    key={choice.nyx_choice_id}
-                    onClick={() => handleChoiceSelect(choice.nyx_choice_id)}
-                    className={`nyx__choice ${
-                      selectedChoiceId === choice.nyx_choice_id
-                        ? "selected"
-                        : ""
-                    }`}
-                  >
-                    {choice.nyx_description}
-                  </button>
-                ) : null,
-              )}
+          {currentScenario === 0 && (
+            <div className="nyx__ending">
+              <h2>{showSingleEnding.nyx_name}</h2>
+              <p>{showSingleEnding.nyx_story}</p>
+              {/* This may be removed */}
+              <button onClick={handleRestart}>Play again</button>
             </div>
-          </>
-        )}
+          )}
+        </>
+      )}
 
-        {/* DISPLAY ADDITIONAL STORY */}
-        {choiceSelected && (
-          <p className="nyx__additional_story">
+      {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
+      {currentStory >= storySteps.length && (
+        <>
+          {/* CURRENT SCENARIO */}
+          <h2 className="nyx__scenario-name">
             {currentScenario <= showScenario.length
-              ? showScenario[currentScenario - 1].nyx_additional_story
+              ? showScenario[currentScenario - 1].nyx_name
+              : ""}
+          </h2>
+          <p className="nyx__scenario">
+            {currentScenario <= showScenario.length
+              ? showScenario[currentScenario - 1].nyx_story
               : ""}
           </p>
-        )}
 
-        {choiceSelected && (
-          <button className="nyx__next" onClick={handleNextButton}>
-            Next
-          </button>
-        )}
-
-        {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
-        {currentStory > showScenario.length && (
-          <div className="nyx__ending">
-            <h2>{showSingleEnding.nyx_name}</h2>
-            <p>{showSingleEnding.nyx_story}</p>
-
-            {/* This may be removed */}
-            <button onClick={handleRestart}>Play again</button>
+          {/* DISPLAY CHOICES FOR CURRENT SCENARIO */}
+          <div className="nyx__choices">
+            {showChoices.map((choice) =>
+              choice.nyx_linked_scenario_id === currentScenario ? (
+                <button
+                  key={choice.nyx_choice_id}
+                  onClick={() => handleChoiceSelect(choice.nyx_choice_id)}
+                  className={`nyx__choice ${
+                    selectedChoiceId === choice.nyx_choice_id ? "selected" : ""
+                  }`}
+                >
+                  {choice.nyx_description}
+                </button>
+              ) : null,
+            )}
           </div>
-        )}
+        </>
+      )}
 
-        {/* DISPLAY NEXT BUTTON AFTER SCENARIO AND CHOICES */}
-        {currentScenario !== 0 && (
-          <button className="nyx__next--after" onClick={handleNextButton}>
-            Next
-          </button>
-        )}
-      </section>
-    </>
+      {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
+      {isEnding && (
+        <div className="nyx__ending">
+          <h2>{showSingleEnding.nyx_name}</h2>
+          <p>{showSingleEnding.nyx_story}</p>
+          <button onClick={handleEndOfDemo}>Credits</button>
+          <button onClick={handleRestart}>Play Again</button>
+        </div>
+      )}
+
+      {/* DISPLAY CREDITS */}
+      {showCredits && (
+        <div className="nyx__credits">
+          <h2>Credits</h2>
+          {endingSteps.map((step, index) => (
+            <p key={index}>{step}</p>
+          ))}
+          <button onClick={handleRestart}>Play Again</button>
+        </div>
+      )}
+
+      {/* DISPLAY NEXT BUTTON ONLY FOR PROLOGUE STORY LINES -- REMOVE WHEN SCENARIO APPEAR*/}
+      {currentStory < storySteps.length && currentScenario !== 0 && (
+        <button className="nyx__next" onClick={handleNextButton}>
+          Next
+        </button>
+      )}
+    </section>
   );
 }
