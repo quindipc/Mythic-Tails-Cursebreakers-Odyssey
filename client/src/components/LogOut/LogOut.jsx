@@ -7,7 +7,6 @@ import "./LogOut.scss";
 export default function LogOut() {
   const [error, setError] = useState("");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
-  const LOGOUT_URL = "http://localhost:8080/api/users/login";
 
   const navigate = useNavigate();
 

@@ -1,20 +1,21 @@
 // DEPENDENCIES
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 
 export default function Register() {
   const [error, setError] = useState("");
-  const REGISTER_URL = "http://localhost:8080/api/users/register";
+  const BASE_URL = "http://localhost:8080/api/";
 
+  const navigate = useNavigate();
 
-// // http://localhost:8080/api/users/register
   const handleRegister = async (event) => {
     event.preventDefault();
 
      // POST REQUEST TO REGISTER WITH  NAME, EMAIL AND PASSWORD
      try {
-      const response = await axios.post(REGISTER_URL, {
+      const response = await axios.post(BASE_URL + "users/register", {
         name: event.target.name.value,
         email: event.target.email.value,
         password: event.target.password.value,
@@ -24,6 +25,10 @@ export default function Register() {
        if (response.status === 201) {
          console.log("Registration successful:", response.data);
          setError("")
+
+         //REDIRECT TO LOGIN
+         navigate("/login")
+
        }
     } catch (error) {
       setError(`REgistration failed: ${error.message}`);
