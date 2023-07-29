@@ -5,12 +5,17 @@ export default function GameStart({
   handleStartGame,
   onCharacterSelect,
   onContinue,
+  userLoggedIn,
+  loggedInUserEmail,
 }) {
   const [chosenCharacter, setChosenCharacter] = useState(null);
+  const [characterSelected, setCharacterSelected] = useState(false);
+  const [prologueStarted, setPrologueStarted] = useState(false);
 
   const handleCharacterSelection = (character) => {
     setChosenCharacter(character);
     onCharacterSelect(character); // Pass the selected character back to the parent component
+    setCharacterSelected(true);
   };
 
   const handleContinue = () => {
@@ -21,13 +26,18 @@ export default function GameStart({
   const handleBack = () => {
     // Clear the selected character and allow the user to go back to character selection
     setChosenCharacter(null);
+    setCharacterSelected(false);
+  };
+
+  const handleStartPrologue = () => {
+    setPrologueStarted(true);
   };
 
   return (
     <>
       <section className="gamestart">
         {/* CHARACTER SELECTION */}
-        {!chosenCharacter && (
+        {!characterSelected && (
           <>
             <div className="gamestart__character">
               <h1 className="gamestart__character-name">
@@ -81,27 +91,26 @@ export default function GameStart({
         )}
 
         {/* CHARACTER RESULT */}
-        {chosenCharacter && (
+        {characterSelected && (
           <>
             <p>Character selected: {chosenCharacter}</p>
-            <button className="gamestart__continue" onClick={handleContinue}>
-              Continue
-            </button>
+            {userLoggedIn && (
+              <p>Logged in as: {loggedInUserEmail}</p>
+            )}
             <button className="gamestart__back" onClick={handleBack}>
-              Back
+              Change Character
+            </button>
+            {/* Show "Continue" button only if user is logged in and has saved progress */}
+            {userLoggedIn && onContinue && (
+              <button className="gamestart__continue" onClick={handleContinue}>
+                Continue
+              </button>
+            )}
+            {/* Show "Next" button after character selection */}
+            <button className="gamestart__next" onClick={handleStartGame}>
+              Start Game
             </button>
           </>
-        )}
-
-        {/* CHARACTER RESULT */}
-        {chosenCharacter === "Nyx" && <p>Character selected: Nyx</p>}
-        {chosenCharacter === "Alara" && <p>Character selected: Alara</p>}
-
-        {/* Show "Next" button after character selection */}
-        {chosenCharacter && (
-          <button className="gamestart__next" onClick={handleStartGame}>
-            Next
-          </button>
         )}
       </section>
     </>
