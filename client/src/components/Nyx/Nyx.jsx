@@ -12,6 +12,8 @@ export default function Nyx() {
   const [showSingleEnding, setShowSingleEnding] = useState({});
   const [selectedChoiceId, setSelectedChoiceId] = useState(null);
   const [choiceSelected, setChoiceSelected] = useState(false);
+  const [isEnding, setIsEnding] = useState(false);
+  const [showCredits, setShowCredits] = useState(false);
 
   useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
@@ -82,6 +84,8 @@ export default function Nyx() {
       // If the selected choice is linked to another scenario, it will update the current scenario to the new scenario
       if (selectedChoice.nyx_next_scenario_id) {
         setCurrentScenario(selectedChoice.nyx_next_scenario_id);
+        setShowSingleEnding(null);
+        setIsEnding(false);
         // If the selected choice is linked to an ending, it will update the current scenario to an ending
       } else if (selectedChoice.nyx_linked_ending_id) {
         const selectedEnding = showEnding.find(
@@ -89,7 +93,8 @@ export default function Nyx() {
             ending.nyx_ending_id === selectedChoice.nyx_linked_ending_id,
         );
         setShowSingleEnding(selectedEnding);
-        setCurrentScenario(0);
+        setCurrentScenario(undefined);
+        setIsEnding(true);
       }
     }
   }, [
@@ -107,13 +112,17 @@ export default function Nyx() {
   };
 
   const handleRestart = () => {
-    // Add logic to start game in the beginning again
+  //  setCurrentStory(0); // Reset the current story to the beginning
+  //   setCurrentScenario(1); // Reset the current scenario to the beginning
+  //   setSelectedChoiceId(null); // Reset the selected choice ID
+  //   setChoiceSelected(false); // Reset the choice selected state
+  //   setIsEnding(false); // Reset the isEnding state
+  //   setShowCredits(false); // Hide the credits
   };
 
   const handleEndOfDemo = () => {
-    <p className="nyx__end-of-demo">
-      {currentStory < storySteps.length ? endingSteps[currentStory] : ""}
-    </p>;
+    setIsEnding(false);
+    setShowCredits(!showCredits);
   };
 
   return (
@@ -148,6 +157,9 @@ export default function Nyx() {
       {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
       {currentStory >= storySteps.length && (
         <>
+          {console.log("showScenario:", showScenario)}
+          {console.log("showScenario length:", showScenario.length)}
+          {console.log("currentScenario:", currentScenario)}
           {/* CURRENT SCENARIO */}
           <h2 className="nyx__scenario-name">
             {currentScenario <= showScenario.length
@@ -180,19 +192,29 @@ export default function Nyx() {
       )}
 
       {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
-      {currentStory > showScenario.length && (
+      {isEnding && (
         <div className="nyx__ending">
           <h2>{showSingleEnding.nyx_name}</h2>
           <p>{showSingleEnding.nyx_story}</p>
-
           <button onClick={handleEndOfDemo}>Credits</button>
           <button onClick={handleRestart}>Play Again</button>
         </div>
       )}
 
+       {/* DISPLAY CREDITS */}
+      {showCredits && (
+        <div className="nyx__ending">
+          <h2>Credits</h2>
+          {endingSteps.map((step, index) => (
+            <p key={index}>{step}</p>
+          ))}
+          <button onClick={handleRestart}>Play Again</button>
+        </div>
+      )}
+
       {/* DISPLAY NEXT BUTTON ONLY FOR PROLOGUE STORY LINES -- REMOVE WHEN SCENARIO APPEAR*/}
-      {currentScenario !== 0 && (
-        <button className="nyx__next--after" onClick={handleNextButton}>
+      {currentStory < storySteps.length && currentScenario !== 0 && (
+        <button className="nyx__next" onClick={handleNextButton}>
           Next
         </button>
       )}
