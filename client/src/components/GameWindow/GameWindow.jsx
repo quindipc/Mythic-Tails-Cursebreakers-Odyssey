@@ -11,6 +11,7 @@ export default function GameWindow() {
   const [darkMode, setDarkMode] = useState(false);
   const [showGameStart, setShowGameStart] = useState(false);
   const [chosenCharacter, setChosenCharacter] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // DARK MODE
   const handleDarkModeToggle = () => {
@@ -44,7 +45,7 @@ export default function GameWindow() {
         {!showGameStart && <GameTitle handleStartGame={handleStartGame} />}
 
         {showGameStart && !chosenCharacter && (
-          <GameStart handleStartGame={handleStartGame} onCharacterSelect={handleCharacterSelection} />
+          <GameStart handleStartGame={handleStartGame} onCharacterSelect={handleCharacterSelection} isLoggedIn={isLoggedIn} />
         )}
 
         {chosenCharacter === "Nyx" && <Nyx />}
