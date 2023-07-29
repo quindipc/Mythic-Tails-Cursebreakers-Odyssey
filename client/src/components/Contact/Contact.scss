@@ -1,0 +1,76 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.contact {
+  @include mavenpro-semibold;
+  background-color: $white;
+  width: 100%;
+  color: $black;
+
+  @include desktop {
+    margin: auto;
+  }
+
+  &__container {
+    @include flex-column-center-center;
+    padding: 1rem;
+
+    &--section {
+      max-width: 80rem;
+      @include desktop {
+        margin: auto;
+      }
+    }
+
+    &--details {
+      padding: 1rem 0;
+
+      @include tablet {
+        padding: 0 1rem;
+      }
+    }
+  }
+
+  &__divider {
+    border: none;
+    border-bottom: 0.2rem solid $primary-color-dark;
+    width: 100%;
+    margin: auto;
+  }
+
+  &__title {
+    text-align: center;
+    color: $secondary-color;
+    font-size: 1.25rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+      padding-top: 1rem;
+    }
+  }
+
+  &__subtitle {
+    color: $primary-color;
+    background-color: $secondary-color;
+    border-radius: 5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+
+    @include tablet {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__description {
+    font-size: 0.75rem;
+    padding: 1rem;
+
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
+}

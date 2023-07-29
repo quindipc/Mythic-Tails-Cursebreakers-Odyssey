@@ -6,14 +6,12 @@ export default function GamePage() {
 
     return (
         <>
-            
-            {/* Header */}
+        
 
             <GameWindow />
             {/* Login? */}
             {/* Register? */}
 
-            {/* Footer */}
 
         </>
     )

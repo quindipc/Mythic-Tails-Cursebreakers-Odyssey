@@ -8,7 +8,6 @@ import GamePage from "./pages/GamePage/GamePage"
 
 // Components
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 
 // Assets
 import "./styles/partials/_fonts.scss"
@@ -32,7 +31,6 @@ export default function App() {
         <Route path="/contact" element={} /> */}
         </Routes>
 
-        <Footer />
       </BrowserRouter>
   );
 }
