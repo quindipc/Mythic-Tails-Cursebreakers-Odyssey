@@ -8,49 +8,35 @@ export default function Login() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const LOGIN_URL = "http://localhost:8080/api/users/login";
 
-  // http://localhost:8080/api/users/register
   // http://localhost:8080/api/users/login
-
-  const handleSubmit = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-
+    
     // POST REQUEST TO LOGIN WITH EMAIL AND PASSWORD
-    axios
-      .post(LOGIN_URL, {
+    try {
+      const response = await axios.post(LOGIN_URL, {
         email: event.target.email.value,
         password: event.target.password.value,
-      })
-      .then((response) => {
-        console.log(response);
-
-        // STORE TOKEN FROM SERVER
-        sessionStorage.authToken = response.data.accessToken;
-        setError(undefined);
-        setIsUserLoggedIn(true);
-
-        // SAVE PROGRESS
-        saveUserProgress();
-      })
-      .catch((error) => {
-        setError(`Login failed: ${error}`);
       });
+
+         // STORE TOKEN FROM SERVER
+      console.log(response);
+
+      sessionStorage.authToken = response.data.accessToken;
+      setError("");
+      setIsUserLoggedIn(true);
+
+       // SAVE PROGRESS
+      // saveUserProgress();
+    } catch (error) {
+      setError(`Login failed: ${error}`);
+    }
   };
 
-  // TODO -- NEED TO EDIT BACKEND AGAIN....
-// SAVE USER PROGRESS 
-  const saveUserProgress = () => {
-    axios.post()
-    // save scenario stopped at
-
-    // headers
-
-    // catch error 
-
-  }
 
   return (
     <section className="login-page">
-      <form className="login" onSubmit={handleSubmit}>
+      <form className="login" onSubmit={handleLogin}>
         <h1 className="login__title">Log in</h1>
 
         <label>Email:</label>

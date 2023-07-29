@@ -10,6 +10,7 @@ import colorLogo from "../../assets/images/logo/Mythic-Tails-Logo-Color.svg";
 import HomePage from "../../pages/HomePage/HomePage";
 import GamePage from "../../pages/GamePage/GamePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 
 export default function Header() {
   const [toggled, setToggled] = useState(false);
@@ -59,6 +60,14 @@ export default function Header() {
               <li className="header__navlist-item">Login</li>
             </Link>
 
+            <Link
+              className="header__navlist-item--link"
+              to="/register"
+              element={<RegisterPage/>}
+            >
+              <li className="header__navlist-item">Register</li>
+            </Link>
+
             {/* <li className="header__navlist-item">Creature List</li>
             <li className="header__navlist-item">Creature Details</li>
             <li className="header__navlist-item">Creature Management</li>
@@ -89,6 +98,14 @@ export default function Header() {
               element={<LoginPage/>}
             >
               <li className="header__navlist-item">Login</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/register"
+              element={<RegisterPage/>}
+            >
+              <li className="header__navlist-item">Register</li>
             </Link>
 
             {/* <li className="header__navlist-item">Creature List</li>

@@ -1,4 +1,4 @@
-// DEPENDANCIES
+// DEPENDENCIES
 import React from "react";
 
 // COMPONENTS
