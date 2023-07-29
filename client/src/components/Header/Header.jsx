@@ -39,9 +39,9 @@ export default function Header() {
             </Link>
           </div>
           <div className={`header__burger ${toggled ? "active" : ""}`} onClick={handleBurger}>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span className="header__burger--line"></span>
+            <span className="header__burger--line"></span>
+            <span className="header__burger--line"></span>
           </div>
           <ul className={`header__navlist ${toggled ? "active" : ""}`}>
             <Link
@@ -132,7 +132,8 @@ export default function Header() {
           </Link>
           
           </ul>
-        </nav>
+      </nav>
+      <hr className="header__divider" />
       </header>
   );
 }
