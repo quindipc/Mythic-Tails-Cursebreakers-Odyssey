@@ -7,15 +7,15 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [error, setError] = useState("");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const LOGIN_URL = "http://localhost:8080/api/users/login";
+  const BASE_URL = "http://localhost:8080/api/";
 
-  // http://localhost:8080/api/users/login
+  const navigate = useNavigate()
   const handleLogin = async (event) => {
     event.preventDefault();
     
     // POST REQUEST TO LOGIN WITH EMAIL AND PASSWORD
     try {
-      const response = await axios.post(LOGIN_URL, {
+      const response = await axios.post(BASE_URL + "users/login", {
         email: event.target.email.value,
         password: event.target.password.value,
       });
