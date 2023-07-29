@@ -12,6 +12,9 @@ export default function Alara() {
   const [showSingleEnding, setShowSingleEnding] = useState({});
   const [selectedChoiceId, setSelectedChoiceId] = useState(null);
   const [choiceSelected, setChoiceSelected] = useState(false);
+  const [isEnding, setIsEnding] = useState(false);
+  const [showCredits, setShowCredits] = useState(false);
+
 
   useEffect(() => {
     // FETCH ALARA'S SCENARIOS http://localhost:8080/api/alara/alara_scenarios
@@ -60,6 +63,14 @@ export default function Alara() {
     "'Guardian,' Elowen whispers in a faint voice, 'the heart of the forest withers, and my brethren suffer. Only a special healing flower, the Radiant Bloom, hidden within the dangerous ruins of the forgotten temple, can mend our home. Please, save us.'",
   ];
 
+    // ENDING DEMO
+    const endingSteps = [
+      "Congratulations on completing the demo of 'Mythic Tails: Cursebreaker's Odyssey'! You've experienced the captivating journeys of both Alara, the chosen guardian of nature, and Nyx, the enigmatic Cursebearer. Their paths are intertwined, and their destinies hang in the balance as they navigate the treacherous landscapes of Ethoria.",
+      "Alara, with her unwavering determination and connection to nature, seeks to break the ancient curse that plagues the realm. Her choices will determine the fate of Ethoria and its inhabitants, and her bravery in the face of darkness shines like a beacon of hope.",
+      "Nyx, grappling with the allure of dark magic and their own identity asthe Cursebearer, walks a path veiled in shadows. Their decisions shape the course of their powers and influence the fate of those they encounter. The enigma surrounding Nyx deepens as they learn to wield the very curse that threatens Ethoria.",
+      "This demo only scratches the surface of the epic adventure that awaits. The full game will unravel even more mysteries, and the choices you make will carry far-reaching consequences. We hope you enjoyed this glimpse into the world of 'Mythic Tails: Cursebreaker's Odyssey. Keep an eye out for the official release, where you can continue the saga and shape the destinies of Alara and Nyx. Thank you for playing!",
+    ];
+
   // SHOW NEXT BUTTON
   const handleNextButton = () => {
     setCurrentStory((prevStory) => prevStory + 1);
@@ -74,6 +85,8 @@ export default function Alara() {
       // If the selected choice is linked to another scenario, it will update the current scenario to the new scenario
       if (selectedChoice.alara_next_scenario_id) {
         setCurrentScenario(selectedChoice.alara_next_scenario_id);
+        setShowSingleEnding(null);
+        setIsEnding(false);
         // If the selected choice is linked to an ending, it will update the current scenario to an ending
       } else if (selectedChoice.alara_linked_ending_id) {
         const selectedEnding = showEnding.find(
@@ -81,7 +94,8 @@ export default function Alara() {
             ending.alara_ending_id === selectedChoice.alara_linked_ending_id,
         );
         setShowSingleEnding(selectedEnding);
-        setCurrentScenario(0);
+        setCurrentScenario(undefined);
+        setIsEnding(true);
       }
     }
   }, [
@@ -99,8 +113,19 @@ export default function Alara() {
   };
 
   const handleRestart = () => {
-    setCurrentStory(0);
+    setCurrentStory(0); // Reset the current story to the beginning
+    setCurrentScenario(1); // Reset the current scenario to the beginning
+    setSelectedChoiceId(null); // Reset the selected choice ID
+    setChoiceSelected(false); // Reset the choice selected state
+    setIsEnding(false); // Reset the isEnding state
+    setShowCredits(false); // Hide the credits
   };
+
+  const handleEndOfDemo = () => {
+    setIsEnding(false);
+    setShowCredits(!showCredits);
+  };
+
 
   return (
     <section className="alara">
@@ -124,6 +149,7 @@ export default function Alara() {
             <div className="alara__ending">
               <h2>{showSingleEnding.alara_name}</h2>
               <p>{showSingleEnding.alara_story}</p>
+
               {/* This may be removed */}
               <button onClick={handleRestart}>Play again</button>
             </div>
@@ -168,19 +194,30 @@ export default function Alara() {
       )}
 
       {/* DISPLAY ENDING IF CHOICES LEAD TO ENDING */}
-      {currentStory > showScenario.length && (
+      {isEnding && (
         <div className="alara__ending">
           <h2>{showSingleEnding.alara_name}</h2>
           <p>{showSingleEnding.alara_story}</p>
+          <button onClick={handleEndOfDemo}>Credits</button>
+          <button onClick={handleRestart}>Play Again</button>
+        </div>
+      )}
 
-          {/* This may be removed */}
-          <button onClick={handleRestart}>Play again</button>
+      
+      {/* DISPLAY CREDITS */}
+      {showCredits && (
+        <div className="alara__credits">
+          <h2>Credits</h2>
+          {endingSteps.map((step, index) => (
+            <p key={index}>{step}</p>
+          ))}
+          <button onClick={handleRestart}>Play Again</button>
         </div>
       )}
 
       {/* DISPLAY NEXT BUTTON ONLY FOR PROLOGUE STORY LINES -- REMOVE WHEN SCENARIO APPEAR*/}
-      {currentScenario !== 0 && (
-        <button className="alara__next--after" onClick={handleNextButton}>
+      {currentStory < storySteps.length && currentScenario !== 0 && (
+        <button className="alara__next" onClick={handleNextButton}>
           Next
         </button>
       )}

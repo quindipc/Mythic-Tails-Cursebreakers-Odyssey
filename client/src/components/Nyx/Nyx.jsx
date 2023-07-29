@@ -62,7 +62,6 @@ export default function Nyx() {
   ];
 
   // ENDING DEMO
-
   const endingSteps = [
     "Congratulations on completing the demo of 'Mythic Tails: Cursebreaker's Odyssey'! You've experienced the captivating journeys of both Alara, the chosen guardian of nature, and Nyx, the enigmatic Cursebearer. Their paths are intertwined, and their destinies hang in the balance as they navigate the treacherous landscapes of Ethoria.",
     "Alara, with her unwavering determination and connection to nature, seeks to break the ancient curse that plagues the realm. Her choices will determine the fate of Ethoria and its inhabitants, and her bravery in the face of darkness shines like a beacon of hope.",
@@ -112,12 +111,12 @@ export default function Nyx() {
   };
 
   const handleRestart = () => {
-  //  setCurrentStory(0); // Reset the current story to the beginning
-  //   setCurrentScenario(1); // Reset the current scenario to the beginning
-  //   setSelectedChoiceId(null); // Reset the selected choice ID
-  //   setChoiceSelected(false); // Reset the choice selected state
-  //   setIsEnding(false); // Reset the isEnding state
-  //   setShowCredits(false); // Hide the credits
+    setCurrentStory(0); // Reset the current story to the beginning
+    setCurrentScenario(1); // Reset the current scenario to the beginning
+    setSelectedChoiceId(null); // Reset the selected choice ID
+    setChoiceSelected(false); // Reset the choice selected state
+    setIsEnding(false); // Reset the isEnding state
+    setShowCredits(false); // Hide the credits
   };
 
   const handleEndOfDemo = () => {
@@ -157,9 +156,6 @@ export default function Nyx() {
       {/* DISPLAY SCENARIO AND CHOICES AFTER PROLOGUE */}
       {currentStory >= storySteps.length && (
         <>
-          {console.log("showScenario:", showScenario)}
-          {console.log("showScenario length:", showScenario.length)}
-          {console.log("currentScenario:", currentScenario)}
           {/* CURRENT SCENARIO */}
           <h2 className="nyx__scenario-name">
             {currentScenario <= showScenario.length
@@ -201,9 +197,9 @@ export default function Nyx() {
         </div>
       )}
 
-       {/* DISPLAY CREDITS */}
+      {/* DISPLAY CREDITS */}
       {showCredits && (
-        <div className="nyx__ending">
+        <div className="nyx__credits">
           <h2>Credits</h2>
           {endingSteps.map((step, index) => (
             <p key={index}>{step}</p>
