@@ -48,26 +48,26 @@ margin: auto;
     z-index: 1;
     cursor: pointer;
 
-    span {
+    &--line {
       width: 100%;
-      transition: 350ms ease-out;
+      transition: 500ms ease-out;
       
     &:nth-child(1) {
         @include flex-row-center-center;
         height: 1rem;
-        border-bottom: .25rem $primary-color solid;
+        border-bottom: .15rem $primary-color solid;
       }
       
       &:nth-child(2) {
         @include flex-row-center-center;
         height: 1rem;
-        border-bottom: .25rem $secondary-color solid;
+        border-bottom: .15rem $secondary-color solid;
       }
 
       &:nth-child(3) {
         @include flex-row-center-center;
         height: 1rem;
-        border-bottom: .25rem $primary-color solid;
+        border-bottom: .15rem $primary-color solid;
       }
   
     }
@@ -91,12 +91,13 @@ margin: auto;
     padding: 1rem 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 
     &.active {
       display: flex;
       opacity: 1;
       visibility: visible;
+      background-color: $secondary-color;
 
       @include desktop {
         display: none;
@@ -126,5 +127,9 @@ margin: auto;
     @include tablet {
       padding: 1.5rem;
     }
+  }
+
+  &__divider {
+ @include dividerStyles;
   }
 }
