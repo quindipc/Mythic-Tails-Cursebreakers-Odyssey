@@ -1,19 +1,19 @@
-// DEPENDANCIES
+// DEPENDENCIES
 import React from "react";
 import "./Hero.scss";
 import { Link } from "react-router-dom";
 
-// Pages
+// PAGES
 import GamePage from "../../pages/GamePage/GamePage"
+
+// ASSETS
+import HeroImg from "../../assets/images/logo/Mythic-Tails-Logo-Color-words.svg"
 
 export default function Hero() {
   return (
     <>
       <section className="hero">
-        <h1 className="hero__title">Mythic Tails:</h1>
-        <h2 className="hero__title-block">Cursebreaker's Odyssey</h2>
-        {/* TODO: Insert image here */}
-              {/* <img src="" alt="Hero Image" className="hero" /> */}
+              <img src={HeroImg} alt="Hero Image" className="hero__image" />
               <Link to="/play-game" element={<GamePage/>} >
         <button className="hero__button">Play Now!</button>
                   
