@@ -34,7 +34,7 @@
   }
 
   &__divider {
-  @include dividerStyles;
+    @include dividerStyles;
   }
 
   &__title {
@@ -72,11 +72,18 @@
   }
 
   &__links {
-    @include flex-column-center-center;
+    @include flex-row-center-center;
+    justify-content: space-evenly;
+    padding: 1rem;
   }
 
   &__link {
+    color: $secondary-color;
     text-decoration: none;
-    border-style: none;
+    list-style: none;
+  }
+
+  &__icon {
+    max-width: 3.125rem;
   }
 }
