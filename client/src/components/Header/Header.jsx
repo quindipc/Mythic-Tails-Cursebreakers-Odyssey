@@ -19,12 +19,18 @@ export default function Header() {
   const handleBurger = () => {
     setToggled(!toggled);
   };
+  
+
+  const closeMenu = () => {
+    setToggled(false);
+  };
+
+
   return (
-    <>
       <header className="header">
         <nav className="header__nav">
           <div className="header__logo-container">
-            <Link to="/" element={HomePage}>
+            <Link to="/" element={HomePage} onClick={closeMenu}>
             <img
               className="header__logo"
               src={colorLogo}
@@ -33,14 +39,16 @@ export default function Header() {
             </Link>
           </div>
           <div className={`header__burger ${toggled ? "active" : ""}`} onClick={handleBurger}>
-            <span></span>
-            <span></span>
+            <span className="header__burger--line"></span>
+            <span className="header__burger--line"></span>
+            <span className="header__burger--line"></span>
           </div>
           <ul className={`header__navlist ${toggled ? "active" : ""}`}>
             <Link
               className="header__navlist-item--link"
               to="/"
-              element={<HomePage/>}
+            element={<HomePage />}
+            onClick={closeMenu}
             >
               <li className="header__navlist-item">Home</li>
             </Link>
@@ -48,7 +56,8 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/play-game"
-              element={<GamePage/>}
+            element={<GamePage />}
+            onClick={closeMenu}
             >
               <li className="header__navlist-item">Play Now</li>
             </Link>
@@ -56,7 +65,8 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/login"
-              element={<LoginPage/>}
+            element={<LoginPage />}
+            onClick={closeMenu}
             >
               <li className="header__navlist-item">Login</li>
             </Link>
@@ -64,7 +74,8 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/register"
-              element={<RegisterPage/>}
+            element={<RegisterPage />}
+            onClick={closeMenu}
             >
               <li className="header__navlist-item">Register</li>
             </Link>
@@ -72,17 +83,12 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/logout"
-              element={<LogOutPage/>}
+            element={<LogOutPage />}
+            onClick={closeMenu}
             >
               <li className="header__navlist-item">LogOut</li>
             </Link>
 
-            {/* <li className="header__navlist-item">Creature List</li>
-            <li className="header__navlist-item">Creature Details</li>
-            <li className="header__navlist-item">Creature Management</li>
-            <li className="header__navlist-item">Login</li>
-            <li className="header__navlist-item">Sign Up</li>
-            <li className="header__navlist-item">Contact</li> */}
           </ul>
           <ul className="header__navlist--desktop">
             <Link
@@ -123,17 +129,11 @@ export default function Header() {
               element={<LogOutPage/>}
             >
               <li className="header__navlist-item">LogOut</li>
-            </Link>
-
-            {/* <li className="header__navlist-item">Creature List</li>
-            <li className="header__navlist-item">Creature Details</li>
-            <li className="header__navlist-item">Creature Management</li>
-            <li className="header__navlist-item">Login</li>
-            <li className="header__navlist-item">Sign Up</li>
-            <li className="header__navlist-item">Contact</li> */}
+          </Link>
+          
           </ul>
-        </nav>
+      </nav>
+      <hr className="header__divider" />
       </header>
-    </>
   );
 }

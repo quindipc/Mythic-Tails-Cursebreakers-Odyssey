@@ -8,10 +8,10 @@
   background-color: $white;
   width: 100%;
   color: $black;
-  
+
   @include desktop {
     margin: auto;
- }
+  }
 
   &__container {
     @include flex-column-center-center;
@@ -28,27 +28,35 @@
       @include tablet {
         padding: 0 1rem;
       }
-    }
 
+    }
+    
     &--characters {
       @include tablet {
         @include flex-row-center-center;
       }
     }
+    &--content {
+      @include flex-column-center-center;
+      @include desktop {
+        @include flex-row-center-center;
+      }
+    }
+  }
+
+  &__character-img {
+    width: 15rem;
   }
 
   &__divider {
-    border: none;
-    border-bottom: 0.2rem solid $primary-color-dark;
-    width: 100%;
-    margin: auto;
+    @include dividerStyles;
 
     &--horizontal {
-      display: none; 
+      display: none;
       @include tablet {
-        display: flex; 
-        border: none; 
-        border-top: 15rem solid $primary-color-dark;
+        display: flex;
+        border: none;
+        border-top: 15rem solid $primary-color;
         width: 1rem;
         margin: 1rem;
       }
@@ -60,8 +68,8 @@
     font-size: 1.25rem;
 
     @include tablet {
-        font-size: 1.5rem;
-        padding-bottom: 1.5rem;
+      font-size: 1.5rem;
+      padding-bottom: 1.5rem;
     }
   }
 
@@ -75,15 +83,15 @@
     text-align: center;
 
     @include tablet {
-        font-size: 1.25rem;
+      font-size: 1.25rem;
     }
   }
 
   &__description {
-    font-size: .75rem;
+    font-size: 0.75rem;
     padding-bottom: 1rem;
     @include tablet {
-        font-size: 1rem;
+      font-size: 1rem;
     }
   }
 }

@@ -4,35 +4,40 @@
 @use "../../styles/partials/mixins" as *;
 
 .hero {
-  background-color: $black;
-  color: $secondary-color;
+  background-color: $secondary-color;
   width: 100%;
-  height: 100vh;
+  height: 30rem;
   @include flex-column-center-center;
-
-  &__title {
-    font-size: 2rem;
-    text-align: center;
-    padding: 0.5rem;
+  @include tablet {
+    height: 50rem;
   }
 
-  &__title-block {
-    font-size: 1.5rem;
-    color: $primary-color;
-    background-color: $secondary-color;
-    padding: 0.5rem;
-    border-radius: 3.125rem;
-    line-height: 1.5;
+  @include desktop {
+    height: 55rem;
   }
+
+&__image {
+  width: 20rem;
+  @include tablet {
+    width: 30rem;
+  }
+  @include desktop {
+    width: 40rem;
+  }
+}
 
   &__button {
     font-size: 1rem;
     @include buttonStyles;
     margin-top: 1rem;
-    color: $primary-color;
+    color: $secondary-color;
+    background-color: $white;
+    border-radius: 5rem;
+    width: 25rem;
     &:hover {
       cursor: pointer;
       background-color: $secondary-color-dark;
+      color: $white;
     }
   }
 }

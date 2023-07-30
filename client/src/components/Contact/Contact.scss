@@ -15,7 +15,7 @@
 
   &__container {
     @include flex-column-center-center;
-    padding: 1rem;
+    // padding: 1rem;
 
     &--section {
       max-width: 80rem;
@@ -34,10 +34,7 @@
   }
 
   &__divider {
-    border: none;
-    border-bottom: 0.2rem solid $primary-color-dark;
-    width: 100%;
-    margin: auto;
+    @include dividerStyles;
   }
 
   &__title {
@@ -72,5 +69,21 @@
     @include tablet {
       font-size: 1rem;
     }
+  }
+
+  &__links {
+    @include flex-row-center-center;
+    justify-content: space-evenly;
+    padding: 1rem;
+  }
+
+  &__link {
+    color: $secondary-color;
+    text-decoration: none;
+    list-style: none;
+  }
+
+  &__icon {
+    max-width: 3.125rem;
   }
 }
