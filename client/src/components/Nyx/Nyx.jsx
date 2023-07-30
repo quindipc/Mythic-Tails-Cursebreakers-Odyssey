@@ -1,6 +1,9 @@
-// DEPENDANCIES
+// DEPENDENCIES
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+// COMPONENTS
+import Typing from "../Typing/Typing";
 
 export default function Nyx() {
   const NYX_URL = "http://localhost:8080/api/nyx/";
@@ -127,25 +130,26 @@ export default function Nyx() {
   return (
     <section className="nyx">
       {/* DISPLAY INITIAL STORY PARAGRAPHS */}
-      <p className="nyx__prologue">
-        {currentStory < storySteps.length ? storySteps[currentStory] : ""}
-      </p>
+      <Typing text={currentStory < storySteps.length ? storySteps[currentStory] : ""} delay={50} />
 
       {/* DISPLAY ADDITIONAL STORY IF APPLICABLE*/}
       {choiceSelected && (
         <>
           {currentScenario > 0 && (
-            <p className="nyx__additional_story">
-              {currentScenario <= showScenario.length
-                ? showScenario[currentScenario - 1].nyx_additional_story
-                : ""}
-            </p>
+            <Typing
+              text={
+                currentScenario <= showScenario.length
+                  ? showScenario[currentScenario - 1].nyx_additional_story
+                  : ""
+              }
+              delay={50}
+            />
           )}
 
           {currentScenario === 0 && (
             <div className="nyx__ending">
               <h2>{showSingleEnding.nyx_name}</h2>
-              <p>{showSingleEnding.nyx_story}</p>
+              <Typing text={showSingleEnding.nyx_story} delay={50} />
               {/* This may be removed */}
               <button onClick={handleRestart}>Play again</button>
             </div>
@@ -162,11 +166,14 @@ export default function Nyx() {
               ? showScenario[currentScenario - 1].nyx_name
               : ""}
           </h2>
-          <p className="nyx__scenario">
-            {currentScenario <= showScenario.length
-              ? showScenario[currentScenario - 1].nyx_story
-              : ""}
-          </p>
+          <Typing
+            text={
+              currentScenario <= showScenario.length
+                ? showScenario[currentScenario - 1].nyx_story
+                : ""
+            }
+            delay={50}
+          />
 
           {/* DISPLAY CHOICES FOR CURRENT SCENARIO */}
           <div className="nyx__choices">
@@ -181,7 +188,7 @@ export default function Nyx() {
                 >
                   {choice.nyx_description}
                 </button>
-              ) : null,
+              ) : null
             )}
           </div>
         </>
@@ -191,7 +198,7 @@ export default function Nyx() {
       {isEnding && (
         <div className="nyx__ending">
           <h2>{showSingleEnding.nyx_name}</h2>
-          <p>{showSingleEnding.nyx_story}</p>
+          <Typing text={showSingleEnding.nyx_story} delay={50} />
           <button onClick={handleEndOfDemo}>Credits</button>
           <button onClick={handleRestart}>Play Again</button>
         </div>
@@ -202,7 +209,7 @@ export default function Nyx() {
         <div className="nyx__credits">
           <h2>Credits</h2>
           {endingSteps.map((step, index) => (
-            <p key={index}>{step}</p>
+            <Typing key={index} text={step} delay={50} />
           ))}
           <button onClick={handleRestart}>Play Again</button>
         </div>
