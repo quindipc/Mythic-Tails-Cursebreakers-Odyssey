@@ -1,14 +1,9 @@
-@use "../../client/src/styles/partials/resets" as *;
-@use "../../client/src/styles/partials/variables" as *;
-@use "../../client/src/styles/partials/fonts" as *;
-@use "../../client/src/styles/partials/mixins" as *;
-
 :root {
   font-family: 'Press Start 2P', cursive, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: $white;
-  background-color: $black;
+  color: #F0F0F0;
+  background-color:  #282828;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

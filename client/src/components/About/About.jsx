@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <>
       <section className="about" id="about">
         <div className="about__container--section">
         <div className="about__container">
@@ -35,6 +34,8 @@ export default function About() {
               ultimate showdown with Aveline.
             </p>
           </div>
+          <hr className="about__divider--horizontal" />
+
           <div className="about__container--characterdetails">
             <h3 className="about__subtitle">Nyx, The Lost Cursebearer</h3>
             <p className="about__description">
@@ -53,6 +54,5 @@ export default function About() {
         </div>
         </div>
       </section>
-    </>
   );
 }

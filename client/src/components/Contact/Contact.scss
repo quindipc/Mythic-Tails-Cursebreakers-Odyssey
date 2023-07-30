@@ -3,62 +3,48 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-.about {
+.contact {
   @include mavenpro-semibold;
   background-color: $white;
   width: 100%;
   color: $black;
-  
+
   @include desktop {
     margin: auto;
- }
+  }
 
   &__container {
     @include flex-column-center-center;
-    max-width: 80rem;
     padding: 1rem;
 
-    @include desktop {
-      margin: auto;
+    &--section {
+      max-width: 80rem;
+      @include desktop {
+        margin: auto;
+      }
     }
 
-    &--characterdetails {
+    &--details {
       padding: 1rem 0;
 
       @include tablet {
         padding: 0 1rem;
       }
     }
-
-    &--characters {
-      @include tablet {
-        @include flex-row-center-center;
-      }
-    }
   }
 
   &__divider {
   @include dividerStyles;
-
-    &--horizontal {
-      display: none; 
-      @include tablet {
-        display: flex; 
-        border: none; 
-        border-top: 15rem solid $primary-color-dark;
-        width: 1rem;
-        margin: 1rem;
-      }
-    }
   }
 
   &__title {
+    text-align: center;
     color: $secondary-color;
     font-size: 1.25rem;
 
     @include tablet {
-        font-size: 1.5rem;
-        padding-bottom: 1.5rem;
+      font-size: 1.5rem;
+      padding-top: 1rem;
     }
   }
 
@@ -72,15 +58,16 @@
     text-align: center;
 
     @include tablet {
-        font-size: 1.25rem;
+      font-size: 1.25rem;
     }
   }
 
   &__description {
-    font-size: .75rem;
-    padding-bottom: 1rem;
+    font-size: 0.75rem;
+    padding: 1rem;
+
     @include tablet {
-        font-size: 1rem;
+      font-size: 1rem;
     }
   }
 }
