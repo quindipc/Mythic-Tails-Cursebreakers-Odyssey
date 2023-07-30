@@ -3,7 +3,7 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-// MAIN GAME //
+// MAIN GAME STYLES //
 .game {
   @include flex-column-center-center;
   background-color: $white;
@@ -12,9 +12,20 @@
   width: 100%;
   height: 100vh;
   font-family: "Press Start 2P", cursive;
-  font-size: .75rem;
+  font-size: 0.75rem;
   line-height: 1.5;
   overflow-y: auto;
+
+  button {
+    @include mavenpro-semibold;
+    background-color: $primary-color;
+    color: $black;
+    border-radius: 5rem;
+    transition: 1s all ease;
+    &:hover{
+      background-color: $grey;
+    }
+  }
 
   &__loading {
     @include flex-column-center-center;
@@ -29,13 +40,21 @@
     height: 100vh;
     color: $white;
     transition: 1s all ease;
+
+    button {
+      background-color: $secondary-color;
+      color: $white;
+      &:hover{
+        background-color: $grey;
+      }
+    }
   }
 
   &__toggle-container {
     @include flex-column-center-center;
     width: 100%;
     height: 100vh;
-    transition: 1s all ease;
+    transition: 2s all ease;
   }
 
   &__switch-label {
@@ -46,65 +65,70 @@
     border-radius: 3.125rem;
     position: relative;
     cursor: pointer;
-    transition: 0.5s all ease;
+    transition: 1s all ease;
+    &:hover{
+      background-color: $grey;
+    }
   }
 
   &__toggle {
     width: 1.5625rem;
     height: 1.5625rem;
-    border-radius: 25px;
+    border-radius: 1.5rem;
     background-color: $primary-color;
     position: absolute;
-    left: .1875rem;
-    transition: 0.5s all ease;
+    left: 0.1875rem;
+    transition: 1s all ease;
   }
-
-
-  // CHOICE BUTTONS
-  // &__options {
-
-  // }
-
-  // &__choice {
-  //   width: 7rem;
-  //   height: 3rem;
-  //   padding: 1rem;
-  //   background-color: $grey;
-  //   color: $white;
-  //   @include mavenpro-semibold;
-  //   font-size: 1rem;
-
-  //   &:hover{
-  //     cursor: pointer;
-  //     background-color: $tertiary-color;
-  //   }
-  // }
-
-
-  // &__title {
-  //   // font-size: .75rem;
-  // }
-
 }
 
 // DARK MODE //
 #switch {
   visibility: hidden;
   position: absolute;
+  
 }
 
 #switch:checked {
   ~ .game__switch-label {
-    transition: 0.5s all ease;
-    background: $primary-color;
+    transition: 1s all ease;
+    background: $secondary-color;
     border: none;
+    &:hover{
+      background-color: $grey;
+    }
     .game__toggle {
-      height: 12.5px;
+      height: 0.78rem;
       transform: scale(0.9) translateX(75px) rotate(90deg);
       transition: 0.7s all ease;
-      border-radius: 25px 25px 0 0;
+      border-radius: 1.5rem 1.5rem 0 0;
       background: transparent;
       box-shadow: 0px -6px 0 0 $white;
     }
   }
+}
+
+// GAME TITLE STYLES
+.gametitle {
+ 
+}
+
+// GAME START STYLES
+.gamestart {
+  &__character-name {
+      @include flex-column-center-center;
+      padding: 1rem;
+    
+  }
+}
+
+// NYX STYLES
+.nyx {
+
+}
+
+
+// ALARA STYLES
+.alara {
+
 }
