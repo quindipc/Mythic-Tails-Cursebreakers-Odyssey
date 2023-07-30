@@ -1,5 +1,10 @@
 // DEPENDENCIES
 import React, { useState } from "react";
+import "./GameStart.scss"
+
+// ASSEETS
+import Alara from "../../assets/images/characters/Alara.svg"
+import Nyx from "../../assets/images/characters/Nyx.svg"
 
 export default function GameStart({
   handleStartGame,
@@ -40,10 +45,10 @@ export default function GameStart({
         {!characterSelected && (
           <>
             <div className="gamestart__character">
-              <h1 className="gamestart__character-name">
+              <h1 className="gamestart__name">
                 Nyx, The Lost Cursebearer
               </h1>
-              <p className="gamestart__character-description">
+              <p className="gamestart__description">
                 Nyx, shrouded in mystery and wielding the power of ancient
                 curses, stands ready to embark on a perilous journey. Their dark
                 armor, adorned with enigmatic symbols, offers enhanced
@@ -55,6 +60,7 @@ export default function GameStart({
                 filled with arcane mysteries, stealth, and the allure of
                 darkness.
               </p>
+<img  className="gamestart__image" src={Nyx} alt="Nyx character" />
               <button
                 className="gamestart__start"
                 onClick={() => handleCharacterSelection("Nyx")}
@@ -66,10 +72,10 @@ export default function GameStart({
             <hr className="gamestart__divider" />
 
             <div className="gamestart__character">
-              <h1 className="gamestart__character-name">
+              <h1 className="gamestart__name">
                 Alara, The Cursed Guardian
               </h1>
-              <p className="gamestart__character-description">
+              <p className="gamestart__description">
                 Alara, a valiant and compassionate guardian, stands tall in her
                 radiant armor, blessed by the divine spirits of Ethoria. Her
                 armor reflects the purity of her heart, and its enchantments
@@ -80,6 +86,7 @@ export default function GameStart({
                 need. Choose Alara if you desire a path of protection, healing,
                 and the honor of being a defender of the innocent.
               </p>
+              <img  className="gamestart__image" src={Alara} alt="Alara character" />
               <button
                 className="gamestart__start"
                 onClick={() => handleCharacterSelection("Alara")}
