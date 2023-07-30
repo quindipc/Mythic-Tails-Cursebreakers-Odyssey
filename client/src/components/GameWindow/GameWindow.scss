@@ -66,6 +66,7 @@
     position: relative;
     cursor: pointer;
     transition: 1s all ease;
+    margin: auto;
     &:hover{
       background-color: $grey;
     }
@@ -80,13 +81,20 @@
     left: 0.1875rem;
     transition: 1s all ease;
   }
+  
+  // GAME TITLE STYLES
+  &__gametitle {
+   &--title {
+    padding: 1.5rem;
+   }
+  }
+
 }
 
 // DARK MODE //
 #switch {
   visibility: hidden;
   position: absolute;
-  
 }
 
 #switch:checked {
@@ -106,29 +114,4 @@
       box-shadow: 0px -6px 0 0 $white;
     }
   }
-}
-
-// GAME TITLE STYLES
-.gametitle {
- 
-}
-
-// GAME START STYLES
-.gamestart {
-  &__character-name {
-      @include flex-column-center-center;
-      padding: 1rem;
-    
-  }
-}
-
-// NYX STYLES
-.nyx {
-
-}
-
-
-// ALARA STYLES
-.alara {
-
 }
