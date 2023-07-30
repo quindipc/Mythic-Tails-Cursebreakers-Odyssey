@@ -16,10 +16,10 @@
 
   &__container {
     @include flex-column-center-center;
-    padding: 1rem;
+    // padding: 1rem;
 
     &--details {
-        padding: 1rem 0;
+        // padding: 1rem 0;
   
         @include tablet {
           padding: 0 1rem;
@@ -28,10 +28,7 @@
   }
 
   &__divider {
-    border: none;
-    border-bottom: 0.2rem solid $primary-color-dark;
-    width: 100%;
-    margin: auto;
+  @include dividerStyles;
   }
 
   &__title {
@@ -66,5 +63,14 @@
     @include tablet {
         font-size: 1rem;
     }
+  }
+
+  &__links {
+    @include flex-column-center-center;
+  }
+
+  &__link {
+    text-decoration: none;
+    border-style: none;
   }
 }

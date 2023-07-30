@@ -14,14 +14,14 @@ export default function Contact() {
           </p>
           <hr className="contact__divider" />
           <ul className="contact__links">
-            <Link to="">
-              <li>LinkedIn</li>
+            <Link className="contact__link" to="https://www.linkedin.com/in/chelsea-quindipan/">
+              <li className="contact__link" >LinkedIn</li>
             </Link>
-            <Link to="">
-              <li>Github</li>
+            <Link className="contact__link" to="https://github.com/quindipc">
+              <li  className="contact__link" >Github</li>
             </Link>
-            <Link to="">
-              <li>Email</li>
+            <Link  className="contact__link" to="mailto:quindipc@gmail.com">
+              <li  className="contact__link" >Email</li>
             </Link>
           </ul>
         </div>
