@@ -17,7 +17,11 @@ export default function About() {
             "Mythic Tails: Cursebreaker's Odyssey" takes players on an
             incredible journey through the mystical realm of Ethoria. The game
             offers two intriguing prologues, each featuring a unique protagonist
-            with their own gripping story.
+            with their own gripping story. In this RPG-style game,
+            players become heroes tasked with breaking the curse and saving the
+            land of Ethoria. Throughout the game, players encounter mythical
+            creatures, each plagued with unique curses, and must decide between
+            saving the creatures or confronting the evil being behind the curse.
           </p>
           <hr className="about__divider" />
         </div>
@@ -46,20 +50,20 @@ export default function About() {
 
             <div className="about__container--characterdetails">
               <h3 className="about__subtitle">Nyx, The Lost Cursebearer</h3>
-              
+
               <div className="about__container--content">
-              <img src={Nyx} alt="Nyx" className="about__character-img" />
-              <p className="about__description">
-                The second prologue puts players in the shoes of Nyx, the
-                enigmatic Lost Cursebearer. Nyx roams Ethoria, haunted by
-                visions and possessing dark magic. With no memory of their past,
-                Nyx believes they hold the key to breaking the curse. Players
-                must make a pivotal decision when confronted by a cursed
-                creature begging for release. Nyx can choose to continue their
-                solitary pursuit of the Tear of Radiance or show compassion to
-                the creature and gain a powerful ally. As Nyx's powers grow
-                their destiny hangs in the balance.
-              </p>
+                <img src={Nyx} alt="Nyx" className="about__character-img" />
+                <p className="about__description">
+                  The second prologue puts players in the shoes of Nyx, the
+                  enigmatic Lost Cursebearer. Nyx roams Ethoria, haunted by
+                  visions and possessing dark magic. With no memory of their
+                  past, Nyx believes they hold the key to breaking the curse.
+                  Players must make a pivotal decision when confronted by a
+                  cursed creature begging for release. Nyx can choose to
+                  continue their solitary pursuit of the Tear of Radiance or
+                  show compassion to the creature and gain a powerful ally. As
+                  Nyx's powers grow their destiny hangs in the balance.
+                </p>
               </div>
             </div>
           </div>
