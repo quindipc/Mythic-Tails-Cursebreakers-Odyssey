@@ -29,7 +29,7 @@ export default function GameWindow() {
   };
 
   return (
-    <div className={`game ${darkMode ? "dark" : ""}`}>
+    <section className={`game ${darkMode ? "dark" : ""}`}>
       <div className={`game__toggle-container ${darkMode ? "game__dark" : ""}`}>
         {/* Dark Mode Toggle */}
         <input
@@ -51,6 +51,6 @@ export default function GameWindow() {
         {chosenCharacter === "Nyx" && <Nyx />}
         {chosenCharacter === "Alara" && <Alara />}
       </div>
-    </div>
+    </section>
   );
 }
