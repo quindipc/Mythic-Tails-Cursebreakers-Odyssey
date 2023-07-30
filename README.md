@@ -38,9 +38,11 @@ Pending...
 
 We welcome contributions from the community. If you find any bugs or have suggestions for improvements, please create an issue or submit a pull request.
 
-## License
+## License, Credit & Attributions
 
-Pending..
+Images by @isipxin & Canva
+LinkedIn icon by Icons8
+GitHub icon by Icons8
 
 ## About the developer
 
