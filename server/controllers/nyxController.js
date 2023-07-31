@@ -37,7 +37,7 @@ const getAllNyxEndings = async (req, res) => {
 const getSingleNyxScenario = async (req, res) => {
   const scenarioId = req.params.id; // Get the scenario ID from the request parameters
   try {
-    const scenario = await knex("alara_scenarios").where("alara_scenario_id", scenarioId).first();
+    const scenario = await knex("nyx_scenarios").where("nyx_scenario_id", scenarioId).first();
     if (!scenario) {
       return res.status(404).json({ message: "Scenario not found" });
     }
@@ -52,7 +52,7 @@ const getSingleNyxScenario = async (req, res) => {
 const getSingleNyxChoice = async (req, res) => {
   const choiceId = req.params.id; // Get the choice ID from the request parameters
   try {
-    const choice = await knex("alara_choices").where("alara_choice_id", choiceId).first();
+    const choice = await knex("nyx_choices").where("nyx_choice_id", choiceId).first();
     if (!choice) {
       return res.status(404).json({ message: "Choice not found" });
     }
@@ -67,7 +67,7 @@ const getSingleNyxChoice = async (req, res) => {
 const getSingleNyxEnding = async (req, res) => {
   const endingId = req.params.id; // Get the ending ID from the request parameters
   try {
-    const ending = await knex("alara_endings").where("alara_ending_id", endingId).first();
+    const ending = await knex("nyx_endings").where("nyx_ending_id", endingId).first();
     if (!ending) {
       return res.status(404).json({ message: "Ending not found" });
     }

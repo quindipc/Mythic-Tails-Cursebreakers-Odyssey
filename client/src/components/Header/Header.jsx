@@ -1,10 +1,17 @@
-// Dependancies
+// DEPENDENCIES
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
+
+// ASSETS
+import colorLogo from "../../assets/images/logo/Mythic-Tails-Logo-Color.svg";
+
+// PAGES
 import HomePage from "../../pages/HomePage/HomePage";
 import GamePage from "../../pages/GamePage/GamePage";
-import colorLogo from "../../assets/images/logo/Mythic-Tails-Logo-Color.svg";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
+import LogOutPage from "../../pages/LogOutPage/LogOutPage"
 
 export default function Header() {
   const [toggled, setToggled] = useState(false);
@@ -12,12 +19,18 @@ export default function Header() {
   const handleBurger = () => {
     setToggled(!toggled);
   };
+  
+
+  const closeMenu = () => {
+    setToggled(false);
+  };
+
+
   return (
-    <>
       <header className="header">
         <nav className="header__nav">
           <div className="header__logo-container">
-            <Link to="/" element={HomePage}>
+            <Link to="/"onClick={closeMenu}>
             <img
               className="header__logo"
               src={colorLogo}
@@ -26,14 +39,15 @@ export default function Header() {
             </Link>
           </div>
           <div className={`header__burger ${toggled ? "active" : ""}`} onClick={handleBurger}>
-            <span></span>
-            <span></span>
+            <span className="header__burger--line"></span>
+            <span className="header__burger--line"></span>
+            <span className="header__burger--line"></span>
           </div>
           <ul className={`header__navlist ${toggled ? "active" : ""}`}>
             <Link
               className="header__navlist-item--link"
               to="/"
-              element={HomePage}
+            onClick={closeMenu}
             >
               <li className="header__navlist-item">Home</li>
             </Link>
@@ -41,23 +55,40 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/play-game"
-              element={GamePage}
+            onClick={closeMenu}
             >
               <li className="header__navlist-item">Play Now</li>
             </Link>
 
-            {/* <li className="header__navlist-item">Creature List</li>
-            <li className="header__navlist-item">Creature Details</li>
-            <li className="header__navlist-item">Creature Management</li>
-            <li className="header__navlist-item">Login</li>
-            <li className="header__navlist-item">Sign Up</li>
-            <li className="header__navlist-item">Contact</li> */}
+            <Link
+              className="header__navlist-item--link"
+              to="/login"
+            onClick={closeMenu}
+            >
+              <li className="header__navlist-item">Login</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/register"
+            onClick={closeMenu}
+            >
+              <li className="header__navlist-item">Register</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/logout"
+            onClick={closeMenu}
+            >
+              <li className="header__navlist-item">Log Out</li>
+            </Link>
+
           </ul>
           <ul className="header__navlist--desktop">
             <Link
               className="header__navlist-item--link"
               to="/"
-              element={HomePage}
             >
               <li className="header__navlist-item">Home</li>
             </Link>
@@ -65,20 +96,34 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/play-game"
-              element={GamePage}
             >
               <li className="header__navlist-item">Play Now</li>
             </Link>
 
-            {/* <li className="header__navlist-item">Creature List</li>
-            <li className="header__navlist-item">Creature Details</li>
-            <li className="header__navlist-item">Creature Management</li>
-            <li className="header__navlist-item">Login</li>
-            <li className="header__navlist-item">Sign Up</li>
-            <li className="header__navlist-item">Contact</li> */}
+            <Link
+              className="header__navlist-item--link"
+              to="/login"
+            >
+              <li className="header__navlist-item">Login</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/register"
+            >
+              <li className="header__navlist-item">Register</li>
+            </Link>
+
+            <Link
+              className="header__navlist-item--link"
+              to="/logout"
+            >
+              <li className="header__navlist-item">Log Out</li>
+          </Link>
+          
           </ul>
-        </nav>
+      </nav>
+      <hr className="header__divider" />
       </header>
-    </>
   );
 }
