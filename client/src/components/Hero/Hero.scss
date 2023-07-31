@@ -18,6 +18,8 @@
 
 &__image {
   width: 20rem;
+
+
   @include tablet {
     width: 30rem;
   }
@@ -34,6 +36,7 @@
     background-color: $white;
     border-radius: 5rem;
     width: 25rem;
+    animation: breathingAnimation 2s ease-in-out infinite;
     &:hover {
       cursor: pointer;
       background-color: $secondary-color-dark;

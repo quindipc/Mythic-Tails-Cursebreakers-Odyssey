@@ -46,6 +46,19 @@
 
   &__character-img {
     width: 15rem;
+    animation: characterAnimation 3s linear infinite;
+  }
+
+  @keyframes characterAnimation {
+    0% {
+      transform: translateX(0) rotate(0); /* Original position and no rotation */
+    }
+    50% {
+      transform: translateX(4px) rotate(3deg); /* Move character 100px to the right and rotate slightly */
+    }
+    100% {
+      transform: translateX(0) rotate(0); /* Back to the original position and no rotation */
+    }
   }
 
   &__divider {
