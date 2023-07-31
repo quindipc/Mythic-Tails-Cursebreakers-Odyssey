@@ -7,7 +7,7 @@ export default function GameTitle({handleStartGame}) {
 
   return (
     <div className="game__gametitle">
-      <h1 className="game__gametitle-title">
+      <h1 className="game__gametitle--title">
         Welcome to Mythic Tails: Cursebreaker's Odyssey
       </h1>
       {/* TODO: CHANGE TO LINK "/CHARACTER-SELECT" */}

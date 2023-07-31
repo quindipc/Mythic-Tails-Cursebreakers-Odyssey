@@ -18,6 +18,10 @@ export default function Nyx() {
   const [showCredits, setShowCredits] = useState(false);
 
   useEffect(() => {
+    loadProgress();
+  }, [])
+
+  useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
     axios
       .get(`${NYX_URL}/nyx_scenarios`)
@@ -110,6 +114,7 @@ export default function Nyx() {
   const handleChoiceSelect = (choiceId) => {
     setSelectedChoiceId(choiceId);
     setChoiceSelected(true);
+    saveProgress();
   };
 
   const handleRestart = () => {
@@ -124,6 +129,34 @@ export default function Nyx() {
   const handleEndOfDemo = () => {
     setIsEnding(false);
     setShowCredits(!showCredits);
+  };
+
+  const saveProgress = () => {
+    const progress = {
+      currentStory,
+      currentScenario,
+      selectedChoiceId,
+      choiceSelected,
+      isEnding,
+      showCredits,
+    };
+    localStorage.setItem("nyxProgress", JSON.stringify(progress));
+  };
+
+  const loadProgress = () => {
+    const progress = JSON.parse(localStorage.getItem("nyxProgress"));
+    if (progress) {
+      setCurrentStory(progress.currentStory);
+      setCurrentScenario(progress.currentScenario);
+      setSelectedChoiceId(progress.selectedChoiceId);
+      setChoiceSelected(progress.choiceSelected);
+      setIsEnding(progress.isEnding);
+      setShowCredits(progress.showCredits);
+    }
+  };
+  
+  const clearProgress = () => {
+    localStorage.removeItem("nyxProgress");
   };
 
   return (

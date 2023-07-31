@@ -81,7 +81,7 @@ export default function Header() {
               to="/logout"
             onClick={closeMenu}
             >
-              <li className="header__navlist-item">LogOut</li>
+              <li className="header__navlist-item">Log Out</li>
             </Link>
 
           </ul>
@@ -118,7 +118,7 @@ export default function Header() {
               className="header__navlist-item--link"
               to="/logout"
             >
-              <li className="header__navlist-item">LogOut</li>
+              <li className="header__navlist-item">Log Out</li>
           </Link>
           
           </ul>
