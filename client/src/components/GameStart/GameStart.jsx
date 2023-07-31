@@ -10,7 +10,6 @@ export default function GameStart({
   onCharacterSelect
 }) {
   const handleCharacterSelection = (character) => {
-    setChosenCharacter(character);
     onCharacterSelect(character); // Pass the selected character back to the parent component
   };
 
