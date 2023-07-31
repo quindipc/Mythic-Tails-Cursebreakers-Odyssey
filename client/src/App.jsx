@@ -8,6 +8,7 @@ import GamePage from "./pages/GamePage/GamePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LogOutPage from "./pages/LogOutPage/LogOutPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 // Components
 import Header from "./components/Header/Header";
@@ -22,12 +23,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/play-game" element={<GamePage />} />
+        <Route path="/select-character" element={<GamePage />} />
+        <Route path="/nyx" element={<GamePage />} />
+        <Route path="/alara" element={<GamePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/logout" element={<LogOutPage />} />
-        {/* TODO: ADD A /CHARACTER-SELECT ROUTE */}
-        {/* TODO: ADD A /NYX ROUTE */}
-        {/* TODO: ADD A /ALARA ROUTE */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

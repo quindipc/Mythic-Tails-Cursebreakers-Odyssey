@@ -1,5 +1,7 @@
+// DEPENDENCIES
 import React from "react";
 import "./GameStart.scss";
+import { Link } from "react-router-dom";
 
 // ASSEETS
 import Alara from "../../assets/images/characters/Alara.svg";
@@ -34,12 +36,14 @@ export default function GameStart({
           </p>
         </label>
         <img className="gamestart__image" src={Nyx} alt="Nyx character" />
+        <Link to="/nyx">
         <button
           className="gamestart__start"
           onClick={() => handleCharacterSelection("Nyx")}
         >
           Choose Nyx
         </button>
+        </Link>
       </div>
 
       <hr className="gamestart__divider" />
@@ -62,12 +66,14 @@ export default function GameStart({
           </p>
         </label>
         <img className="gamestart__image" src={Alara} alt="Alara character" />
+        <Link to="/alara">
         <button
           className="gamestart__start"
           onClick={() => handleCharacterSelection("Alara")}
         >
           Choose Alara
         </button>
+      </Link>
       </div>
     </section>
   );
