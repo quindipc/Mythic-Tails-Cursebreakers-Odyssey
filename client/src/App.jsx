@@ -8,6 +8,7 @@ import GamePage from "./pages/GamePage/GamePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LogOutPage from "./pages/LogOutPage/LogOutPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 // Components
 import Header from "./components/Header/Header";
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/logout" element={<LogOutPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
