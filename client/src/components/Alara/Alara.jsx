@@ -5,7 +5,7 @@ import "./Alara.scss";
 
 // TODO: NEED TO REFACTOR
 
-// COMPONENTS
+// ASSETS
 import buttonSound from "../../assets/music/button-sound.wav"
 
 export default function Alara() {
@@ -168,8 +168,9 @@ export default function Alara() {
   return (
     <section className="alara">
       {/* DISPLAY INITIAL STORY PARAGRAPHS */}
-      <Typing text={currentStory < storySteps.length ? storySteps[currentStory] : ""} delay={50} />
-
+      <p className="alara__prologue">
+        {currentStory < storySteps.length ? storySteps[currentStory] : ""}
+      </p>
       {/* DISPLAY ADDITIONAL STORY IF APPLICABLE*/}
       {choiceSelected && (
         <>

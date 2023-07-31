@@ -5,8 +5,8 @@ import "./Nyx.scss"
 
 // TODO: NEED TO REFACTOR
 
-// COMPONENTS
-import Typing from "../Typing/Typing";
+// ASSETS
+import buttonSound from "../../assets/music/button-sound.wav"
 
 export default function Nyx() {
   const NYX_URL = "http://localhost:8080/api/nyx/";
@@ -111,12 +111,15 @@ export default function Nyx() {
     showEnding,
     showSingleEnding,
   ]);
+  
+  const buttonAudio = new Audio(buttonSound);
 
   // CHOICE HANDLER
   const handleChoiceSelect = (choiceId) => {
     setSelectedChoiceId(choiceId);
     setChoiceSelected(true);
     saveProgress();
+    buttonAudio.play();
   };
 
   const handleRestart = () => {
@@ -164,8 +167,9 @@ export default function Nyx() {
 return (
   <section className="nyx">
     {/* DISPLAY INITIAL STORY PARAGRAPHS */}
-    <Typing text={currentStory < storySteps.length ? storySteps[currentStory] : ""} delay={50} />
-
+    <p className="nyx__prologue">
+        {currentStory < storySteps.length ? storySteps[currentStory] : ""}
+      </p>
 
     {/* DISPLAY ADDITIONAL STORY IF APPLICABLE*/}
     {choiceSelected && (

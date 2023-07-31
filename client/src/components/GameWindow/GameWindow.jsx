@@ -9,6 +9,7 @@ import Nyx from "../Nyx/Nyx";
 
 // ASSETS
 import song from "../../assets/music/floating-cat.mp3";
+import buttonSound from "../../assets/music/button-sound.wav"
 
 export default function GameWindow() {
   const [darkMode, setDarkMode] = useState(false);
@@ -24,11 +25,13 @@ export default function GameWindow() {
   // GAME START
   const handleStartGame = () => {
     setShowGameStart(true);
+    buttonAudio.play();
   };
 
   // CHARACTER SELECTION
   const handleCharacterSelection = (character) => {
     setChosenCharacter(character);
+    buttonAudio.play();
   };
 
   // MUSIC
@@ -41,6 +44,9 @@ export default function GameWindow() {
       audioElement.currentTime = 0;
     };
   }, []);
+
+  // BUTTON SOUND
+  const buttonAudio = new Audio(buttonSound);
 
   return (
     <section className={`game ${darkMode ? "dark" : ""}`}>
