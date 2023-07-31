@@ -14,6 +14,7 @@
     background-color: $primary-color;
     border-radius: 50%;
     padding: 1rem;
+    animation: breathingAnimation 3s ease-in-out infinite;
   }
 
   &__form {

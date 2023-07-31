@@ -28,11 +28,23 @@
   &__image {
     width: 10rem;
     padding-bottom: 2rem;
+    animation: breathingAnimation 3s ease-in-out infinite;
 
     @include tablet {
       width: 15rem;
     }
   }
+
+  @keyframes breathingAnimation {
+    0%, 100% {
+      transform: scale(1); /* Original size */
+    }
+    50% {
+      transform: scale(1.1); /* Slightly larger size */
+    }
+  }
+
+
 
   &__button {
     @include buttonStyles;
