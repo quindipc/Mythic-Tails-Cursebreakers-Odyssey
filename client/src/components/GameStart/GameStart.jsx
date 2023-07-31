@@ -98,30 +98,6 @@ export default function GameStart({
             </div>
           </>
         )}
-
-        {/* TODO: THIS IS NOT BEING SHOWED UP */}
-        {/* CHARACTER RESULT */}
-        {characterSelected && (
-          <>
-            <p>Character selected: {chosenCharacter}</p>
-            {userLoggedIn && (
-              <p>Logged in as: {loggedInUserEmail}</p>
-            )}
-            <button className="gamestart__back" onClick={handleBack}>
-              Change Character
-            </button>
-            {/* Show "Continue" button only if user is logged in and has saved progress */}
-            {userLoggedIn && onContinue && (
-              <button className="gamestart__continue" onClick={handleContinue}>
-                Continue
-              </button>
-            )}
-            {/* Show "Next" button after character selection */}
-            <button className="gamestart__next" onClick={handleStartGame}>
-              Start Game
-            </button>
-          </>
-        )}
       </section>
     </>
   );
