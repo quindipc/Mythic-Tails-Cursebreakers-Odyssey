@@ -81,15 +81,6 @@
     left: 0.1875rem;
     transition: 1s all ease;
   }
-  
-  // GAME TITLE STYLES
-  &__gametitle {
-    @include flex-column-center-center;
-    height: 100vh;
-   &--title {
-    padding: 1.5rem;
-   }
-  }
 
 }
 
