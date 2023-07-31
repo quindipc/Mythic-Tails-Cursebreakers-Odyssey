@@ -3,11 +3,9 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-// TODO: Get json text to appear like it is being 'typed out' onto the screen
-
 .gamestart {
   @include flex-column-center-center;
-  height: 50rem;
+  height: 100vh;
 
   @include tablet {
     @include flex-row-center-center;
@@ -23,31 +21,53 @@
     font-size: 1rem;
     padding: 1rem;
     cursor: pointer;
-  }
-
-  &__container{
-
-    &--dropdown{
-      cursor: pointer;
-      @include flex-column-center-center;
-
-      @include tablet{
-        display: flex;
-      }
-      &.open{
-        &__description {
-          display: flex;
-        }
-      }
+    @include tablet {
+      font-size: 1.5rem;
     }
   }
 
-  &__description {
-    font-size: 0.75rem;
-    padding: 1rem;
-    display: none;
+  &__dropdown {
+    font-size: .75rem;
+    border-radius: 5rem;
+    text-decoration: underline 3px;
+    padding-bottom: 1rem;
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
+
+  &__container--dropdown {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
     @include tablet {
       display: flex;
+    }
+
+    &__description {
+      font-size: .5rem;
+      padding: 1rem;
+      overflow: hidden;
+      transition: max-height 1s ease-in-out;
+      visibility: hidden;
+      pointer-events: none;
+      @include tablet {
+        display: flex;
+        font-size: .75rem;
+      }
+    }
+
+    input[type="checkbox"] {
+      display: none; 
+    }
+
+    input[type="checkbox"]:checked + .gamestart__description {
+      max-height: 4rem;
+      opacity: 1;
+      visibility: hidden;
+      pointer-events: auto;
+      transition: max-height 0.3s ease-in-out;
     }
   }
 
