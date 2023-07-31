@@ -22,12 +22,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/play-game" element={<GamePage />} />
+        <Route path="/select-character" element={<GamePage />} />
+        <Route path="/nyx" element={<GamePage />} />
+        <Route path="/alara" element={<GamePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/logout" element={<LogOutPage />} />
-        {/* TODO: ADD A /CHARACTER-SELECT ROUTE */}
-        {/* TODO: ADD A /NYX ROUTE */}
-        {/* TODO: ADD A /ALARA ROUTE */}
       </Routes>
     </BrowserRouter>
   );
