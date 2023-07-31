@@ -1,6 +1,7 @@
 // DEPENDANCIES
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Nyx.scss"
 
 // TODO: NEED TO REFACTOR
 
@@ -179,8 +180,8 @@ export default function Nyx() {
 
           {currentScenario === 0 && (
             <div className="nyx__ending">
-              <h2>{showSingleEnding.nyx_name}</h2>
-              <p>{showSingleEnding.nyx_story}</p>
+              <h2 className="nyx__ending-name">{showSingleEnding.nyx_name}</h2>
+              <p className="nyx__ending-scenario">{showSingleEnding.nyx_story}</p>
               {/* This may be removed */}
               <button onClick={handleRestart}>Play again</button>
             </div>
