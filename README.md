@@ -43,6 +43,7 @@ We welcome contributions from the community. If you find any bugs or have sugges
 Images by @isipxin & Canva
 LinkedIn icon by Icons8
 GitHub icon by Icons8
+Music - Floating Cat by Michael Grubb
 
 ## About the developer
 
