@@ -60,6 +60,7 @@ export default function GameStart({ handleStartGame, onCharacterSelect }) {
           </>
         )}
 
+        {/* TODO: THIS IS NOT BEING SHOWED UP */}
         {/* CHARACTER RESULT */}
         {chosenCharacter === "Nyx" && <p>Character selected: Nyx</p>}
         {chosenCharacter === "Alara" && <p>Character selected: Alara</p>}

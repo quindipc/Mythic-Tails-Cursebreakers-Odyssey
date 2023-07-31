@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+// TODO: NEED TO REFACTOR
+
 export default function Alara() {
   const ALARA_URL = "http://localhost:8080/api/alara/";
   const [currentStory, setCurrentStory] = useState(0);
