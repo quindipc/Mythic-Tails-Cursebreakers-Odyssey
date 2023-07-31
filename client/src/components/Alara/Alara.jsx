@@ -5,6 +5,9 @@ import "./Alara.scss";
 
 // TODO: NEED TO REFACTOR
 
+// COMPONENTS
+import Typing from "../Typing/Typing";
+
 export default function Alara() {
   const ALARA_URL = "http://localhost:8080/api/alara/";
   const [currentStory, setCurrentStory] = useState(0);
@@ -162,9 +165,7 @@ export default function Alara() {
   return (
     <section className="alara">
       {/* DISPLAY INITIAL STORY PARAGRAPHS */}
-      <p className="alara__prologue">
-        {currentStory < storySteps.length ? storySteps[currentStory] : ""}
-      </p>
+      <Typing text={currentStory < storySteps.length ? storySteps[currentStory] : ""} delay={50} />
 
       {/* DISPLAY ADDITIONAL STORY IF APPLICABLE*/}
       {choiceSelected && (
