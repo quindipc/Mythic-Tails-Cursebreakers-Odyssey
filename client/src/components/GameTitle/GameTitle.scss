@@ -17,11 +17,27 @@
 
   &__title {
     font-family: "Press Start 2P", cursive;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    padding: 2rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__image {
+    width: 10rem;
+    padding-bottom: 2rem;
+
+    @include tablet {
+      width: 15rem;
+    }
   }
 
   &__button {
     @include buttonStyles;
+    padding: 1rem;
+    width: 10rem;
     
     &:hover{
       cursor: pointer;
