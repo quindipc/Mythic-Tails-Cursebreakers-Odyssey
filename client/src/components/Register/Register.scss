@@ -1,0 +1,49 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.register {
+  height: 100vh;
+  width: 100%;
+  @include flex-column-center-center;
+  color: $black;
+
+  &__image {
+    width: 15rem;
+    background-color: $secondary-color;
+    border-radius: 50%;
+    padding: 1rem;
+  }
+
+  &__form {
+    background-color: $white;
+    padding: 1rem;
+    margin-top: 1rem;
+    @include flex-column-center-center;
+  }
+
+  &__container {
+    padding: 1rem;
+    width: 25rem;
+  }
+
+  &__title {
+    font-size: 1rem;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+  }
+
+  &__input {
+    width: 20rem;
+    height: 1.5rem;
+  }
+
+  &__button {
+    background-color: $secondary-color;
+    border-radius: 5rem;
+    color: $white;
+  }
+}

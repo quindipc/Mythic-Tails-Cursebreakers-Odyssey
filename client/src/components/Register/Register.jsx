@@ -4,6 +4,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 
+// ASSETS 
+import Creature from "../../assets/images/pets-creatures/Mythic-Tails-Creature-2.svg"
+
+
 export default function Register() {
   const [error, setError] = useState("");
   const BASE_URL = "http://localhost:8080/api/";
@@ -36,18 +40,26 @@ export default function Register() {
   }
 
   return (
-    <section className="register-page">
-      <form className="register" onSubmit={handleRegister}>
+    <section className="register">
+       <img className="register__image" src={Creature} alt="Image of a Creature" />
+     
+      <form className="register__form" onSubmit={handleRegister}>
         <h1 className="register__title">Register</h1>
 
-        <label>Name:</label>
-        <input type="text" name="name" />
+        <div className="register__container">
+        <label className="register__label">Name:</label>
+        <input className="register__input" type="text" name="name" />
+        </div>
 
-        <label>Email:</label>
-        <input type="text" name="email" />
+        <div className="register__container">
+        <label className="register__label">Email:</label>
+        <input  className="register__input"  type="text" name="email" />
+        </div>
 
-        <label>Password:</label>
-        <input type="password" name="password" />
+        <div className="register__container">
+        <label className="register__label">Password:</label>
+        <input  className="register__input"  type="password" name="password" />
+        </div>
 
         {error && <div className="register__message">{error}</div>}
 
