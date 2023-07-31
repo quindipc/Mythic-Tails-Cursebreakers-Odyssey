@@ -13,6 +13,7 @@
 .nyx {
   @include flex-column-center-center;
   line-height: 2.5;
+  height: 100vh;
 
   @include tablet {
     height: 40rem;
@@ -24,18 +25,18 @@
 
   &__prologue {
     padding: 1rem;
-    font-size: .75rem;
+    font-size: 0.75rem;
 
     @include tablet {
-    font-size: 1rem;
+      font-size: 1rem;
     }
   }
 
   &__additional_story {
-    font-size: .75rem;
+    font-size: 0.75rem;
     padding-bottom: 2rem;
     @include tablet {
-        font-size: 1rem;
+      font-size: 1rem;
     }
   }
 
@@ -71,6 +72,27 @@
 
       @include tablet {
         font-size: 1rem;
+      }
+    }
+  }
+
+
+  &__credits {
+    margin: auto;
+    padding-top: 15rem;
+    h2 {
+      font-size: 0.75rem;
+      text-decoration: underline;
+      @include tablet {
+        font-size: 1rem;
+      }
+    }
+    p {
+      font-size: 0.5rem;
+      padding: 1rem;
+
+      @include tablet {
+        font-size: 0.75rem;
       }
     }
   }
