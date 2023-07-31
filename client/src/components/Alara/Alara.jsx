@@ -6,7 +6,7 @@ import "./Alara.scss";
 // TODO: NEED TO REFACTOR
 
 // COMPONENTS
-import Typing from "../Typing/Typing";
+import buttonSound from "../../assets/music/button-sound.wav"
 
 export default function Alara() {
   const ALARA_URL = "http://localhost:8080/api/alara/";
@@ -113,11 +113,14 @@ export default function Alara() {
     showSingleEnding,
   ]);
 
+  const buttonAudio = new Audio(buttonSound);
+
   // CHOICE HANDLER
   const handleChoiceSelect = (choiceId) => {
     setSelectedChoiceId(choiceId);
     setChoiceSelected(true);
     saveProgress();
+    buttonAudio.play();
   };
 
   const handleRestart = () => {
