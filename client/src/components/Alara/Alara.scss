@@ -8,7 +8,7 @@
 .alara {
   @include flex-column-center-center;
   line-height: 2.5;
-  height: 100vh;
+  height: 100%;
 
   @include tablet {
     height: 40rem;
@@ -72,8 +72,7 @@
   }
 
   &__credits {
-    margin: auto;
-    padding-top: 15rem;
+    height: 100%;
     h2 {
       font-size: 0.75rem;
       text-decoration: underline;
@@ -82,11 +81,11 @@
       }
     }
     p {
-      font-size: 0.5rem;
+      font-size: 0.75rem;
       padding: 1rem;
 
       @include tablet {
-        font-size: 0.75rem;
+        font-size: 1rem;
       }
     }
   }

@@ -4,6 +4,9 @@ import axios from "axios";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 
+// ASSETS
+import Creature from "../../assets/images/pets-creatures/Mythic-Tails-Creature-1.svg"
+
 export default function Login() {
   const [error, setError] = useState("");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -43,15 +46,20 @@ export default function Login() {
 
 
   return (
-    <section className="login-page">
-      <form className="login" onSubmit={handleLogin}>
+    <section className="login">
+      <img className="login__image" src={Creature} alt="Image of a Creature" />
+
+      <form className="login__form" onSubmit={handleLogin}>
         <h1 className="login__title">Log in</h1>
+        <div className="login__container">
+        <label  className="login__label">Email:</label>
+        <input  className="login__input" type="text" name="email" />
+        </div>
 
-        <label>Email:</label>
-        <input type="text" name="email" />
-
-        <label>Password:</label>
-        <input type="password" name="password" />
+        <div className="login__container">
+        <label  className="login__label">Password:</label>
+        <input  className="login__input" type="password" name="password" />
+        </div>
 
         {error && <div className="login__message">{error}</div>}
 
