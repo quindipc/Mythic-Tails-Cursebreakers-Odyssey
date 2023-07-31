@@ -1,6 +1,9 @@
 // DEPENDENCIES
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Nyx.scss"
+
+// TODO: NEED TO REFACTOR
 
 // COMPONENTS
 import Typing from "../Typing/Typing";
@@ -17,6 +20,10 @@ export default function Nyx() {
   const [choiceSelected, setChoiceSelected] = useState(false);
   const [isEnding, setIsEnding] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
+
+  useEffect(() => {
+    loadProgress();
+  }, [])
 
   useEffect(() => {
     // FETCH NYX'S SCENARIOS http://localhost:8080/api/nyx/nyx_scenarios
@@ -111,6 +118,7 @@ export default function Nyx() {
   const handleChoiceSelect = (choiceId) => {
     setSelectedChoiceId(choiceId);
     setChoiceSelected(true);
+    saveProgress();
   };
 
   const handleRestart = () => {
@@ -125,6 +133,34 @@ export default function Nyx() {
   const handleEndOfDemo = () => {
     setIsEnding(false);
     setShowCredits(!showCredits);
+  };
+
+  const saveProgress = () => {
+    const progress = {
+      currentStory,
+      currentScenario,
+      selectedChoiceId,
+      choiceSelected,
+      isEnding,
+      showCredits,
+    };
+    localStorage.setItem("nyxProgress", JSON.stringify(progress));
+  };
+
+  const loadProgress = () => {
+    const progress = JSON.parse(localStorage.getItem("nyxProgress"));
+    if (progress) {
+      setCurrentStory(progress.currentStory);
+      setCurrentScenario(progress.currentScenario);
+      setSelectedChoiceId(progress.selectedChoiceId);
+      setChoiceSelected(progress.choiceSelected);
+      setIsEnding(progress.isEnding);
+      setShowCredits(progress.showCredits);
+    }
+  };
+  
+  const clearProgress = () => {
+    localStorage.removeItem("nyxProgress");
   };
 
   return (
@@ -148,8 +184,8 @@ export default function Nyx() {
 
           {currentScenario === 0 && (
             <div className="nyx__ending">
-              <h2>{showSingleEnding.nyx_name}</h2>
-              <Typing text={showSingleEnding.nyx_story} delay={50} />
+              <h2 className="nyx__ending-name">{showSingleEnding.nyx_name}</h2>
+              <p className="nyx__ending-scenario">{showSingleEnding.nyx_story}</p>
               {/* This may be removed */}
               <button onClick={handleRestart}>Play again</button>
             </div>

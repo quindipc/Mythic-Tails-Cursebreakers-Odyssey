@@ -1,6 +1,9 @@
 // DEPENDANCIES
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Alara.scss";
+
+// TODO: NEED TO REFACTOR
 
 export default function Alara() {
   const ALARA_URL = "http://localhost:8080/api/alara/";
@@ -15,6 +18,9 @@ export default function Alara() {
   const [isEnding, setIsEnding] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
 
+  useEffect(() => {
+    loadProgress();
+  }, []);
 
   useEffect(() => {
     // FETCH ALARA'S SCENARIOS http://localhost:8080/api/alara/alara_scenarios
@@ -63,13 +69,13 @@ export default function Alara() {
     "'Guardian,' Elowen whispers in a faint voice, 'the heart of the forest withers, and my brethren suffer. Only a special healing flower, the Radiant Bloom, hidden within the dangerous ruins of the forgotten temple, can mend our home. Please, save us.'",
   ];
 
-    // ENDING DEMO
-    const endingSteps = [
-      "Congratulations on completing the demo of 'Mythic Tails: Cursebreaker's Odyssey'! You've experienced the captivating journeys of both Alara, the chosen guardian of nature, and Nyx, the enigmatic Cursebearer. Their paths are intertwined, and their destinies hang in the balance as they navigate the treacherous landscapes of Ethoria.",
-      "Alara, with her unwavering determination and connection to nature, seeks to break the ancient curse that plagues the realm. Her choices will determine the fate of Ethoria and its inhabitants, and her bravery in the face of darkness shines like a beacon of hope.",
-      "Nyx, grappling with the allure of dark magic and their own identity asthe Cursebearer, walks a path veiled in shadows. Their decisions shape the course of their powers and influence the fate of those they encounter. The enigma surrounding Nyx deepens as they learn to wield the very curse that threatens Ethoria.",
-      "This demo only scratches the surface of the epic adventure that awaits. The full game will unravel even more mysteries, and the choices you make will carry far-reaching consequences. We hope you enjoyed this glimpse into the world of 'Mythic Tails: Cursebreaker's Odyssey. Keep an eye out for the official release, where you can continue the saga and shape the destinies of Alara and Nyx. Thank you for playing!",
-    ];
+  // ENDING DEMO
+  const endingSteps = [
+    "Congratulations on completing the demo of 'Mythic Tails: Cursebreaker's Odyssey'! You've experienced the captivating journeys of both Alara, the chosen guardian of nature, and Nyx, the enigmatic Cursebearer. Their paths are intertwined, and their destinies hang in the balance as they navigate the treacherous landscapes of Ethoria.",
+    "Alara, with her unwavering determination and connection to nature, seeks to break the ancient curse that plagues the realm. Her choices will determine the fate of Ethoria and its inhabitants, and her bravery in the face of darkness shines like a beacon of hope.",
+    "Nyx, grappling with the allure of dark magic and their own identity asthe Cursebearer, walks a path veiled in shadows. Their decisions shape the course of their powers and influence the fate of those they encounter. The enigma surrounding Nyx deepens as they learn to wield the very curse that threatens Ethoria.",
+    "This demo only scratches the surface of the epic adventure that awaits. The full game will unravel even more mysteries, and the choices you make will carry far-reaching consequences. We hope you enjoyed this glimpse into the world of 'Mythic Tails: Cursebreaker's Odyssey. Keep an eye out for the official release, where you can continue the saga and shape the destinies of Alara and Nyx. Thank you for playing!",
+  ];
 
   // SHOW NEXT BUTTON
   const handleNextButton = () => {
@@ -110,6 +116,7 @@ export default function Alara() {
   const handleChoiceSelect = (choiceId) => {
     setSelectedChoiceId(choiceId);
     setChoiceSelected(true);
+    saveProgress();
   };
 
   const handleRestart = () => {
@@ -126,6 +133,33 @@ export default function Alara() {
     setShowCredits(!showCredits);
   };
 
+  const saveProgress = () => {
+    const progress = {
+      currentStory,
+      currentScenario,
+      selectedChoiceId,
+      choiceSelected,
+      isEnding,
+      showCredits,
+    };
+    localStorage.setItem("alaraProgress", JSON.stringify(progress));
+  };
+
+  const loadProgress = () => {
+    const progress = JSON.parse(localStorage.getItem("alaraProgress"));
+    if (progress) {
+      setCurrentStory(progress.currentStory);
+      setCurrentScenario(progress.currentScenario);
+      setSelectedChoiceId(progress.selectedChoiceId);
+      setChoiceSelected(progress.choiceSelected);
+      setIsEnding(progress.isEnding);
+      setShowCredits(progress.showCredits);
+    }
+  };
+
+  const clearProgress = () => {
+    localStorage.removeItem("alaraProgress");
+  };
 
   return (
     <section className="alara">
@@ -147,8 +181,10 @@ export default function Alara() {
 
           {currentScenario === 0 && (
             <div className="alara__ending">
-              <h2>{showSingleEnding.alara_name}</h2>
-              <p>{showSingleEnding.alara_story}</p>
+              <h2 className="alara__ending-name">
+                {showSingleEnding.alara_name}
+              </h2>
+              <p className="alara__ending-scenario">{showSingleEnding.alara_story}</p>
 
               {/* This may be removed */}
               <button onClick={handleRestart}>Play again</button>
@@ -203,7 +239,6 @@ export default function Alara() {
         </div>
       )}
 
-      
       {/* DISPLAY CREDITS */}
       {showCredits && (
         <div className="alara__credits">

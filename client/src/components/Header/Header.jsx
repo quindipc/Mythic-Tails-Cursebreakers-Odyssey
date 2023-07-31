@@ -30,7 +30,7 @@ export default function Header() {
       <header className="header">
         <nav className="header__nav">
           <div className="header__logo-container">
-            <Link to="/" element={HomePage} onClick={closeMenu}>
+            <Link to="/"onClick={closeMenu}>
             <img
               className="header__logo"
               src={colorLogo}
@@ -47,7 +47,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/"
-            element={<HomePage />}
             onClick={closeMenu}
             >
               <li className="header__navlist-item">Home</li>
@@ -56,7 +55,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/play-game"
-            element={<GamePage />}
             onClick={closeMenu}
             >
               <li className="header__navlist-item">Play Now</li>
@@ -65,7 +63,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/login"
-            element={<LoginPage />}
             onClick={closeMenu}
             >
               <li className="header__navlist-item">Login</li>
@@ -74,7 +71,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/register"
-            element={<RegisterPage />}
             onClick={closeMenu}
             >
               <li className="header__navlist-item">Register</li>
@@ -83,10 +79,9 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/logout"
-            element={<LogOutPage />}
             onClick={closeMenu}
             >
-              <li className="header__navlist-item">LogOut</li>
+              <li className="header__navlist-item">Log Out</li>
             </Link>
 
           </ul>
@@ -94,7 +89,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/"
-              element={HomePage}
             >
               <li className="header__navlist-item">Home</li>
             </Link>
@@ -102,7 +96,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/play-game"
-              element={GamePage}
             >
               <li className="header__navlist-item">Play Now</li>
             </Link>
@@ -110,7 +103,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/login"
-              element={<LoginPage/>}
             >
               <li className="header__navlist-item">Login</li>
             </Link>
@@ -118,7 +110,6 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/register"
-              element={<RegisterPage/>}
             >
               <li className="header__navlist-item">Register</li>
             </Link>
@@ -126,9 +117,8 @@ export default function Header() {
             <Link
               className="header__navlist-item--link"
               to="/logout"
-              element={<LogOutPage/>}
             >
-              <li className="header__navlist-item">LogOut</li>
+              <li className="header__navlist-item">Log Out</li>
           </Link>
           
           </ul>

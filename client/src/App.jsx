@@ -18,22 +18,16 @@ import "./styles/partials/_fonts.scss";
 export default function App() {
   return (
     <BrowserRouter>
-      {/* Render the Header component */}
       <Header />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/play-game" element={<GamePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/logout" element={<LogOutPage />} />
-
-        {/* <Route path="/about" element={} />
-        <Route path="/profile/:id" element={} />
-        <Route path="/creature-list/:id" element={} />
-        <Route path="/creature-details/:id" element={} />
-        <Route path="/creature-management/:id" element={} />
-        <Route path="/contact" element={} /> */}
+        {/* TODO: ADD A /CHARACTER-SELECT ROUTE */}
+        {/* TODO: ADD A /NYX ROUTE */}
+        {/* TODO: ADD A /ALARA ROUTE */}
       </Routes>
     </BrowserRouter>
   );
