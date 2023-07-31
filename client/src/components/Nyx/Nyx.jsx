@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+// TODO: NEED TO REFACTOR
+
 export default function Nyx() {
   const NYX_URL = "http://localhost:8080/api/nyx/";
   const [currentStory, setCurrentStory] = useState(0);
