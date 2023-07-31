@@ -22,20 +22,42 @@
   &__name {
     font-size: 1rem;
     padding: 1rem;
+    cursor: pointer;
+  }
+
+  &__container{
+
+    &--dropdown{
+      cursor: pointer;
+      @include flex-column-center-center;
+
+      @include tablet{
+        display: flex;
+      }
+      &.open{
+        &__description {
+          display: flex;
+        }
+      }
+    }
   }
 
   &__description {
     font-size: 0.75rem;
     padding: 1rem;
+    display: none;
+    @include tablet {
+      display: flex;
+    }
   }
 
   &__image {
-    display: none; 
+    display: none;
 
     @include desktop {
-        display: flex;
-        margin: auto;
-        width: 20rem;
+      display: flex;
+      margin: auto;
+      width: 20rem;
     }
   }
 }
