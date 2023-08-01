@@ -3,8 +3,6 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-// TODO: Get json text to appear like it is being 'typed out' onto the screen
-
 .alara {
   @include flex-column-center-center;
   line-height: 2.5;

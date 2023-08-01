@@ -60,14 +60,12 @@
 
   @keyframes breathingAnimation {
     0%, 100% {
-      transform: scale(1); /* Original size */
+      transform: scale(1);
     }
     50% {
-      transform: scale(1.1); /* Slightly larger size */
+      transform: scale(1.1);
     }
   }
-
-
 
   &__button {
     @include buttonStyles;
