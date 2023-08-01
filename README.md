@@ -1,3 +1,4 @@
+
 # Mythic Tails: A Cursebreaker's Odyssey
 
 Mythic Tails: Cursebreaker’s Odyssey is an immersive text adventure game that takes players on a captivating journey through a cursed realm. In this RPG-style game, players become heroes tasked with breaking the curse and saving the land of Ethoria. Throughout the game, players encounter mythical creatures, each plagued with unique curses, and must decide between saving the creatures or confronting the evil being behind the curse.
@@ -17,17 +18,17 @@ Database: MySQL (Knex.js)
 ## Demo
 
 **Start Game Screen**
-<img width="1016" alt="Starting Game Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/f6c90cd9-cbad-484a-a9e6-478517a00cb0">
+<img width="500" alt="Starting Game Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/f6c90cd9-cbad-484a-a9e6-478517a00cb0">
 
 **Character Selection Screen**
-<img width="1048" alt="Character Selection Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/76251988-32ff-4dcf-8e29-85da8e8ca4b2">
+<img width="500" alt="Character Selection Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/76251988-32ff-4dcf-8e29-85da8e8ca4b2">
 
 **Scenario & Choices Screen**
-<img width="1001" alt="Scenario Choices Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/6dec174e-09eb-4ea0-8cf9-e0c38ee93e16">
+<img width="500" alt="Scenario Choices Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/6dec174e-09eb-4ea0-8cf9-e0c38ee93e16">
 
 **Dark Mode Toggle & Play/Pause Audio**
-<img width="301" alt="Play Audio & Dark Mode Toggle" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/74c6123f-1094-40f6-bd26-641b0143e2d5">
-<img width="1019" alt="Dark Mode" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/64c351c1-94cf-48a3-8c19-7610899bf444">
+<img width="500" alt="Play Audio & Dark Mode Toggle" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/74c6123f-1094-40f6-bd26-641b0143e2d5">
+<img width="500" alt="Dark Mode" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/64c351c1-94cf-48a3-8c19-7610899bf444">
 
 ## Installation
 
@@ -58,8 +59,9 @@ Alara's storyline has 10 possible endings.
 | --- | --- |
 | GET Nyx Scenario by ID | /api/nyx/scenarios/:id |
 
-**Reponse Format**
-`{
+```http
+Response Format
+  {
   "id": 1,
   "name": "Scenario Name",
   "additional_story": "Additional story for the scenario",
@@ -78,21 +80,28 @@ Alara's storyline has 10 possible endings.
       "linked_ending_id": null
     }
   ]
-}`
+}
+```
 
 | GET Nyx Ending by ID | /api/nyx/endings/:id |
+| --- | --- |
 
-**Reponse Format**
-`{
+```http
+Response Format
+{
   "id": 1,
   "name": "Ending Name",
   "story": "Ending story text"
-}`
+}
+```
 
 | GET Alara Scenario by ID |/api/alara/scenarios/:id |
+| --- | --- |
 
-**Reponse Format**
-`{
+
+```http 
+Response Format
+{
   "id": 1,
   "name": "Scenario Name",
   "additional_story": "Additional story for the scenario",
@@ -111,16 +120,20 @@ Alara's storyline has 10 possible endings.
       "linked_ending_id": null
     }
   ]
-}`
+}
+```
 
 | GET Alara Ending by ID | /api/alara/endings/:id |
+| --- | --- |
 
-**Reponse Format**
-`{
+```http
+Response Format
+{
   "id": 1,
   "name": "Ending Name",
   "story": "Ending story text"
-}`
+}
+```
 
 
 ## Future Implementations
@@ -136,7 +149,7 @@ Alara's storyline has 10 possible endings.
 
 ## Key Learnings 
 
-This project really testing my skills in full stack development as well as my creativity skills. The hardest part of this project was building my database with MySQL and linking all the primary keys and foreign keys with its respective ending links, choice links, and scenario links. Styling my application is always the fun part! I enjoy adding backgronud music to give the game a more immersive feel and I wanted to make it mobile responsive for users to play it on their mobile devices. 
+This project really tested my skills in full stack development as well as my creativity skills. The hardest part of this project was building my database with MySQL and linking all the primary keys and foreign keys with its respective ending links, choice links, and scenario links. Styling my application is always the fun part! I enjoyed adding backgronud music to give the game a more immersive feel and I wanted to make it mobile responsive for users to play it on their mobile devices. 
 
 
 ## Contributing
@@ -145,10 +158,11 @@ We welcome contributions from the community. If you find any bugs or have sugges
 
 ## License, Credit & Attributions
 
-Images by @isipxin & Canva
-LinkedIn icon by Icons8
-GitHub icon by Icons8
-Music - Floating Cat by Michael Grubb
+- Images by @isipxin & Canva
+- LinkedIn icon by Icons8
+- GitHub icon by Icons8
+- Mail icon by Icons8
+- Music - Floating Cat by Michael Grubb
 
 ## About the developer
 
