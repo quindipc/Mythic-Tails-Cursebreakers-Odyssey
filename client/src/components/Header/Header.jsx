@@ -60,7 +60,8 @@ export default function Header() {
               <li className="header__navlist-item">Play Now</li>
             </Link>
 
-            <Link
+          
+            {/* <Link
               className="header__navlist-item--link"
               to="/login"
             onClick={closeMenu}
@@ -82,7 +83,7 @@ export default function Header() {
             onClick={closeMenu}
             >
               <li className="header__navlist-item">Log Out</li>
-            </Link>
+            </Link> */}
 
           </ul>
           <ul className="header__navlist--desktop">
@@ -100,7 +101,7 @@ export default function Header() {
               <li className="header__navlist-item">Play Now</li>
             </Link>
 
-            <Link
+            {/* <Link
               className="header__navlist-item--link"
               to="/login"
             >
@@ -119,7 +120,7 @@ export default function Header() {
               to="/logout"
             >
               <li className="header__navlist-item">Log Out</li>
-          </Link>
+          </Link> */}
           
           </ul>
       </nav>
