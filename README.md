@@ -17,16 +17,16 @@ Database: MySQL (Knex.js)
 
 ## Demo
 
-**Start Game Screen**
+### **Start Game Screen**
 <img width="500" alt="Starting Game Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/f6c90cd9-cbad-484a-a9e6-478517a00cb0">
 
-**Character Selection Screen**
+### **Character Selection Screen**
 <img width="500" alt="Character Selection Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/76251988-32ff-4dcf-8e29-85da8e8ca4b2">
 
-**Scenario & Choices Screen**
+### **Scenario & Choices Screen**
 <img width="500" alt="Scenario Choices Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/6dec174e-09eb-4ea0-8cf9-e0c38ee93e16">
 
-**Dark Mode Toggle & Play/Pause Audio**
+### **Dark Mode Toggle & Play/Pause Audio**
 <img width="500" alt="Play Audio & Dark Mode Toggle" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/74c6123f-1094-40f6-bd26-641b0143e2d5">
 <img width="500" alt="Dark Mode" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/64c351c1-94cf-48a3-8c19-7610899bf444">
 
