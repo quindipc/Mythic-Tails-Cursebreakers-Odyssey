@@ -26,9 +26,9 @@ export default function App() {
         <Route path="/select-character" element={<GamePage />} />
         <Route path="/nyx" element={<GamePage />} />
         <Route path="/alara" element={<GamePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        {/* <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/logout" element={<LogOutPage />} />
+        <Route path="/logout" element={<LogOutPage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
