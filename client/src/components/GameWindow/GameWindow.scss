@@ -33,6 +33,14 @@
     height: 100vh;
   }
 
+ &__actions {
+  @include flex-row-center-center;
+ }
+
+ &__audio {
+  margin-left: 1rem;
+ }
+
   // DARK MODE //
   &__dark {
     background-color: $black;

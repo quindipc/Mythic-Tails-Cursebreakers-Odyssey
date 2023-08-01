@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./GameWindow.scss";
 
 // COMPONENTS
@@ -35,15 +35,48 @@ export default function GameWindow() {
   };
 
   // MUSIC
-  useEffect(() => {
+  const [audioReady, setAudioReady] = useState(false);
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+ useEffect(() => {
     const audioElement = new Audio(song);
     audioElement.loop = true;
-    audioElement.play();
+
+    // Event handler to set audioReady when the audio is ready to play
+    const handleAudioReady = () => {
+      setAudioReady(true);
+    };
+
+    // Add the event listener for the canplaythrough event
+    audioElement.addEventListener("canplaythrough", handleAudioReady);
+
+    // Set the audio element reference to be used for playing and pausing
+    audioRef.current = audioElement;
+
+    // Cleanup: Remove the event listener
     return () => {
+      audioElement.removeEventListener("canplaythrough", handleAudioReady);
       audioElement.pause();
       audioElement.currentTime = 0;
     };
   }, []);
+
+  // Function to play the audio on user interaction
+  const handlePlayAudio = () => {
+    if (audioReady) {
+      if (!audioPlaying) {
+        audioRef.current.play().then(() => {
+          setAudioPlaying(true);
+        }).catch((error) => {
+          console.error("Error playing audio:", error);
+        });
+      } else {
+        audioRef.current.pause();
+        setAudioPlaying(false);
+      }
+    }
+  };
 
   // BUTTON SOUND
   const buttonAudio = new Audio(buttonSound);
@@ -51,6 +84,7 @@ export default function GameWindow() {
   return (
     <section className={`game ${darkMode ? "dark" : ""}`}>
       <div className={`game__toggle-container ${darkMode ? "game__dark" : ""}`}>
+        <div className="game__actions">
         {/* Dark Mode Toggle */}
         <input
           type="checkbox"
@@ -61,6 +95,12 @@ export default function GameWindow() {
         <label className="game__switch-label" htmlFor="switch">
           <div className="game__toggle"></div>
         </label>
+
+        {/* Music Toggle */}
+        <button className="game__audio"onClick={handlePlayAudio}>
+        {audioPlaying ? "Pause Audio" : "Play Audio"}
+      </button>
+        </div>
 
         {!showGameStart && <GameTitle handleStartGame={handleStartGame} />}
 
