@@ -79,7 +79,6 @@ Alara's storyline has 10 possible endings.
   ]
 }`
 
-| Endpoints | Description | 
 | --- | --- |
 | GET Nyx Ending by ID | /api/nyx/endings/:id |
 
@@ -89,7 +88,6 @@ Alara's storyline has 10 possible endings.
   "story": "Ending story text"
 }`
 
-| Endpoints | Description | 
 | --- | --- |
 | GET Alara Scenario by ID |/api/alara/scenarios/:id |
 
@@ -114,7 +112,6 @@ Alara's storyline has 10 possible endings.
   ]
 }`
 
-| Endpoints | Description | 
 | --- | --- |
 | GET Alara Ending by ID | /api/alara/endings/:id |
 
