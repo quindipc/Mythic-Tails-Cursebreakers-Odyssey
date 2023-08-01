@@ -6,10 +6,14 @@
 .gamestart {
   @include flex-column-center-center;
   height: 100%;
-  width: 80rem;
+  width: 100%;
 
   @include tablet {
     @include flex-row-center-center;
+  }
+
+  @include desktop {
+    max-width: 80rem;
   }
 
   &__character {
