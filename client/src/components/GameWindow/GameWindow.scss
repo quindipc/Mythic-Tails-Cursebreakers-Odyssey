@@ -27,6 +27,10 @@
     }
   }
 
+  @include desktop {
+    height: 100vh;
+  }
+  
   &__loading {
     @include flex-column-center-center;
     width: 100%;
