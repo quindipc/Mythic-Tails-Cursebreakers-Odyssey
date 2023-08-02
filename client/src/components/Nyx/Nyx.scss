@@ -6,15 +6,15 @@
 .nyx {
   @include flex-column-center-center;
   line-height: 2.5;
-  height: 100%;
+  height: 80rem;
   width: 100%;
+  
+  @include tablet {
+    height:100%;
+  }
 
   @include desktop {
     width: 80rem;
-  }
-
-  @include tablet {
-    height: 40rem;
   }
 
   button {
