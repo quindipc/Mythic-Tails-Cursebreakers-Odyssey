@@ -17,6 +17,8 @@ Database: MySQL (Knex.js)
 
 ## Demo
 
+[Mythic Tails: Cursebreaker's Odyssey Demo Link](https://mythic-tails-cursebreakers-odyssey.netlify.app/)
+
 ### **Start Game Screen**
 <img width="500" alt="Starting Game Screen" src="https://github.com/quindipc/Mythic-Tails-Cursebreakers-Odyssey/assets/72505897/f6c90cd9-cbad-484a-a9e6-478517a00cb0">
 
