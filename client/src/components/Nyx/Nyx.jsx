@@ -1,12 +1,8 @@
 // DEPENDENCIES
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import "./Nyx.scss"
 
-// TODO: NEED TO REFACTOR
-
 // ASSETS
-import buttonSound from "../../assets/music/button-sound.wav"
 import NyxStoryComponent from "../StoryComponent/NyxStoryComponent";
 
 export default function Nyx() {
