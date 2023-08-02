@@ -1,12 +1,14 @@
 // DEPENDENCIES
 import React from "react";
 import "./Alara.scss";
+import dotenv from "dotenv";
+dotenv.config();
 
 // ASSETS
 import AlaraStoryComponent from "../StoryComponent/AlaraStoryComponent";
 
 export default function Alara() {
-  const ALARA_URL = "http://localhost:8080/api/alara/";
+  const REACT_APP_ALARA_URL = process.env.REACT_APP_ALARA_URL;
 
   const {
     currentStory,
@@ -22,7 +24,7 @@ export default function Alara() {
     handleChoiceSelect,
     handleRestart,
     handleEndOfDemo,
-  } = AlaraStoryComponent(ALARA_URL);
+  } = AlaraStoryComponent(REACT_APP_ALARA_URL);
 
   // INITIAL STORY LINE
   const storySteps = [
