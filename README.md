@@ -11,9 +11,13 @@ Dynamic Endings: Your decisions shape the storyline, leading to multiple endings
 
 ## Tech Stack
 
-Frontend: React (Vite)
-Backend: Node.js, Express
-Database: MySQL (Knex.js)
+Frontend: [React](https://react.dev/), [Vite](https://vitejs.dev/)
+
+Backend: [Node.js](https://nodejs.org/en), [Express](https://expressjs.com/)
+
+Database: [MySQL](https://www.mysql.com/), [Knex.js](https://knexjs.org/)
+
+Deployed using: [Netlify](https://www.netlify.com/?attr=homepage-modal) & [Heroku](https://www.heroku.com/)
 
 ## Demo
 
