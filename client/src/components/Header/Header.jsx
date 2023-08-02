@@ -6,13 +6,6 @@ import "./Header.scss";
 // ASSETS
 import colorLogo from "../../assets/images/logo/Mythic-Tails-Logo-Color.svg";
 
-// PAGES
-import HomePage from "../../pages/HomePage/HomePage";
-import GamePage from "../../pages/GamePage/GamePage";
-import LoginPage from "../../pages/LoginPage/LoginPage";
-import RegisterPage from "../../pages/RegisterPage/RegisterPage";
-import LogOutPage from "../../pages/LogOutPage/LogOutPage"
-
 export default function Header() {
   const [toggled, setToggled] = useState(false);
 
@@ -60,31 +53,6 @@ export default function Header() {
               <li className="header__navlist-item">Play Now</li>
             </Link>
 
-          
-            {/* <Link
-              className="header__navlist-item--link"
-              to="/login"
-            onClick={closeMenu}
-            >
-              <li className="header__navlist-item">Login</li>
-            </Link>
-
-            <Link
-              className="header__navlist-item--link"
-              to="/register"
-            onClick={closeMenu}
-            >
-              <li className="header__navlist-item">Register</li>
-            </Link>
-
-            <Link
-              className="header__navlist-item--link"
-              to="/logout"
-            onClick={closeMenu}
-            >
-              <li className="header__navlist-item">Log Out</li>
-            </Link> */}
-
           </ul>
           <ul className="header__navlist--desktop">
             <Link
@@ -100,27 +68,6 @@ export default function Header() {
             >
               <li className="header__navlist-item">Play Now</li>
             </Link>
-
-            {/* <Link
-              className="header__navlist-item--link"
-              to="/login"
-            >
-              <li className="header__navlist-item">Login</li>
-            </Link>
-
-            <Link
-              className="header__navlist-item--link"
-              to="/register"
-            >
-              <li className="header__navlist-item">Register</li>
-            </Link>
-
-            <Link
-              className="header__navlist-item--link"
-              to="/logout"
-            >
-              <li className="header__navlist-item">Log Out</li>
-          </Link> */}
           
           </ul>
       </nav>

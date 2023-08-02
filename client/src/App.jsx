@@ -5,9 +5,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages
 import HomePage from "./pages/HomePage/HomePage";
 import GamePage from "./pages/GamePage/GamePage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import LogOutPage from "./pages/LogOutPage/LogOutPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 // Components
@@ -26,9 +23,6 @@ export default function App() {
         <Route path="/select-character" element={<GamePage />} />
         <Route path="/nyx" element={<GamePage />} />
         <Route path="/alara" element={<GamePage />} />
-        {/* <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/logout" element={<LogOutPage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
