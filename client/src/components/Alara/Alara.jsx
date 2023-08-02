@@ -16,7 +16,6 @@ export default function Alara() {
     currentScenario,
     showScenario,
     showChoices,
-    // showEnding,
     showSingleEnding,
     selectedChoiceId,
     choiceSelected,
@@ -26,9 +25,6 @@ export default function Alara() {
     handleChoiceSelect,
     handleRestart,
     handleEndOfDemo,
-    // saveProgress,
-    // loadProgress,
-    // clearProgress,
   } = AlaraStoryComponent(ALARA_URL);
 
   // INITIAL STORY LINE

@@ -17,7 +17,6 @@ export default function Nyx() {
     currentScenario,
     showScenario,
     showChoices,
-    // showEnding,
     showSingleEnding,
     selectedChoiceId,
     choiceSelected,
@@ -27,9 +26,6 @@ export default function Nyx() {
     handleChoiceSelect,
     handleRestart,
     handleEndOfDemo,
-    // saveProgress,
-    // loadProgress,
-    // clearProgress,
   } = NyxStoryComponent(NYX_URL);
 
   // INITIAL STORY LINE
