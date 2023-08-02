@@ -10,9 +10,6 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 // Components
 import Header from "./components/Header/Header";
 
-// Assets
-import "./styles/partials/_fonts.scss";
-
 export default function App() {
   return (
     <BrowserRouter>
