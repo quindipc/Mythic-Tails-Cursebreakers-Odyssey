@@ -155,8 +155,11 @@ Response Format
 
 ## Key Learnings 
 
-This project really tested my skills in full stack development as well as my creativity skills. The hardest part of this project was building my database with MySQL and linking all the primary keys and foreign keys with its respective ending links, choice links, and scenario links. Styling my application is always the fun part! I enjoyed adding backgronud music to give the game a more immersive feel and I wanted to make it mobile responsive for users to play it on their mobile devices. 
+This project really tested my skills in full stack development as well as my creativity skills. The hardest part of this project was building the story as a database with MySQL and linking all the primary keys and foreign keys with its respective ending links, choice links, and scenario links. My favourite part was seeing everything come together by styling the project and making API calls to my backend. 
 
+I also learned that I like to dream big! My original project scope had way more features that I had originally wanted to implement, but due to the timeframe that we were given, I was not able to add in everything. This was a really fun project for me to do and it has inspired me to build more things like this, or possibly re-build this using a different stack. 
+
+I am not a game developer, but building this project makes me appreciate more of what game developer's really do and I barely scratched the surface of that.
 
 ## Contributing
 
