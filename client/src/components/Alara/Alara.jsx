@@ -9,7 +9,7 @@ import "./Alara.scss";
 import AlaraStoryComponent from "../StoryComponent/AlaraStoryComponent";
 
 export default function Alara() {
-  const ALARA_URL = "http://localhost:8080/api/alara/";
+  const ALARA_URL = "https://mythic-tails-server-848fe7004811.herokuapp.com/api/alara/";
 
   const {
     currentStory,

@@ -10,7 +10,7 @@ import buttonSound from "../../assets/music/button-sound.wav"
 import NyxStoryComponent from "../StoryComponent/NyxStoryComponent";
 
 export default function Nyx() {
-  const NYX_URL = "http://localhost:8080/api/nyx/";
+  const NYX_URL = "https://mythic-tails-server-848fe7004811.herokuapp.com/api/nyx/";
 
   const {
     currentStory,
