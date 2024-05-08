@@ -47,9 +47,9 @@ Deployed using: [Netlify](https://www.netlify.com/?attr=homepage-modal) & [Herok
 7) Run the development server:
     `cd client`
     `npm run dev`
-9) Run the backend server:
+9) Run the backend server & setup.env files:
     `cd into server`
-    `npm server.js`
+    `npm start`
 
 ## How to Play
 
