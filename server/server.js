@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8080
 const CORS_ORIGIN = process.env.CORS_ORIGIN
 
 // Allow access
